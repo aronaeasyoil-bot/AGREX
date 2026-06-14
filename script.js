@@ -272,18 +272,21 @@ const siteContent = {
         {
           badge: "AGX",
           tag: "Organisateur",
+          image: "agrex-organizer-card.jpg",
           title: "AGREX",
           text: "La marque evenementielle qui porte l'exposition, la projection internationale et le parcours business du salon."
         },
         {
           badge: "GAIC",
           tag: "Co-organisateur",
+          image: "gaic-coorganizer.jpg",
           title: "Gulf Africa Investment Chamber",
           text: "Le trait d'union economique entre ecosystemes africains et du Golfe, au service des investissements et des partenariats."
         },
         {
           badge: "DMC",
           tag: "Exclusive Dubai Partner",
+          image: "damac-partner-card.jpg",
           title: "DAMAC",
           text: "Le partenaire exclusif qui presentera ses projets, ses residences premium et ses dispositifs de paiement aux participants AGREX."
         }
@@ -637,18 +640,21 @@ const siteContent = {
         {
           badge: "AGX",
           tag: "Organiser",
+          image: "agrex-organizer-card.jpg",
           title: "AGREX",
           text: "The event brand driving the exhibition, the international projection and the business journey of the expo."
         },
         {
           badge: "GAIC",
           tag: "Co-organiser",
+          image: "gaic-coorganizer.jpg",
           title: "Gulf Africa Investment Chamber",
           text: "The economic bridge between African and Gulf ecosystems, supporting investment conversations and durable partnerships."
         },
         {
           badge: "DMC",
           tag: "Exclusive Dubai Partner",
+          image: "damac-partner-card.jpg",
           title: "DAMAC",
           text: "The exclusive partner presenting its projects, premium residences and acquisition pathways to AGREX participants."
         }
@@ -961,6 +967,7 @@ function renderPartners(items) {
     .map(
       (item) => `
         <article class="partner-card" data-reveal>
+          ${item.image ? `<div class="partner-card-media"><img src="${item.image}" alt="${item.title}" /></div>` : ""}
           <span class="partner-card-badge">${item.badge}</span>
           <span class="partner-card-tag">${item.tag}</span>
           <h3>${item.title}</h3>

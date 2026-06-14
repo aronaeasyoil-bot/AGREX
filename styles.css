@@ -949,6 +949,20 @@ select:focus-visible {
   border-radius: 0;
 }
 
+.partner-card-media {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border-radius: 0;
+  margin-bottom: 1rem;
+}
+
+.partner-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .quote-card-quote {
   color: #eef3fb;
   font-size: 1.05rem;
