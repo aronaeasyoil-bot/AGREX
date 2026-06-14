@@ -1,0 +1,24 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="1000" rx="48" fill="#091120"/>
+  <rect x="28" y="28" width="744" height="944" rx="36" fill="url(#bg)"/>
+  <circle cx="400" cy="330" r="150" fill="url(#halo)" opacity="0.8"/>
+  <circle cx="400" cy="320" r="102" fill="#102444"/>
+  <path d="M260 620C260 520.589 340.589 440 440 440H360C459.411 440 540 520.589 540 620V682H260V620Z" fill="#143056"/>
+  <path d="M190 748C190 682.278 243.278 629 309 629H491C556.722 629 610 682.278 610 748V866H190V748Z" fill="#0E203B"/>
+  <rect x="88" y="812" width="624" height="92" rx="20" fill="rgba(255,255,255,0.06)"/>
+  <text x="400" y="854" fill="#F4E6C6" font-family="Manrope, Arial, sans-serif" font-size="34" font-weight="700" text-anchor="middle">HE PAPA SAER GUEYE</text>
+  <text x="400" y="904" fill="#D3A75B" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="6" text-anchor="middle">VICE-PRESIDENT</text>
+  <path d="M132 120H668" stroke="#D3A75B" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M132 148H668" stroke="#294D84" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <defs>
+    <linearGradient id="bg" x1="128" y1="80" x2="660" y2="930" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12315B"/>
+      <stop offset="0.55" stop-color="#0B162A"/>
+      <stop offset="1" stop-color="#15294B"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(400 312) rotate(90) scale(182)">
+      <stop stop-color="#E8C98B"/>
+      <stop offset="1" stop-color="#E8C98B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

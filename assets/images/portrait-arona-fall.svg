@@ -1,0 +1,24 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="1000" rx="48" fill="#07101D"/>
+  <rect x="28" y="28" width="744" height="944" rx="36" fill="url(#bg)"/>
+  <circle cx="400" cy="300" r="160" fill="url(#halo)" opacity="0.85"/>
+  <circle cx="400" cy="300" r="104" fill="#0E2242"/>
+  <path d="M260 614C260 514.589 340.589 434 440 434H360C459.411 434 540 514.589 540 614V682H260V614Z" fill="#112A4F"/>
+  <path d="M182 736C182 669.726 235.726 616 302 616H498C564.274 616 618 669.726 618 736V872H182V736Z" fill="#0C1C34"/>
+  <path d="M148 108H652" stroke="#D3A75B" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M148 136H652" stroke="#2B5AA8" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+  <rect x="88" y="808" width="624" height="96" rx="20" fill="rgba(255,255,255,0.06)"/>
+  <text x="400" y="850" fill="#F4E6C6" font-family="Manrope, Arial, sans-serif" font-size="38" font-weight="700" text-anchor="middle">ARONA FALL</text>
+  <text x="400" y="902" fill="#D3A75B" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="6" text-anchor="middle">PRESIDENT, GAIC &amp; AGREX</text>
+  <defs>
+    <linearGradient id="bg" x1="144" y1="72" x2="654" y2="934" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14315C"/>
+      <stop offset="0.5" stop-color="#0A1426"/>
+      <stop offset="1" stop-color="#172D53"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(400 286) rotate(90) scale(188)">
+      <stop stop-color="#EBCB90"/>
+      <stop offset="1" stop-color="#EBCB90" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
