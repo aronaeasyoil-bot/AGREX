@@ -292,6 +292,63 @@ const siteContent = {
         }
       ]
     },
+    sponsors: {
+      kicker: "Sponsors",
+      title: "Prix de sponsoring AGREX 2026",
+      lead:
+        "Associez votre marque a AGREX avec des offres sponsors concues pour maximiser votre visibilite, votre acces au networking et votre presence aupres des investisseurs, institutions et acteurs majeurs de l'immobilier Afrique-Golfe.",
+      note:
+        "Tous les montants sont en EUR. Chaque pack peut etre personnalise sur demande selon vos objectifs de visibilite, de prise de parole et de presence exposition.",
+      cta: "Devenir sponsor",
+      cards: [
+        {
+          tier: "Platinum Sponsor",
+          price: "35,000€",
+          accent: "platinum",
+          items: [
+            "Statut de partenaire principal",
+            "Prise de parole (10 min) a la ceremonie d'ouverture",
+            "Emplacement premium (stand 6x3 m)",
+            "Visibilite logo maximale sur supports et medias",
+            "Interview exclusive et mise en avant prioritaire"
+          ]
+        },
+        {
+          tier: "Gold Sponsor",
+          price: "25,000€",
+          accent: "gold",
+          items: [
+            "Statut de partenaire officiel",
+            "Emplacement premium (stand 4x3 m)",
+            "Visibilite logo renforcee sur supports et ecran LED",
+            "Mention dans les discours officiels",
+            "Acces VIP au networking et aux conferences"
+          ]
+        },
+        {
+          tier: "Silver Sponsor",
+          price: "15,000€",
+          accent: "silver",
+          items: [
+            "Emplacement privilegie (stand 3x2 m)",
+            "Visibilite logo sur supports imprimes et digitaux",
+            "Mention sur le site web et les reseaux sociaux",
+            "Acces aux conferences et au networking VIP"
+          ]
+        },
+        {
+          tier: "Bronze Sponsor",
+          price: "10,000€",
+          accent: "bronze",
+          items: [
+            "Stand standard (2x2 m)",
+            "Listing logo sur le site web de l'evenement",
+            "Mention sur les reseaux sociaux",
+            "Acces au salon et aux sessions de networking"
+          ]
+        }
+      ]
+    },
     visit: {
       kicker: "Visit AGREX 2026",
       title: "Rejoignez le salon immobilier international Afrique-Golfe a Dubai",
@@ -660,6 +717,63 @@ const siteContent = {
         }
       ]
     },
+    sponsors: {
+      kicker: "Sponsors",
+      title: "AGREX 2026 sponsorship packages",
+      lead:
+        "Position your brand within AGREX through sponsorship offers designed to maximise visibility, networking access and premium exposure to investors, institutions and real estate decision-makers across Africa and the Gulf.",
+      note:
+        "All amounts are in EUR. Each package can be tailored on request depending on your visibility, speaking and exhibition objectives.",
+      cta: "Become a sponsor",
+      cards: [
+        {
+          tier: "Platinum Sponsor",
+          price: "35,000€",
+          accent: "platinum",
+          items: [
+            "Main partner status",
+            "10-minute speaking slot at the opening ceremony",
+            "Premium location (6x3 m stand)",
+            "Maximum logo visibility across media and event support",
+            "Exclusive interview and featured positioning"
+          ]
+        },
+        {
+          tier: "Gold Sponsor",
+          price: "25,000€",
+          accent: "gold",
+          items: [
+            "Official partner status",
+            "Premium location (4x3 m stand)",
+            "Enhanced logo visibility across support material and LED screen",
+            "Mention in official speeches",
+            "VIP access to networking and conferences"
+          ]
+        },
+        {
+          tier: "Silver Sponsor",
+          price: "15,000€",
+          accent: "silver",
+          items: [
+            "Preferred location (3x2 m stand)",
+            "Logo visibility across printed and digital material",
+            "Mention on the website and social media",
+            "Access to conferences and VIP networking"
+          ]
+        },
+        {
+          tier: "Bronze Sponsor",
+          price: "10,000€",
+          accent: "bronze",
+          items: [
+            "Standard stand (2x2 m)",
+            "Logo listing on the event website",
+            "Mention on social media",
+            "Access to the expo and networking sessions"
+          ]
+        }
+      ]
+    },
     visit: {
       kicker: "Visit AGREX 2026",
       title: "Join the international Africa-Gulf real estate expo in Dubai",
@@ -978,6 +1092,24 @@ function renderPartners(items) {
     .join("");
 }
 
+function renderSponsors(items) {
+  const container = document.getElementById("sponsor-cards");
+  container.innerHTML = items
+    .map(
+      (item) => `
+        <article class="sponsor-card sponsor-card-${item.accent}" data-reveal>
+          <div class="sponsor-card-cap">${item.tier}</div>
+          <strong class="sponsor-price">${item.price}</strong>
+          <div class="sponsor-rule"></div>
+          <div class="sponsor-list">
+            ${item.items.map((entry) => `<div class="sponsor-item">${entry}</div>`).join("")}
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
 function renderBenefits(items) {
   const container = document.getElementById("visit-benefits");
   container.innerHTML = items
@@ -1049,6 +1181,7 @@ function renderSite(lang) {
   renderTravel(data.travel.cards);
   renderQuotes(data.voices.cards);
   renderPartners(data.partners.cards);
+  renderSponsors(data.sponsors.cards);
   renderBenefits(data.visit.benefits);
   renderRoleOptions(data.form.roles);
   renderFooterInfo(data.footer.infoCards);
