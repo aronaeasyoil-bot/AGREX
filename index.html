@@ -197,9 +197,82 @@
 
           <div class="sponsor-grid" id="sponsor-cards"></div>
 
+          <div class="sponsor-registration-shell">
+            <div class="sponsor-registration-copy panel" id="sponsor-registration" data-reveal>
+              <p class="eyebrow" data-text="sponsors.form.kicker"></p>
+              <h3 data-text="sponsors.form.title"></h3>
+              <p class="section-lead" data-text="sponsors.form.lead"></p>
+              <div class="sponsor-process" id="sponsor-process"></div>
+              <p class="sponsor-form-note" data-text="sponsors.form.note"></p>
+            </div>
+
+            <form
+              class="sponsor-form panel"
+              id="sponsor-form"
+              data-reveal
+              action="https://formsubmit.co/contact@agrex.events"
+              method="POST"
+            >
+              <input type="hidden" name="_cc" value="contact@lebrief.energy,psgueye1@gmail.com" />
+              <input type="hidden" name="_subject" id="sponsor-subject" value="Nouvelle inscription sponsor AGREX" />
+              <input type="hidden" name="_autoresponse" id="sponsor-autoresponse" value="" />
+              <input type="hidden" name="_next" id="sponsor-next" value="" />
+              <input type="hidden" name="_template" value="table" />
+              <div class="form-grid">
+                <label>
+                  <span data-text="sponsors.form.package"></span>
+                  <select name="sponsorPackage" id="sponsor-package" required></select>
+                </label>
+                <label>
+                  <span data-text="sponsors.form.fullName"></span>
+                  <input type="text" name="fullName" required />
+                </label>
+                <label>
+                  <span data-text="sponsors.form.jobTitle"></span>
+                  <input type="text" name="jobTitle" required />
+                </label>
+                <label>
+                  <span data-text="sponsors.form.company"></span>
+                  <input type="text" name="company" required />
+                </label>
+                <label>
+                  <span data-text="sponsors.form.country"></span>
+                  <input type="text" name="country" required />
+                </label>
+                <label>
+                  <span data-text="sponsors.form.email"></span>
+                  <input type="email" name="email" required />
+                </label>
+                <label>
+                  <span data-text="sponsors.form.phone"></span>
+                  <input type="tel" name="phone" required />
+                </label>
+                <label>
+                  <span data-text="sponsors.form.website"></span>
+                  <input type="url" name="website" placeholder="https://" />
+                </label>
+                <label class="field-full">
+                  <span data-text="sponsors.form.message"></span>
+                  <textarea name="message" rows="5" required></textarea>
+                </label>
+                <label class="form-honeypot" aria-hidden="true" tabindex="-1">
+                  <span>Company fax</span>
+                  <input type="text" name="_honey" autocomplete="off" tabindex="-1" />
+                </label>
+                <label class="field-full form-check">
+                  <input type="checkbox" name="consent" required />
+                  <span data-text="sponsors.form.consent"></span>
+                </label>
+              </div>
+
+              <button class="button button-primary button-full" type="submit" data-text="sponsors.form.submit"></button>
+              <p class="form-status" id="sponsor-form-status" aria-live="polite"></p>
+            </form>
+          </div>
+
           <div class="sponsor-footer" data-reveal>
             <p class="sponsor-note" data-text="sponsors.note"></p>
-            <a class="button button-primary sponsor-cta" href="#visit" data-text="sponsors.cta"></a>
+            <a class="button button-primary sponsor-cta" href="#sponsor-registration" data-text="sponsors.cta"></a>
           </div>
         </div>
       </section>

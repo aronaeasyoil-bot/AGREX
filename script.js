@@ -300,6 +300,7 @@ const siteContent = {
       note:
         "Tous les montants sont en EUR. Chaque pack peut etre personnalise sur demande selon vos objectifs de visibilite, de prise de parole et de presence exposition.",
       cta: "Devenir sponsor",
+      cardCta: "Choisir cette formule",
       cards: [
         {
           tier: "Platinum Sponsor",
@@ -347,7 +348,38 @@ const siteContent = {
             "Acces au salon et aux sessions de networking"
           ]
         }
-      ]
+      ],
+      form: {
+        kicker: "Inscription sponsor",
+        title: "Validez votre demande de sponsoring en ligne",
+        lead:
+          "Choisissez votre formule, laissez vos coordonnees et AGREX vous recontactera avec la confirmation, les prochaines etapes et les instructions de paiement.",
+        note:
+          "Les demandes sont transmises automatiquement a contact@agrex.events, contact@lebrief.energy et psgueye1@gmail.com. Le sponsor inscrit recoit aussi un email automatique de remerciement.",
+        package: "Pack sponsor",
+        packagePlaceholder: "Selectionnez une formule",
+        fullName: "Nom complet",
+        jobTitle: "Fonction",
+        company: "Societe",
+        country: "Pays",
+        email: "Email professionnel",
+        phone: "Telephone",
+        website: "Site web (optionnel)",
+        message: "Objectifs, besoins ou commentaires",
+        consent:
+          "J'autorise AGREX a utiliser ces informations pour me recontacter au sujet du sponsoring et de l'organisation de l'evenement.",
+        submit: "Valider mon inscription sponsor",
+        sending: "Envoi en cours...",
+        success:
+          "Merci. Votre demande sponsor a bien ete envoyee. Un email de confirmation vous a ete adresse.",
+        error:
+          "L'envoi n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
+        steps: [
+          "Choisissez le pack Platinum, Gold, Silver ou Bronze qui correspond a votre niveau de visibilite.",
+          "Renseignez les coordonnees de votre societe et la personne de contact a joindre.",
+          "Notre equipe recoit automatiquement votre dossier et vous adresse une confirmation par email."
+        ]
+      }
     },
     visit: {
       kicker: "Visit AGREX 2026",
@@ -411,12 +443,11 @@ const siteContent = {
         },
         {
           label: "Contact & support",
-          title: "contact@agrexexpo.org",
+          title: "www.agrex.events",
           list: [
-            "partners@agrexexpo.org",
-            "invest@agrexexpo.org",
-            "+971 554 420 793",
-            "+221 783 827 822"
+            "contact@agrex.events",
+            "+221 77 751 91 65",
+            "+971 54 333 8520"
           ]
         }
       ],
@@ -725,6 +756,7 @@ const siteContent = {
       note:
         "All amounts are in EUR. Each package can be tailored on request depending on your visibility, speaking and exhibition objectives.",
       cta: "Become a sponsor",
+      cardCta: "Choose this package",
       cards: [
         {
           tier: "Platinum Sponsor",
@@ -772,7 +804,38 @@ const siteContent = {
             "Access to the expo and networking sessions"
           ]
         }
-      ]
+      ],
+      form: {
+        kicker: "Sponsor registration",
+        title: "Validate your sponsorship request online",
+        lead:
+          "Choose your package, share your details and the AGREX team will revert with confirmation, next steps and payment instructions.",
+        note:
+          "Requests are automatically sent to contact@agrex.events, contact@lebrief.energy and psgueye1@gmail.com. The sponsor also receives an automatic thank-you email.",
+        package: "Sponsorship package",
+        packagePlaceholder: "Select a package",
+        fullName: "Full name",
+        jobTitle: "Job title",
+        company: "Company",
+        country: "Country",
+        email: "Business email",
+        phone: "Phone",
+        website: "Website (optional)",
+        message: "Objectives, needs or comments",
+        consent:
+          "I authorise AGREX to use this information to contact me regarding sponsorship and event organisation.",
+        submit: "Confirm my sponsor registration",
+        sending: "Sending...",
+        success:
+          "Thank you. Your sponsor request has been sent successfully. A confirmation email has been delivered to you.",
+        error:
+          "The submission could not be completed right now. Please try again or write to contact@agrex.events.",
+        steps: [
+          "Choose the Platinum, Gold, Silver or Bronze package that matches your visibility goals.",
+          "Share your company details and the main contact person for sponsorship follow-up.",
+          "Our team receives your file automatically and sends a confirmation email back to you."
+        ]
+      }
     },
     visit: {
       kicker: "Visit AGREX 2026",
@@ -836,12 +899,11 @@ const siteContent = {
         },
         {
           label: "Contact & support",
-          title: "contact@agrexexpo.org",
+          title: "www.agrex.events",
           list: [
-            "partners@agrexexpo.org",
-            "invest@agrexexpo.org",
-            "+971 554 420 793",
-            "+221 783 827 822"
+            "contact@agrex.events",
+            "+221 77 751 91 65",
+            "+971 54 333 8520"
           ]
         }
       ],
@@ -856,9 +918,15 @@ let currentLang = localStorage.getItem("agrex-lang") || "fr";
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelectorAll(".site-nav a");
 const registrationForm = document.getElementById("registration-form");
+const sponsorForm = document.getElementById("sponsor-form");
 const newsletterForm = document.getElementById("newsletter-form");
 const formStatus = document.getElementById("form-status");
+const sponsorFormStatus = document.getElementById("sponsor-form-status");
 const newsletterStatus = document.getElementById("newsletter-status");
+const sponsorPackageSelect = document.getElementById("sponsor-package");
+const sponsorSubjectInput = document.getElementById("sponsor-subject");
+const sponsorAutoresponseInput = document.getElementById("sponsor-autoresponse");
+const sponsorNextInput = document.getElementById("sponsor-next");
 
 function getByPath(object, path) {
   return path.split(".").reduce((value, key) => (value ? value[key] : undefined), object);
@@ -1104,10 +1172,36 @@ function renderSponsors(items) {
           <div class="sponsor-list">
             ${item.items.map((entry) => `<div class="sponsor-item">${entry}</div>`).join("")}
           </div>
+          <button class="button button-secondary sponsor-card-button" type="button" data-sponsor-tier="${item.tier}">
+            ${siteContent[currentLang].sponsors.cardCta}
+          </button>
         </article>
       `
     )
     .join("");
+}
+
+function renderSponsorProcess(items) {
+  const container = document.getElementById("sponsor-process");
+  if (!container) return;
+
+  container.innerHTML = items
+    .map((item) => `<div class="sponsor-process-item" data-reveal>${item}</div>`)
+    .join("");
+}
+
+function renderSponsorPackageOptions(items) {
+  if (!sponsorPackageSelect) return;
+
+  const currentValue = sponsorPackageSelect.value;
+  const placeholder = siteContent[currentLang].sponsors.form.packagePlaceholder;
+
+  sponsorPackageSelect.innerHTML = `
+    <option value="">${placeholder}</option>
+    ${items.map((item) => `<option value="${item.tier}">${item.tier} - ${item.price}</option>`).join("")}
+  `;
+
+  sponsorPackageSelect.value = items.some((item) => item.tier === currentValue) ? currentValue : "";
 }
 
 function renderBenefits(items) {
@@ -1129,18 +1223,34 @@ function renderFooterInfo(items) {
   container.innerHTML = items
     .map((item) => {
       const listMarkup = item.list
-        ? `<ul>${item.list.map((entry) => `<li>${entry}</li>`).join("")}</ul>`
+        ? `<ul>${item.list.map((entry) => `<li>${formatFooterEntry(entry)}</li>`).join("")}</ul>`
         : `<p>${item.body}</p>`;
 
       return `
         <article class="footer-info-card" data-reveal>
           <span class="footer-info-label">${item.label}</span>
-          <strong>${item.title}</strong>
+          <strong>${formatFooterEntry(item.title)}</strong>
           ${listMarkup}
         </article>
       `;
     })
     .join("");
+}
+
+function formatFooterEntry(entry) {
+  if (/^www\./i.test(entry)) {
+    return `<a href="https://${entry}" target="_blank" rel="noreferrer">${entry}</a>`;
+  }
+
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(entry)) {
+    return `<a href="mailto:${entry}">${entry}</a>`;
+  }
+
+  if (/^\+\d[\d\s]+$/.test(entry)) {
+    return `<a href="tel:${entry.replace(/\s+/g, "")}">${entry}</a>`;
+  }
+
+  return entry;
 }
 
 function setLanguageButtons(lang) {
@@ -1182,6 +1292,9 @@ function renderSite(lang) {
   renderQuotes(data.voices.cards);
   renderPartners(data.partners.cards);
   renderSponsors(data.sponsors.cards);
+  renderSponsorProcess(data.sponsors.form.steps);
+  renderSponsorPackageOptions(data.sponsors.cards);
+  configureSponsorFormMeta();
   renderBenefits(data.visit.benefits);
   renderRoleOptions(data.form.roles);
   renderFooterInfo(data.footer.infoCards);
@@ -1189,11 +1302,90 @@ function renderSite(lang) {
   setupRevealObserver();
 
   formStatus.textContent = "";
+  sponsorFormStatus.textContent = "";
+  sponsorFormStatus.className = "form-status";
   newsletterStatus.textContent = "";
+  syncSponsorSuccessState();
+}
+
+function setSponsorTier(tier) {
+  if (!sponsorPackageSelect) return;
+
+  sponsorPackageSelect.value = tier;
+  configureSponsorFormMeta();
+  const target = document.getElementById("sponsor-registration");
+  target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  sponsorPackageSelect.focus({ preventScroll: true });
+}
+
+function buildSponsorAutoresponse(packageName) {
+  if (currentLang === "en") {
+    return [
+      "Thank you for your sponsorship registration for AGREX 2026.",
+      `Selected package: ${packageName || "Sponsorship package"}.`,
+      "Our team has received your request and will contact you shortly with confirmation, next steps and payment details.",
+      "AGREX 2026",
+      "www.agrex.events",
+      "contact@agrex.events",
+      "+221 77 751 91 65",
+      "+971 54 333 8520"
+    ].join("\n");
+  }
+
+  return [
+    "Merci pour votre inscription sponsor a AGREX 2026.",
+    `Formule choisie : ${packageName || "Pack sponsor"}.`,
+    "Notre equipe a bien recu votre demande et vous recontactera rapidement avec la confirmation, les prochaines etapes et les details de paiement.",
+    "AGREX 2026",
+    "www.agrex.events",
+    "contact@agrex.events",
+    "+221 77 751 91 65",
+    "+971 54 333 8520"
+  ].join("\n");
+}
+
+function configureSponsorFormMeta() {
+  const selectedPackage = sponsorPackageSelect?.value || "";
+
+  if (sponsorSubjectInput) {
+    sponsorSubjectInput.value =
+      currentLang === "en"
+        ? `AGREX Sponsor Registration${selectedPackage ? ` - ${selectedPackage}` : ""}`
+        : `Inscription Sponsor AGREX${selectedPackage ? ` - ${selectedPackage}` : ""}`;
+  }
+
+  if (sponsorAutoresponseInput) {
+    sponsorAutoresponseInput.value = buildSponsorAutoresponse(selectedPackage);
+  }
+
+  if (sponsorNextInput) {
+    sponsorNextInput.value = `${window.location.origin}${window.location.pathname}?sponsor=success#sponsor-registration`;
+  }
+}
+
+function syncSponsorSuccessState() {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("sponsor") === "success") {
+    sessionStorage.setItem("agrex-sponsor-success", "true");
+    window.history.replaceState({}, "", `${window.location.pathname}${window.location.hash || "#sponsor-registration"}`);
+  }
+
+  if (sessionStorage.getItem("agrex-sponsor-success") === "true") {
+    sponsorFormStatus.classList.add("is-success");
+    sponsorFormStatus.textContent = siteContent[currentLang].sponsors.form.success;
+  }
 }
 
 document.querySelectorAll("[data-lang-switch]").forEach((button) => {
   button.addEventListener("click", () => renderSite(button.dataset.langSwitch));
+});
+
+document.addEventListener("click", (event) => {
+  const tierButton = event.target.closest("[data-sponsor-tier]");
+  if (!tierButton) return;
+
+  setSponsorTier(tierButton.dataset.sponsorTier);
 });
 
 navToggle?.addEventListener("click", () => {
@@ -1219,6 +1411,19 @@ registrationForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   formStatus.textContent = siteContent[currentLang].form.success;
   registrationForm.reset();
+});
+
+sponsorPackageSelect?.addEventListener("change", () => {
+  configureSponsorFormMeta();
+});
+
+sponsorForm?.addEventListener("submit", () => {
+  const submitButton = sponsorForm.querySelector('button[type="submit"]');
+  configureSponsorFormMeta();
+  sponsorFormStatus.className = "form-status";
+  sponsorFormStatus.textContent = "";
+  submitButton.disabled = true;
+  submitButton.textContent = siteContent[currentLang].sponsors.form.sending;
 });
 
 newsletterForm?.addEventListener("submit", (event) => {

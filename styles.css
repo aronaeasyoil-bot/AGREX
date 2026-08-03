@@ -1096,6 +1096,76 @@ select:focus-visible {
   box-shadow: 0 0 0 3px rgba(23, 221, 200, 0.14);
 }
 
+.sponsor-card-button {
+  margin-top: 1.3rem;
+}
+
+.sponsor-registration-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1.4rem;
+  margin-top: 1.75rem;
+}
+
+.sponsor-registration-copy,
+.sponsor-form {
+  position: relative;
+  padding: 1.6rem;
+  border-radius: 0;
+  border: 1px solid rgba(23, 221, 200, 0.22);
+  background:
+    linear-gradient(180deg, rgba(23, 19, 76, 0.96), rgba(16, 13, 58, 0.98)),
+    rgba(8, 15, 28, 0.88);
+  box-shadow: none;
+}
+
+.sponsor-process {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.3rem;
+}
+
+.sponsor-process-item {
+  padding: 1rem 1.05rem 1rem 1.15rem;
+  border: 1px solid rgba(23, 221, 200, 0.18);
+  border-left: 4px solid #17ddc8;
+  background: rgba(255, 255, 255, 0.03);
+  color: #eef3fb;
+  line-height: 1.7;
+}
+
+.sponsor-form-note {
+  margin-top: 1.25rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.form-check input {
+  width: 1.05rem;
+  min-height: 1.05rem;
+  margin-top: 0.2rem;
+  padding: 0;
+  accent-color: #17ddc8;
+}
+
+.form-check span {
+  line-height: 1.65;
+}
+
 .sponsor-footer {
   display: grid;
   justify-items: start;
@@ -1114,7 +1184,8 @@ select:focus-visible {
 }
 
 .pass-shell,
-.keep-shell {
+.keep-shell,
+.sponsor-registration-shell {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: 1.4rem;
@@ -1122,6 +1193,8 @@ select:focus-visible {
 
 .pass-copy,
 .pass-form,
+.sponsor-form,
+.sponsor-registration-copy,
 .keep-form {
   position: relative;
   padding: 1.6rem;
@@ -1203,6 +1276,19 @@ option {
 .form-status {
   min-height: 1.4rem;
   color: var(--gold-soft);
+}
+
+.form-status.is-success {
+  color: #8ff2d8;
+}
+
+.form-status.is-error {
+  color: #ffb2b2;
+}
+
+button:disabled {
+  opacity: 0.72;
+  cursor: wait;
 }
 
 .keep-copy {
@@ -1309,7 +1395,8 @@ option {
   }
 
   .pass-shell,
-  .keep-shell {
+  .keep-shell,
+  .sponsor-registration-shell {
     grid-template-columns: 1fr;
   }
 
@@ -1499,6 +1586,8 @@ option {
   .footer-info-card,
   .pass-copy,
   .pass-form,
+  .sponsor-registration-copy,
+  .sponsor-form,
   .keep-form {
     padding-left: 1.15rem;
     padding-right: 1.15rem;
