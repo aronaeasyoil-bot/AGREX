@@ -387,7 +387,7 @@ const siteContent = {
       lead:
         "Le parcours visiteur reprend les codes des salons premium : message clair, qualification en amont, promesse de rencontres de valeur et call-to-action fort.",
       body:
-        "Le formulaire ci-dessous est pret pour capter participants, investisseurs, sponsors, partenaires et media. Il peut ensuite etre connecte a votre CRM, a une boite mail ou a un workflow d'inscription.",
+        "Le formulaire ci-dessous permet de soumettre directement votre demande de participation a l'equipe AGREX, avec confirmation automatique par email.",
       benefits: [
         "Sessions B2B entre investisseurs, promoteurs, autorites et banques",
         "Acces direct aux presentations DAMAC et aux opportunites Dubai",
@@ -405,9 +405,9 @@ const siteContent = {
       interest: "Votre objectif ou centre d'interet",
       submit: "Envoyer ma demande",
       note:
-        "Version front-end prete. Avant mise en ligne, il reste a brancher le formulaire a votre CRM, inbox ou outil d'automatisation.",
+        "Les demandes sont transmises a l'equipe AGREX. Vous recevrez automatiquement un email confirmant la bonne reception de votre inscription.",
       success:
-        "Merci. Votre demande a ete capturee dans cette version de demonstration. La prochaine etape est de connecter la reception des inscriptions.",
+        "Merci. Votre demande a bien ete envoyee a l'equipe AGREX et un email de confirmation vous a ete adresse.",
       roles: ["Participant", "Investisseur", "Sponsor", "Partenaire", "Media"]
     },
     keep: {
@@ -843,7 +843,7 @@ const siteContent = {
       lead:
         "The visitor journey adopts the codes of premium event platforms: clear message, early qualification, high-value meetings and strong calls to action.",
       body:
-        "The form below is ready to capture participants, investors, sponsors, partners and media. It can then be connected to your CRM, inbox or registration workflow.",
+        "The form below submits your participation request directly to the AGREX team, with an automatic confirmation email sent back to you.",
       benefits: [
         "B2B sessions between investors, developers, authorities and banks",
         "Direct access to DAMAC presentations and Dubai opportunities",
@@ -861,9 +861,9 @@ const siteContent = {
       interest: "Your objective or area of interest",
       submit: "Send my request",
       note:
-        "Front-end version ready. Before launch, connect the form to your CRM, inbox or automation workflow.",
+        "Requests are sent directly to the AGREX team. You will automatically receive a confirmation email once your registration is submitted.",
       success:
-        "Thank you. Your request has been captured in this demonstration version. The next step is to connect live registration delivery.",
+        "Thank you. Your request has been sent successfully to the AGREX team and a confirmation email has been sent to you.",
       roles: ["Participant", "Investor", "Sponsor", "Partner", "Media"]
     },
     keep: {
@@ -923,7 +923,11 @@ const newsletterForm = document.getElementById("newsletter-form");
 const formStatus = document.getElementById("form-status");
 const sponsorFormStatus = document.getElementById("sponsor-form-status");
 const newsletterStatus = document.getElementById("newsletter-status");
+const roleSelect = document.getElementById("role-select");
 const sponsorPackageSelect = document.getElementById("sponsor-package");
+const registrationSubjectInput = document.getElementById("registration-subject");
+const registrationAutoresponseInput = document.getElementById("registration-autoresponse");
+const registrationNextInput = document.getElementById("registration-next");
 const sponsorSubjectInput = document.getElementById("sponsor-subject");
 const sponsorAutoresponseInput = document.getElementById("sponsor-autoresponse");
 const sponsorNextInput = document.getElementById("sponsor-next");
@@ -1294,6 +1298,7 @@ function renderSite(lang) {
   renderSponsors(data.sponsors.cards);
   renderSponsorProcess(data.sponsors.form.steps);
   renderSponsorPackageOptions(data.sponsors.cards);
+  configureRegistrationFormMeta();
   configureSponsorFormMeta();
   renderBenefits(data.visit.benefits);
   renderRoleOptions(data.form.roles);
@@ -1302,9 +1307,11 @@ function renderSite(lang) {
   setupRevealObserver();
 
   formStatus.textContent = "";
+  formStatus.className = "form-status";
   sponsorFormStatus.textContent = "";
   sponsorFormStatus.className = "form-status";
   newsletterStatus.textContent = "";
+  syncRegistrationSuccessState();
   syncSponsorSuccessState();
 }
 
@@ -1316,6 +1323,66 @@ function setSponsorTier(tier) {
   const target = document.getElementById("sponsor-registration");
   target?.scrollIntoView({ behavior: "smooth", block: "start" });
   sponsorPackageSelect.focus({ preventScroll: true });
+}
+
+function buildRegistrationAutoresponse(roleName) {
+  if (currentLang === "en") {
+    return [
+      "Thank you for your AGREX 2026 registration.",
+      `Submitted profile: ${roleName || "Participant"}.`,
+      "Our team has received your request and will contact you shortly with the next steps.",
+      "AGREX 2026",
+      "www.agrex.events",
+      "contact@agrex.events",
+      "+221 77 751 91 65",
+      "+971 54 333 8520"
+    ].join("\n");
+  }
+
+  return [
+    "Merci pour votre inscription a AGREX 2026.",
+    `Profil soumis : ${roleName || "Participant"}.`,
+    "Notre equipe a bien recu votre demande et reviendra vers vous rapidement avec les prochaines etapes.",
+    "AGREX 2026",
+    "www.agrex.events",
+    "contact@agrex.events",
+    "+221 77 751 91 65",
+    "+971 54 333 8520"
+  ].join("\n");
+}
+
+function configureRegistrationFormMeta() {
+  const selectedRole = roleSelect?.selectedOptions?.[0]?.textContent || "";
+
+  if (registrationSubjectInput) {
+    registrationSubjectInput.value =
+      currentLang === "en"
+        ? `AGREX Registration${selectedRole ? ` - ${selectedRole}` : ""}`
+        : `Inscription AGREX${selectedRole ? ` - ${selectedRole}` : ""}`;
+  }
+
+  if (registrationAutoresponseInput) {
+    registrationAutoresponseInput.value = buildRegistrationAutoresponse(selectedRole);
+  }
+
+  if (registrationNextInput) {
+    registrationNextInput.value = `${window.location.origin}${window.location.pathname}?visit=success#visit`;
+  }
+}
+
+function syncRegistrationSuccessState() {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("visit") === "success") {
+    sessionStorage.setItem("agrex-visit-success", "true");
+    window.history.replaceState({}, "", `${window.location.pathname}${window.location.hash || "#visit"}`);
+  }
+
+  if (sessionStorage.getItem("agrex-visit-success") === "true") {
+    formStatus.classList.add("is-success");
+    formStatus.textContent = siteContent[currentLang].form.success;
+    sessionStorage.removeItem("agrex-visit-success");
+  }
 }
 
 function buildSponsorAutoresponse(packageName) {
@@ -1374,6 +1441,7 @@ function syncSponsorSuccessState() {
   if (sessionStorage.getItem("agrex-sponsor-success") === "true") {
     sponsorFormStatus.classList.add("is-success");
     sponsorFormStatus.textContent = siteContent[currentLang].sponsors.form.success;
+    sessionStorage.removeItem("agrex-sponsor-success");
   }
 }
 
@@ -1407,10 +1475,17 @@ window.addEventListener("resize", () => {
   }
 });
 
-registrationForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  formStatus.textContent = siteContent[currentLang].form.success;
-  registrationForm.reset();
+roleSelect?.addEventListener("change", () => {
+  configureRegistrationFormMeta();
+});
+
+registrationForm?.addEventListener("submit", () => {
+  const submitButton = registrationForm.querySelector('button[type="submit"]');
+  configureRegistrationFormMeta();
+  formStatus.className = "form-status";
+  formStatus.textContent = "";
+  submitButton.disabled = true;
+  submitButton.textContent = currentLang === "en" ? "Sending..." : "Envoi en cours...";
 });
 
 sponsorPackageSelect?.addEventListener("change", () => {

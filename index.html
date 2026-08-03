@@ -354,7 +354,18 @@
               <div class="benefit-list" id="visit-benefits"></div>
             </div>
 
-            <form class="pass-form panel" id="registration-form" data-reveal>
+            <form
+              class="pass-form panel"
+              id="registration-form"
+              data-reveal
+              action="https://formsubmit.co/contact@agrex.events"
+              method="POST"
+            >
+              <input type="hidden" name="_cc" value="contact@lebrief.energy,psgueye1@gmail.com" />
+              <input type="hidden" name="_subject" id="registration-subject" value="Nouvelle inscription AGREX" />
+              <input type="hidden" name="_autoresponse" id="registration-autoresponse" value="" />
+              <input type="hidden" name="_next" id="registration-next" value="" />
+              <input type="hidden" name="_template" value="table" />
               <div class="form-grid">
                 <label>
                   <span data-text="form.fullName"></span>
@@ -383,6 +394,10 @@
                 <label class="field-full">
                   <span data-text="form.interest"></span>
                   <textarea name="interest" rows="4" required></textarea>
+                </label>
+                <label class="form-honeypot" aria-hidden="true" tabindex="-1">
+                  <span>Office line</span>
+                  <input type="text" name="_honey" autocomplete="off" tabindex="-1" />
                 </label>
               </div>
 
