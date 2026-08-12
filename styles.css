@@ -830,6 +830,35 @@ select:focus-visible {
   padding: 1.45rem 1.3rem 1.45rem;
 }
 
+.speaker-card-inline-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  max-width: min(100%, 19rem);
+  padding: 0.45rem 0.65rem;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(239, 191, 89, 0.28);
+}
+
+.speaker-card-inline-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.speaker-card-highlight {
+  border-color: rgba(239, 191, 89, 0.34);
+  background:
+    linear-gradient(180deg, rgba(32, 24, 84, 0.98), rgba(12, 13, 42, 0.98)),
+    rgba(8, 15, 28, 0.92);
+}
+
+.speaker-card-highlight::before {
+  background: linear-gradient(90deg, rgba(239, 191, 89, 0.95), rgba(23, 221, 200, 0.45));
+}
+
 .speaker-card-role {
   color: var(--gold-soft);
   font-size: 0.78rem;

@@ -107,10 +107,19 @@ const siteContent = {
           ]
         },
         {
-          image: "DAMAC-02-740x416.webp",
-          role: "Exclusive Dubai Partner",
-          name: "DAMAC Delegation",
-          text: "Presentation des solutions d'acquisition, de l'offre premium de Dubai et des formats adaptes aux investisseurs africains."
+          image: "moussa-bala-fofana.jpg",
+          logo: "muctat-logo.jpg",
+          role: "Partenaire institutionnel",
+          name: "Ministere de l'Urbanisme, des Collectivites Territoriales et de l'Amenagement des Territoires",
+          paragraphs: [
+            "Partenariat institutionnel officiel",
+            "AGREX met en avant son partenariat avec le Ministere de l'Urbanisme, des Collectivites Territoriales et de l'Amenagement des Territoires afin de renforcer la portee institutionnelle, la visibilite publique et la credibilite strategique de l'evenement.",
+            "Cette mise en relation avec les enjeux d'urbanisme, d'amenagement du territoire et de developpement immobilier donne un poids particulier a AGREX dans son dialogue entre l'Afrique et le Golfe."
+          ],
+          signature: [
+            "Monsieur Moussa Bala FOFANA",
+            "Ministre de l'Urbanisme, des Collectivites Territoriales et de l'Amenagement des Territoires"
+          ]
         },
         {
           image: "WhatsApp Image 2026-06-14 at 13.35.06.jpeg",
@@ -563,10 +572,19 @@ const siteContent = {
           ]
         },
         {
-          image: "DAMAC-02-740x416.webp",
-          role: "Exclusive Dubai Partner",
-          name: "DAMAC Delegation",
-          text: "Presentation of acquisition solutions, Dubai premium stock and formats adapted to African investor profiles."
+          image: "moussa-bala-fofana.jpg",
+          logo: "muctat-logo.jpg",
+          role: "Institutional Partner",
+          name: "Ministry of Urbanism, Territorial Communities and Land Planning",
+          paragraphs: [
+            "Official institutional partnership",
+            "AGREX highlights its partnership with the Ministry of Urbanism, Territorial Communities and Land Planning to strengthen the institutional visibility, public standing and strategic credibility of the event.",
+            "This alignment with urban development, territorial planning and real estate priorities gives AGREX a stronger institutional profile in its Africa-Gulf dialogue."
+          ],
+          signature: [
+            "Mr Moussa Bala FOFANA",
+            "Minister of Urbanism, Territorial Communities and Land Planning"
+          ]
         },
         {
           image: "WhatsApp Image 2026-06-14 at 13.35.06.jpeg",
@@ -1027,11 +1045,12 @@ function renderSpeakers(items) {
           : "";
 
         return `
-        <article class="speaker-card" data-reveal>
+        <article class="speaker-card ${item.logo ? "speaker-card-highlight" : ""}" data-reveal>
           <div class="speaker-card-media">
             <img src="${item.image}" alt="${item.name}" />
           </div>
           <div class="speaker-card-copy">
+            ${item.logo ? `<div class="speaker-card-inline-logo"><img src="${item.logo}" alt="${item.name} logo" /></div>` : ""}
             <p class="speaker-card-role">${item.role}</p>
             <h3>${item.name}</h3>
             ${bodyMarkup}
