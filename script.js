@@ -356,6 +356,16 @@ const siteContent = {
             "Mention sur les reseaux sociaux",
             "Acces au salon et aux sessions de networking"
           ]
+        },
+        {
+          tier: "Inscription simple",
+          price: "500€",
+          accent: "access",
+          items: [
+            "Inscription simple pour 1 participant",
+            "Acces au forum AGREX",
+            "Acces aux sessions de networking"
+          ]
         }
       ],
       form: {
@@ -384,7 +394,7 @@ const siteContent = {
         error:
           "L'envoi n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
         steps: [
-          "Choisissez le pack Platinum, Gold, Silver ou Bronze qui correspond a votre niveau de visibilite.",
+          "Choisissez le pack Platinum, Gold, Silver, Bronze ou Inscription simple selon votre objectif.",
           "Renseignez les coordonnees de votre societe et la personne de contact a joindre.",
           "Notre equipe recoit automatiquement votre dossier et vous adresse une confirmation par email."
         ]
@@ -821,6 +831,16 @@ const siteContent = {
             "Mention on social media",
             "Access to the expo and networking sessions"
           ]
+        },
+        {
+          tier: "Simple Registration",
+          price: "500€",
+          accent: "access",
+          items: [
+            "Simple registration for 1 participant",
+            "Access to the AGREX forum",
+            "Access to networking sessions"
+          ]
         }
       ],
       form: {
@@ -849,7 +869,7 @@ const siteContent = {
         error:
           "The submission could not be completed right now. Please try again or write to contact@agrex.events.",
         steps: [
-          "Choose the Platinum, Gold, Silver or Bronze package that matches your visibility goals.",
+          "Choose the Platinum, Gold, Silver, Bronze or Simple Registration package based on your objective.",
           "Share your company details and the main contact person for sponsorship follow-up.",
           "Our team receives your file automatically and sends a confirmation email back to you."
         ]

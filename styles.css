@@ -1019,6 +1019,13 @@ select:focus-visible {
   gap: 1.5rem;
 }
 
+.sponsor-grid > .sponsor-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: calc(50% - 0.75rem);
+  width: 100%;
+  justify-self: center;
+}
+
 .sponsor-card {
   position: relative;
   overflow: hidden;
@@ -1050,6 +1057,10 @@ select:focus-visible {
 
 .sponsor-card-bronze::before {
   background: linear-gradient(90deg, #ffc17c, #b25b16);
+}
+
+.sponsor-card-access::before {
+  background: linear-gradient(90deg, #7debdc, #17ddc8);
 }
 
 .sponsor-card-cap {
@@ -1084,6 +1095,11 @@ select:focus-visible {
 .sponsor-card-bronze .sponsor-card-cap {
   background: linear-gradient(180deg, #ffca93, #b9682a);
   color: #20130e;
+}
+
+.sponsor-card-access .sponsor-card-cap {
+  background: linear-gradient(180deg, #d9fff9, #64e7d6);
+  color: #072033;
 }
 
 .sponsor-price {
@@ -1534,6 +1550,11 @@ button:disabled {
 
   .speaker-card:first-child .speaker-card-media {
     aspect-ratio: 4 / 5;
+  }
+
+  .sponsor-grid > .sponsor-card:last-child:nth-child(odd) {
+    grid-column: auto;
+    max-width: none;
   }
 }
 
