@@ -49,6 +49,7 @@ const siteContent = {
       title: "Les partenaires officiels qui accompagnent AGREX 2026",
       lead:
         "AGREX 2026 s'appuie sur des institutions, des promoteurs, des medias et des operateurs qui renforcent immediatement la credibilite, la visibilite et la portee internationale du salon.",
+      marqueeLabel: "Autres partenaires officiels",
       cards: [
         {
           image: "official-partner-ministry.png",
@@ -70,6 +71,11 @@ const siteContent = {
         {
           image: "official-partner-siddco.png",
           name: "SIDDCO",
+          role: "Partenaire officiel"
+        },
+        {
+          image: "official-partner-mith.jpg",
+          name: "MITH International",
           role: "Partenaire officiel"
         },
         {
@@ -579,6 +585,7 @@ const siteContent = {
       title: "The official partners supporting AGREX 2026",
       lead:
         "AGREX 2026 is backed by institutions, developers, media brands and operators that immediately strengthen the event's credibility, profile and international reach.",
+      marqueeLabel: "Additional official partners",
       cards: [
         {
           image: "official-partner-ministry.png",
@@ -600,6 +607,11 @@ const siteContent = {
         {
           image: "official-partner-siddco.png",
           name: "SIDDCO",
+          role: "Official partner"
+        },
+        {
+          image: "official-partner-mith.jpg",
+          name: "MITH International",
           role: "Official partner"
         },
         {
@@ -1130,21 +1142,56 @@ function renderOfficialPartners(items) {
   const container = document.getElementById("official-partner-logos");
   if (!container) return;
 
-  container.innerHTML = items
-    .map(
-      (item) => `
-        <article class="official-partner-card ${item.featured ? "is-featured" : ""} ${item.accent ? `official-partner-card-${item.accent}` : ""}" data-reveal>
-          <div class="official-partner-logo-stage">
-            <img src="${item.image}" alt="${item.name} logo" />
+  const priorityPartners = items.slice(0, 4);
+  const additionalPartners = items.slice(4);
+
+  const renderPrimaryCard = (item) => `
+    <article class="official-partner-card ${item.featured ? "is-featured" : ""} ${item.accent ? `official-partner-card-${item.accent}` : ""}" data-reveal>
+      <div class="official-partner-logo-stage">
+        <img src="${item.image}" alt="${item.name} logo" />
+      </div>
+      <div class="official-partner-copy">
+        <p class="official-partner-role">${item.role}</p>
+        <h3>${item.name}</h3>
+      </div>
+    </article>
+  `;
+
+  const marqueeItems = [...additionalPartners, ...additionalPartners.map((item) => ({ ...item, duplicate: true }))];
+
+  const renderMarqueeCard = (item) => `
+    <article class="official-partner-mini" ${item.duplicate ? 'aria-hidden="true"' : ""}>
+      <div class="official-partner-logo-stage">
+        <img src="${item.image}" alt="${item.name} logo" />
+      </div>
+      <div class="official-partner-copy">
+        <p class="official-partner-role">${item.role}</p>
+        <h3>${item.name}</h3>
+      </div>
+    </article>
+  `;
+
+  container.innerHTML = `
+    <div class="official-partners-primary">
+      ${priorityPartners.map((item) => renderPrimaryCard(item)).join("")}
+    </div>
+    ${
+      additionalPartners.length
+        ? `
+        <div class="official-partners-marquee-shell" data-reveal>
+          <div class="official-partners-marquee-head">
+            <p class="official-partners-marquee-label">${siteContent[currentLang].officialPartners.marqueeLabel}</p>
           </div>
-          <div class="official-partner-copy">
-            <p class="official-partner-role">${item.role}</p>
-            <h3>${item.name}</h3>
+          <div class="official-partners-marquee-window">
+            <div class="official-partners-marquee-track">
+              ${marqueeItems.map((item) => renderMarqueeCard(item)).join("")}
+            </div>
           </div>
-        </article>
+        </div>
       `
-    )
-    .join("");
+        : ""
+    }
+  `;
 }
 
 function renderTicker(items) {
