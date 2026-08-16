@@ -46,7 +46,7 @@ const siteContent = {
     },
     officialPartners: {
       kicker: "Partenaires officiels AGREX 2026",
-      title: "Un premier cercle de partenaires visible en haut de l'accueil",
+      title: "Les partenaires officiels qui accompagnent AGREX 2026",
       lead:
         "AGREX 2026 s'appuie sur des institutions, des promoteurs, des medias et des operateurs qui renforcent immediatement la credibilite, la visibilite et la portee internationale du salon.",
       cards: [
@@ -576,7 +576,7 @@ const siteContent = {
     },
     officialPartners: {
       kicker: "AGREX 2026 official partners",
-      title: "A first circle of partners visible at the top of the homepage",
+      title: "The official partners supporting AGREX 2026",
       lead:
         "AGREX 2026 is backed by institutions, developers, media brands and operators that immediately strengthen the event's credibility, profile and international reach.",
       cards: [
