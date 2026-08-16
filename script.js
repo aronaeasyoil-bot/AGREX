@@ -44,6 +44,61 @@ const siteContent = {
       title: "AGREX 2026",
       badge: "Highlights 2026"
     },
+    officialPartners: {
+      kicker: "Partenaires officiels AGREX 2026",
+      title: "Un premier cercle de partenaires visible en haut de l'accueil",
+      lead:
+        "AGREX 2026 s'appuie sur des institutions, des promoteurs, des medias et des operateurs qui renforcent immediatement la credibilite, la visibilite et la portee internationale du salon.",
+      cards: [
+        {
+          image: "official-partner-ministry.png",
+          name: "Ministere de l'Urbanisme, des Collectivites Territoriales et de l'Amenagement des Territoires",
+          role: "Partenaire institutionnel majeur",
+          featured: true
+        },
+        {
+          image: "damac-wordmark.svg",
+          name: "DAMAC",
+          role: "Exclusive Dubai Partner",
+          accent: "damac"
+        },
+        {
+          image: "official-partner-lebrief.png",
+          name: "LE BRIEF",
+          role: "Partenaire media officiel"
+        },
+        {
+          image: "official-partner-siddco.png",
+          name: "SIDDCO",
+          role: "Partenaire officiel"
+        },
+        {
+          image: "official-partner-chpworx.png",
+          name: "CHP+WorX",
+          role: "Partenaire officiel"
+        },
+        {
+          image: "official-partner-tfg.png",
+          name: "TFG Dubai",
+          role: "Partenaire officiel"
+        },
+        {
+          image: "official-partner-sibc.png",
+          name: "SIBC",
+          role: "Partenaire officiel"
+        },
+        {
+          image: "official-partner-argaz.png",
+          name: "ARGAZ",
+          role: "Partenaire officiel"
+        },
+        {
+          image: "official-partner-odyssee.png",
+          name: "Odyssee Energie SA",
+          role: "Partenaire officiel"
+        }
+      ]
+    },
     ticker: {
       items: [
         "Africa x Gulf",
@@ -518,6 +573,61 @@ const siteContent = {
     highlights: {
       title: "AGREX 2026",
       badge: "2026 Highlights"
+    },
+    officialPartners: {
+      kicker: "AGREX 2026 official partners",
+      title: "A first circle of partners visible at the top of the homepage",
+      lead:
+        "AGREX 2026 is backed by institutions, developers, media brands and operators that immediately strengthen the event's credibility, profile and international reach.",
+      cards: [
+        {
+          image: "official-partner-ministry.png",
+          name: "Ministry of Urbanism, Territorial Communities and Land Planning",
+          role: "Lead institutional partner",
+          featured: true
+        },
+        {
+          image: "damac-wordmark.svg",
+          name: "DAMAC",
+          role: "Exclusive Dubai Partner",
+          accent: "damac"
+        },
+        {
+          image: "official-partner-lebrief.png",
+          name: "LE BRIEF",
+          role: "Official media partner"
+        },
+        {
+          image: "official-partner-siddco.png",
+          name: "SIDDCO",
+          role: "Official partner"
+        },
+        {
+          image: "official-partner-chpworx.png",
+          name: "CHP+WorX",
+          role: "Official partner"
+        },
+        {
+          image: "official-partner-tfg.png",
+          name: "TFG Dubai",
+          role: "Official partner"
+        },
+        {
+          image: "official-partner-sibc.png",
+          name: "SIBC",
+          role: "Official partner"
+        },
+        {
+          image: "official-partner-argaz.png",
+          name: "ARGAZ",
+          role: "Official partner"
+        },
+        {
+          image: "official-partner-odyssee.png",
+          name: "Odyssee Energie SA",
+          role: "Official partner"
+        }
+      ]
     },
     ticker: {
       items: [
@@ -1016,6 +1126,27 @@ function renderHeroStats(items) {
     .join("");
 }
 
+function renderOfficialPartners(items) {
+  const container = document.getElementById("official-partner-logos");
+  if (!container) return;
+
+  container.innerHTML = items
+    .map(
+      (item) => `
+        <article class="official-partner-card ${item.featured ? "is-featured" : ""} ${item.accent ? `official-partner-card-${item.accent}` : ""}" data-reveal>
+          <div class="official-partner-logo-stage">
+            <img src="${item.image}" alt="${item.name} logo" />
+          </div>
+          <div class="official-partner-copy">
+            <p class="official-partner-role">${item.role}</p>
+            <h3>${item.name}</h3>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
 function renderTicker(items) {
   const track = document.getElementById("ticker-track");
   if (!track) return;
@@ -1325,6 +1456,7 @@ function renderSite(lang) {
   const data = siteContent[lang];
   setMeta(data, lang);
   applyTexts(data);
+  renderOfficialPartners(data.officialPartners.cards);
   renderHeroStats(data.hero.stats);
   renderTicker(data.ticker.items);
   renderStories(data.showcase.stories);
