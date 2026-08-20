@@ -9,7 +9,7 @@ const EVENT = {
 const DEFAULT_ORGANIZER_EMAILS = [
   "contact@agrex.events",
   "contact@lebrief.energy",
-  "psgueye1@gmail.com"
+  "contact@gaic.ae"
 ];
 
 const SPONSOR_PACKAGES = {

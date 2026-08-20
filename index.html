@@ -224,13 +224,24 @@
               class="sponsor-form panel"
               id="sponsor-form"
               data-reveal
-              action="/api/register-sponsor"
+              action="https://formsubmit.co/contact@agrex.events"
               method="POST"
             >
+              <input type="hidden" name="_cc" value="contact@lebrief.energy,contact@gaic.ae" />
+              <input
+                type="hidden"
+                name="_subject"
+                id="sponsor-subject"
+                value="Nouvelle inscription sponsor AGREX"
+              />
+              <input type="hidden" name="_autoresponse" id="sponsor-autoresponse" value="" />
+              <input type="hidden" name="_next" id="sponsor-next" value="" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
               <div class="form-grid">
                 <label>
                   <span data-text="sponsors.form.package"></span>
-                  <select name="sponsorPackageId" id="sponsor-package" required></select>
+                  <select name="sponsorPackage" id="sponsor-package" required></select>
                 </label>
                 <label>
                   <span data-text="sponsors.form.firstName"></span>

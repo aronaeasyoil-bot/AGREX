@@ -436,11 +436,11 @@ const siteContent = {
       ],
       form: {
         kicker: "Inscription sponsor",
-        title: "Generez votre dossier sponsor AGREX en ligne",
+        title: "Validez votre inscription sponsor AGREX en ligne",
         lead:
-          "Choisissez votre formule, renseignez votre contact et AGREX genere votre dossier sponsor avec contrat et suivi de validation.",
+          "Choisissez votre formule, laissez vos coordonnees et AGREX vous recontactera avec la confirmation, les prochaines etapes et les instructions de paiement.",
         note:
-          "Les demandes sont transmises automatiquement a contact@agrex.events, contact@lebrief.energy et psgueye1@gmail.com. Le sponsor recoit immediatement son contrat PDF et un email automatique.",
+          "Les demandes sont transmises automatiquement a contact@agrex.events, contact@lebrief.energy et contact@gaic.ae. Le sponsor recoit aussi un email automatique de remerciement.",
         package: "Pack sponsor",
         packagePlaceholder: "Selectionnez une formule",
         firstName: "Prenom",
@@ -454,16 +454,16 @@ const siteContent = {
         message: "Objectifs, besoins ou commentaires (optionnel)",
         consent:
           "J'autorise AGREX a utiliser ces informations pour me recontacter au sujet du sponsoring et de l'organisation de l'evenement.",
-        submit: "Generer mon dossier sponsor",
+        submit: "Valider mon inscription sponsor",
         sending: "Envoi en cours...",
         success:
-          "Votre dossier sponsor a bien ete enregistre. Le contrat est pret.",
+          "Merci. Votre demande sponsor a bien ete envoyee. Un email de confirmation vous a ete adresse.",
         error:
           "L'envoi n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
         steps: [
           "Choisissez le pack Platinum, Gold, Silver, Bronze ou le Pass Business a 500 EUR selon votre objectif.",
-          "Le site genere automatiquement votre contrat sponsor et enregistre votre dossier.",
-          "L'organisateur confirme ensuite le paiement et vous transmet separement votre badge evenementiel."
+          "Renseignez les coordonnees de votre societe et la personne de contact a joindre.",
+          "Notre equipe recoit automatiquement votre dossier et vous adresse une confirmation par email."
         ]
       }
     },
@@ -982,11 +982,11 @@ const siteContent = {
       ],
       form: {
         kicker: "Sponsor registration",
-        title: "Generate your AGREX sponsor file online",
+        title: "Confirm your AGREX sponsor registration online",
         lead:
-          "Choose your package, submit your contact details and AGREX will generate your sponsorship file with contract and validation workflow.",
+          "Choose your package, share your details and the AGREX team will revert with confirmation, next steps and payment instructions.",
         note:
-          "Requests are automatically sent to contact@agrex.events, contact@lebrief.energy and psgueye1@gmail.com. The sponsor immediately receives the PDF contract and an automatic email.",
+          "Requests are automatically sent to contact@agrex.events, contact@lebrief.energy and contact@gaic.ae. The sponsor also receives an automatic thank-you email.",
         package: "Sponsorship package",
         packagePlaceholder: "Select a package",
         firstName: "First name",
@@ -1000,16 +1000,16 @@ const siteContent = {
         message: "Objectives, needs or comments (optional)",
         consent:
           "I authorise AGREX to use this information to contact me regarding sponsorship and event organisation.",
-        submit: "Generate my sponsor file",
+        submit: "Confirm my sponsor registration",
         sending: "Sending...",
         success:
-          "Your sponsor file has been recorded successfully. The contract is ready.",
+          "Thank you. Your sponsor request has been sent successfully. A confirmation email has been delivered to you.",
         error:
           "The submission could not be completed right now. Please try again or write to contact@agrex.events.",
         steps: [
           "Choose Platinum, Gold, Silver, Bronze or the 500 EUR Business Pass package.",
-          "The website automatically generates your sponsor agreement and records your file.",
-          "The organiser then confirms payment and sends the event badge separately."
+          "Share your company details and the main contact person for sponsorship follow-up.",
+          "Our team receives your file automatically and sends a confirmation email back to you."
         ]
       }
     },
@@ -1571,15 +1571,24 @@ function renderSponsorProcess(items) {
 function renderSponsorPackageOptions(items) {
   if (!sponsorPackageSelect) return;
 
-  const currentValue = sponsorPackageSelect.value;
+  const currentPackageId = sponsorPackageSelect.dataset.selectedPackageId || "";
   const placeholder = siteContent[currentLang].sponsors.form.packagePlaceholder;
 
   sponsorPackageSelect.innerHTML = `
     <option value="">${placeholder}</option>
-    ${items.map((item) => `<option value="${item.id}">${item.tier} - ${item.price}</option>`).join("")}
+    ${items
+      .map(
+        (item) =>
+          `<option data-package-id="${item.id}" value="${item.tier} - ${item.price}">${item.tier} - ${item.price}</option>`
+      )
+      .join("")}
   `;
 
-  sponsorPackageSelect.value = items.some((item) => item.id === currentValue) ? currentValue : "";
+  const selectedOption = Array.from(sponsorPackageSelect.options).find(
+    (option) => option.dataset.packageId === currentPackageId
+  );
+
+  sponsorPackageSelect.value = selectedOption?.value || "";
 }
 
 function renderBenefits(items) {
@@ -1693,7 +1702,11 @@ function renderSite(lang) {
 function setSponsorTier(tier) {
   if (!sponsorPackageSelect) return;
 
-  sponsorPackageSelect.value = tier;
+  sponsorPackageSelect.dataset.selectedPackageId = tier;
+  const selectedOption = Array.from(sponsorPackageSelect.options).find(
+    (option) => option.dataset.packageId === tier
+  );
+  sponsorPackageSelect.value = selectedOption?.value || "";
   configureSponsorFormMeta();
   const target = document.getElementById("sponsor-registration");
   target?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1787,7 +1800,7 @@ function buildSponsorAutoresponse(packageName) {
 }
 
 function configureSponsorFormMeta() {
-  const selectedPackage = sponsorPackageSelect?.value || "";
+  const selectedPackage = sponsorPackageSelect?.selectedOptions?.[0]?.textContent?.trim() || sponsorPackageSelect?.value || "";
 
   if (sponsorSubjectInput) {
     sponsorSubjectInput.value =
@@ -1886,49 +1899,40 @@ registrationForm?.addEventListener("submit", async (event) => {
 });
 
 sponsorPackageSelect?.addEventListener("change", () => {
+  sponsorPackageSelect.dataset.selectedPackageId =
+    sponsorPackageSelect.selectedOptions?.[0]?.dataset.packageId || "";
   configureSponsorFormMeta();
 });
 
-sponsorForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
+sponsorForm?.addEventListener("submit", (event) => {
   const submitButton = sponsorForm.querySelector('button[type="submit"]');
-  const defaultText = siteContent[currentLang].sponsors.form.submit;
-  submitButton.disabled = true;
-  submitButton.textContent = siteContent[currentLang].sponsors.form.sending;
+  const websiteField = sponsorForm.querySelector('input[name="website"]');
+  const honeypotField = sponsorForm.querySelector('input[name="companyFax"]');
+
   setFormMessage(sponsorFormStatus, "", "");
   clearDownloadPanel(sponsorDownloads);
 
-  try {
-    const formData = new FormData(sponsorForm);
-    if (String(formData.get("companyFax") || "").trim()) {
-      throw new Error(currentLang === "en" ? "Invalid submission." : "Soumission invalide.");
-    }
+  if (String(honeypotField?.value || "").trim()) {
+    event.preventDefault();
+    setFormMessage(
+      sponsorFormStatus,
+      "error",
+      currentLang === "en" ? "Invalid submission." : "Soumission invalide."
+    );
+    return;
+  }
 
-    const payload = formDataToObject(formData);
-    payload.website = normaliseWebsite(payload.website);
-    payload.lang = currentLang;
+  if (websiteField) {
+    websiteField.value = normaliseWebsite(websiteField.value);
+  }
 
-    const result = await postJson("/api/register-sponsor", payload);
-    triggerFileDownload(result.contract);
-    showDownloadPanel(sponsorDownloads, {
-      title: currentLang === "en" ? "Sponsor contract ready" : "Contrat sponsor pret",
-      copy: getDownloadPanelCopy("sponsor", result.record?.code),
-      files: [
-        {
-          file: result.contract,
-          label: currentLang === "en" ? "Open or download contract" : "Ouvrir ou telecharger le contrat"
-        }
-      ]
-    });
-    sponsorForm.reset();
-    renderSponsorPackageOptions(siteContent[currentLang].sponsors.cards);
-    setFormMessage(sponsorFormStatus, "success", result.message || siteContent[currentLang].sponsors.form.success);
-  } catch (error) {
-    clearDownloadPanel(sponsorDownloads);
-    setFormMessage(sponsorFormStatus, "error", error.message || siteContent[currentLang].sponsors.form.error);
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = defaultText;
+  sponsorPackageSelect.dataset.selectedPackageId =
+    sponsorPackageSelect?.selectedOptions?.[0]?.dataset.packageId || "";
+  configureSponsorFormMeta();
+
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = siteContent[currentLang].sponsors.form.sending;
   }
 });
 
