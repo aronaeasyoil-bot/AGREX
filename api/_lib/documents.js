@@ -4,6 +4,25 @@ const { PDFDocument, StandardFonts, rgb } = require("pdf-lib");
 const { EVENT, getSponsorPackage } = require("./agrex-config");
 
 const AGREX_LOGO_PATH = path.join(__dirname, "..", "..", "assets", "images", "agrex-logo.jpeg");
+const CONTACT_EMAIL = "contact@agrex.events";
+
+const BADGE = {
+  width: 360,
+  height: 540,
+  margin: 10,
+  radius: 22,
+  gold: rgb(0.73, 0.62, 0.47),
+  goldSoft: rgb(0.95, 0.90, 0.82),
+  goldLine: rgb(0.78, 0.67, 0.52),
+  navy: rgb(0.08, 0.24, 0.40),
+  navySoft: rgb(0.16, 0.30, 0.47),
+  white: rgb(1, 1, 1),
+  panel: rgb(0.99, 0.99, 0.99),
+  ink: rgb(0.14, 0.15, 0.18),
+  muted: rgb(0.40, 0.42, 0.45),
+  rule: rgb(0.82, 0.76, 0.68),
+  slot: rgb(0.20, 0.22, 0.25)
+};
 
 let agrexLogoBytesPromise;
 
@@ -36,6 +55,16 @@ function wrapText(text, maxChars) {
   return lines;
 }
 
+function fitLines(text, maxChars, maxLines) {
+  const lines = wrapText(text, maxChars);
+  if (lines.length <= maxLines) return lines;
+
+  const kept = lines.slice(0, maxLines);
+  const last = kept[maxLines - 1];
+  kept[maxLines - 1] = last.length > maxChars - 3 ? `${last.slice(0, maxChars - 3)}...` : `${last}...`;
+  return kept;
+}
+
 async function loadAgrexLogo(pdf) {
   try {
     if (!agrexLogoBytesPromise) {
@@ -56,358 +85,573 @@ function fitImage(image, maxWidth, maxHeight) {
   };
 }
 
-function drawTextBlock(page, lines, options) {
-  const { x, y, size, lineHeight, font, color, align = "left", width = 0 } = options;
-  let currentY = y;
+function roundedRectPath(x, y, width, height, radius) {
+  const r = Math.min(radius, width / 2, height / 2);
+  const c = r * 0.552284749831;
+  const x2 = x + width;
+  const y2 = y + height;
 
-  for (const line of lines) {
-    let drawX = x;
-    if (align === "center" && width) {
-      drawX = x + (width - font.widthOfTextAtSize(line, size)) / 2;
-    } else if (align === "right" && width) {
-      drawX = x + width - font.widthOfTextAtSize(line, size);
-    }
+  return [
+    `M ${x + r} ${y}`,
+    `L ${x2 - r} ${y}`,
+    `C ${x2 - r + c} ${y} ${x2} ${y + r - c} ${x2} ${y + r}`,
+    `L ${x2} ${y2 - r}`,
+    `C ${x2} ${y2 - r + c} ${x2 - r + c} ${y2} ${x2 - r} ${y2}`,
+    `L ${x + r} ${y2}`,
+    `C ${x + r - c} ${y2} ${x} ${y2 - r + c} ${x} ${y2 - r}`,
+    `L ${x} ${y + r}`,
+    `C ${x} ${y + r - c} ${x + r - c} ${y} ${x + r} ${y}`,
+    "Z"
+  ].join(" ");
+}
 
-    page.drawText(line, { x: drawX, y: currentY, size, font, color });
-    currentY -= lineHeight;
+function drawRoundedRect(page, options) {
+  const { x, y, width, height, radius, color, borderColor, borderWidth = 0 } = options;
+  page.drawSvgPath(roundedRectPath(x, y, width, height, radius), {
+    color,
+    borderColor,
+    borderWidth
+  });
+}
+
+function drawCenteredText(page, text, options) {
+  const { x, y, width, font, size, color } = options;
+  const textWidth = font.widthOfTextAtSize(text, size);
+  page.drawText(text, {
+    x: x + (width - textWidth) / 2,
+    y,
+    size,
+    font,
+    color
+  });
+}
+
+function drawIconBadge(page, options) {
+  const { x, y, kind } = options;
+  const iconColor = BADGE.white;
+
+  page.drawCircle({
+    x,
+    y,
+    size: 11.5,
+    color: BADGE.gold
+  });
+
+  if (kind === "person") {
+    page.drawCircle({ x, y: y + 3.5, size: 2.9, color: iconColor });
+    page.drawEllipse({ x, y: y - 4.5, xScale: 6.8, yScale: 4.8, color: iconColor });
+    return;
   }
 
+  if (kind === "building") {
+    page.drawRectangle({ x: x - 5, y: y - 5.5, width: 10, height: 11, color: iconColor });
+    page.drawRectangle({ x: x - 1.2, y: y - 5.5, width: 2.4, height: 4, color: BADGE.gold });
+    page.drawLine({ start: { x: x - 2.8, y: y + 1.5 }, end: { x: x - 2.8, y: y + 5 }, thickness: 0.8, color: BADGE.gold });
+    page.drawLine({ start: { x: x + 2.8, y: y + 1.5 }, end: { x: x + 2.8, y: y + 5 }, thickness: 0.8, color: BADGE.gold });
+    return;
+  }
+
+  if (kind === "briefcase") {
+    page.drawRectangle({ x: x - 6, y: y - 4.5, width: 12, height: 8, color: iconColor });
+    page.drawRectangle({ x: x - 2.5, y: y + 2.8, width: 5, height: 1.6, color: iconColor });
+    page.drawLine({ start: { x: x, y: y + 2.8 }, end: { x: x, y: y + 5 }, thickness: 0.9, color: iconColor });
+    return;
+  }
+
+  if (kind === "group") {
+    page.drawCircle({ x: x - 3.5, y: y + 3, size: 2.3, color: iconColor });
+    page.drawCircle({ x: x + 3.5, y: y + 3, size: 2.3, color: iconColor });
+    page.drawEllipse({ x: x - 3.5, y: y - 4, xScale: 4.5, yScale: 3.4, color: iconColor });
+    page.drawEllipse({ x: x + 3.5, y: y - 4, xScale: 4.5, yScale: 3.4, color: iconColor });
+    return;
+  }
+
+  if (kind === "calendar") {
+    page.drawRectangle({ x: x - 5.5, y: y - 5, width: 11, height: 10, color: iconColor });
+    page.drawRectangle({ x: x - 5.5, y: y + 1.5, width: 11, height: 2, color: BADGE.gold });
+    page.drawLine({ start: { x: x - 2.5, y: y + 5 }, end: { x: x - 2.5, y: y + 7 }, thickness: 1, color: iconColor });
+    page.drawLine({ start: { x: x + 2.5, y: y + 5 }, end: { x: x + 2.5, y: y + 7 }, thickness: 1, color: iconColor });
+    return;
+  }
+
+  if (kind === "pin") {
+    page.drawCircle({ x, y: y + 2.5, size: 3.2, color: iconColor });
+    page.drawSvgPath(`M ${x} ${y - 7} L ${x - 4.5} ${y - 1.5} L ${x + 4.5} ${y - 1.5} Z`, { color: iconColor });
+  }
+}
+
+function drawValueLines(page, lines, options) {
+  const { x, y, font, size, color, fontBold } = options;
+  let currentY = y;
+  for (const [index, line] of lines.entries()) {
+    page.drawText(line, {
+      x,
+      y: currentY,
+      size: index === 0 ? size : Math.max(size - 1, 9),
+      font: index === 0 ? fontBold : font,
+      color
+    });
+    currentY -= size + 2;
+  }
   return currentY;
 }
 
-function badgeTheme(kind, sponsorPackageId) {
-  const sponsorPackage = sponsorPackageId ? getSponsorPackage(sponsorPackageId) : null;
-  const isGold = sponsorPackage ? sponsorPackage.theme === "gold" : kind === "sponsor";
+function drawInfoRow(page, options) {
+  const {
+    topY,
+    iconKind,
+    labelFr,
+    labelEn,
+    value,
+    font,
+    fontBold,
+    valueSize = 13,
+    maxChars = 28
+  } = options;
 
-  if (isGold) {
-    return {
-      gold: true,
-      card: rgb(0.98, 0.95, 0.88),
-      border: rgb(0.79, 0.66, 0.38),
-      header: rgb(0.67, 0.56, 0.33),
-      headerText: rgb(1, 0.98, 0.92),
-      chip: rgb(0.15, 0.15, 0.17),
-      chipText: rgb(0.96, 0.87, 0.58),
-      text: rgb(0.16, 0.13, 0.08),
-      muted: rgb(0.43, 0.35, 0.18),
-      divider: rgb(0.86, 0.78, 0.57),
-      footer: rgb(0.20, 0.17, 0.11),
-      footerText: rgb(0.98, 0.95, 0.86),
-      panel: rgb(1, 0.99, 0.97),
-      status: rgb(0.13, 0.13, 0.15),
-      statusText: rgb(0.98, 0.88, 0.62)
-    };
-  }
+  drawIconBadge(page, { x: 40, y: topY - 10, kind: iconKind });
 
-  return {
-    gold: false,
-    card: rgb(0.98, 0.99, 1),
-    border: rgb(0.79, 0.86, 0.94),
-    header: rgb(0.07, 0.12, 0.27),
-    headerText: rgb(1, 1, 1),
-    chip: rgb(0.13, 0.56, 0.91),
-    chipText: rgb(1, 1, 1),
-    text: rgb(0.09, 0.12, 0.18),
-    muted: rgb(0.35, 0.41, 0.49),
-    divider: rgb(0.84, 0.89, 0.95),
-    footer: rgb(0.93, 0.96, 0.99),
-    footerText: rgb(0.08, 0.12, 0.19),
-    panel: rgb(1, 1, 1),
-    status: rgb(0.07, 0.12, 0.27),
-    statusText: rgb(1, 1, 1)
-  };
+  page.drawText(labelFr, {
+    x: 62,
+    y: topY - 2,
+    size: 7.9,
+    font: fontBold,
+    color: BADGE.ink
+  });
+  page.drawText(labelEn, {
+    x: 62,
+    y: topY - 13,
+    size: 6.5,
+    font,
+    color: BADGE.muted
+  });
+
+  const nextY = drawValueLines(page, fitLines(value || "-", maxChars, 2), {
+    x: 62,
+    y: topY - 31,
+    font,
+    fontBold,
+    size: valueSize,
+    color: BADGE.ink
+  });
+
+  page.drawLine({
+    start: { x: 62, y: nextY - 4 },
+    end: { x: 300, y: nextY - 4 },
+    thickness: 0.7,
+    color: BADGE.rule
+  });
 }
 
-function badgeCategory({ kind, lang, profile, sponsorPackageId }) {
+function roleMeta({ kind, profile, sponsorPackageId }) {
   const normalizedProfile = String(profile || "").toLowerCase();
   const sponsorPackage = sponsorPackageId ? getSponsorPackage(sponsorPackageId) : null;
 
   if (kind === "sponsor") {
-    if (sponsorPackage?.theme === "gold") {
-      return lang === "en" ? "GOLD SPONSOR" : "SPONSOR GOLD";
+    if (sponsorPackage?.id === "platinum") {
+      return { bandLabel: "PLATINUM SPONSOR", typeChoice: "sponsor", bandColor: BADGE.goldSoft };
     }
-    return lang === "en" ? "BUSINESS PASS" : "PASS BUSINESS";
+    if (sponsorPackage?.id === "gold") {
+      return { bandLabel: "GOLD SPONSOR", typeChoice: "sponsor", bandColor: BADGE.goldSoft };
+    }
+    if (sponsorPackage?.id === "silver") {
+      return { bandLabel: "SILVER SPONSOR", typeChoice: "sponsor", bandColor: BADGE.white };
+    }
+    if (sponsorPackage?.id === "bronze") {
+      return { bandLabel: "BRONZE SPONSOR", typeChoice: "sponsor", bandColor: BADGE.goldSoft };
+    }
+    return { bandLabel: "BUSINESS PASS", typeChoice: "delegate", bandColor: BADGE.white };
   }
 
-  if (normalizedProfile.includes("visitor") || normalizedProfile.includes("visiteur")) {
-    return lang === "en" ? "VISITOR PASS" : "PASS VISITEUR";
-  }
   if (normalizedProfile.includes("invest")) {
-    return lang === "en" ? "INVESTOR" : "INVESTISSEUR";
-  }
-  if (normalizedProfile.includes("partner") || normalizedProfile.includes("partenaire")) {
-    return lang === "en" ? "PARTNER" : "PARTENAIRE";
+    return { bandLabel: "INVESTOR", typeChoice: "investor", bandColor: BADGE.white };
   }
   if (normalizedProfile.includes("media")) {
-    return "MEDIA";
+    return { bandLabel: "MEDIA", typeChoice: "other", bandColor: BADGE.white };
+  }
+  if (normalizedProfile.includes("partner") || normalizedProfile.includes("partenaire")) {
+    return { bandLabel: "PARTNER", typeChoice: "other", bandColor: BADGE.white };
   }
   if (normalizedProfile.includes("sponsor")) {
-    return lang === "en" ? "SPONSOR GUEST" : "INVITE SPONSOR";
+    return { bandLabel: "SPONSOR GUEST", typeChoice: "sponsor", bandColor: BADGE.goldSoft };
   }
-  return lang === "en" ? "ATTENDEE" : "PARTICIPANT";
+
+  return { bandLabel: "PARTICIPANT", typeChoice: "delegate", bandColor: BADGE.white };
 }
 
-function badgeStatus({ status, lang }) {
+function statusMeta(status) {
   if (status === "participant_confirmed") {
-    return lang === "en" ? "Free visitor access confirmed" : "Acces visiteur gratuit confirme";
+    return { label: "CONFIRME / CONFIRMED", fill: BADGE.navy, text: BADGE.white };
   }
   if (status === "sponsor_paid") {
-    return lang === "en" ? "Sponsor payment confirmed" : "Paiement sponsor confirme";
+    return { label: "PAYE / PAID", fill: BADGE.navy, text: BADGE.goldSoft };
   }
-  return lang === "en" ? "Provisional badge pending organiser validation" : "Badge provisoire en attente de validation";
+  return { label: "PROVISOIRE / PROVISIONAL", fill: BADGE.gold, text: BADGE.white };
 }
 
-function drawField(page, options) {
-  const { label, value, y, font, fontBold, theme, width, maxChars = 28, valueSize = 13 } = options;
+function drawTypeOptions(page, options) {
+  const { topY, selected, font, fontBold } = options;
 
-  page.drawText(label, {
-    x: 28,
-    y,
-    size: 8.5,
+  drawIconBadge(page, { x: 40, y: topY - 12, kind: "group" });
+
+  page.drawText("TYPE DE PARTICIPANT", {
+    x: 62,
+    y: topY - 2,
+    size: 7.9,
     font: fontBold,
-    color: theme.muted
+    color: BADGE.ink
   });
-
-  const lines = wrapText(value || "-", maxChars).slice(0, 2);
-  const nextY = drawTextBlock(page, lines, {
-    x: 28,
-    y: y - 16,
-    size: valueSize,
-    lineHeight: valueSize + 3,
+  page.drawText("TYPE OF PARTICIPANT", {
+    x: 62,
+    y: topY - 13,
+    size: 6.5,
     font,
-    color: theme.text,
-    width
+    color: BADGE.muted
   });
 
-  page.drawRectangle({
-    x: 28,
-    y: nextY - 4,
-    width: width - 16,
-    height: 1,
-    color: theme.divider
+  const items = [
+    { id: "delegate", fr: "DELEGUE", en: "DELEGATE" },
+    { id: "sponsor", fr: "SPONSOR", en: "SPONSOR" },
+    { id: "investor", fr: "INVESTISSEUR", en: "INVESTOR" },
+    { id: "other", fr: "AUTRE", en: "OTHER" }
+  ];
+
+  const startX = 74;
+  const boxY = topY - 35;
+  const gap = 60;
+
+  items.forEach((item, index) => {
+    const x = startX + gap * index;
+    const checked = item.id === selected;
+
+    page.drawRectangle({
+      x,
+      y: boxY,
+      width: 10,
+      height: 10,
+      borderColor: BADGE.gold,
+      borderWidth: 1
+    });
+
+    if (checked) {
+      page.drawRectangle({
+        x: x + 2,
+        y: boxY + 2,
+        width: 6,
+        height: 6,
+        color: BADGE.navy
+      });
+    }
+
+    drawCenteredText(page, item.fr, {
+      x: x - 12,
+      y: boxY - 16,
+      width: 34,
+      font: fontBold,
+      size: 5.8,
+      color: BADGE.ink
+    });
+    drawCenteredText(page, item.en, {
+      x: x - 12,
+      y: boxY - 25,
+      width: 34,
+      font,
+      size: 5.3,
+      color: BADGE.muted
+    });
   });
 
-  return nextY - 18;
+  page.drawLine({
+    start: { x: 62, y: 126 },
+    end: { x: 300, y: 126 },
+    thickness: 0.7,
+    color: BADGE.rule
+  });
 }
 
-async function createBadgePdf({ kind, status, firstName, lastName, company, jobTitle, profile, code, sponsorPackageId, lang }) {
+function drawBottomInfo(page, options) {
+  const { font, fontBold } = options;
+
+  drawIconBadge(page, { x: 40, y: 100, kind: "calendar" });
+  page.drawText("DATE", { x: 62, y: 108, size: 7.7, font: fontBold, color: BADGE.ink });
+  page.drawText("DATE", { x: 62, y: 97, size: 6.3, font, color: BADGE.muted });
+  page.drawText("19 & 20 OCTOBRE 2026", {
+    x: 62,
+    y: 79,
+    size: 8.7,
+    font: fontBold,
+    color: BADGE.ink
+  });
+  page.drawText("19th & 20th OCTOBER 2026", {
+    x: 62,
+    y: 67,
+    size: 7.2,
+    font,
+    color: BADGE.muted
+  });
+
+  page.drawLine({
+    start: { x: 176, y: 62 },
+    end: { x: 176, y: 116 },
+    thickness: 0.6,
+    color: BADGE.rule
+  });
+
+  drawIconBadge(page, { x: 194, y: 100, kind: "pin" });
+  page.drawText("LIEU", { x: 216, y: 108, size: 7.7, font: fontBold, color: BADGE.ink });
+  page.drawText("VENUE", { x: 216, y: 97, size: 6.3, font, color: BADGE.muted });
+  page.drawText("DUBAI - EMIRATS ARABES UNIS", {
+    x: 216,
+    y: 79,
+    size: 6.2,
+    font: fontBold,
+    color: BADGE.ink
+  });
+  page.drawText("DUBAI - UNITED ARAB EMIRATES", {
+    x: 216,
+    y: 67,
+    size: 5.8,
+    font,
+    color: BADGE.muted
+  });
+}
+
+async function createBadgePdf({ kind, status, firstName, lastName, company, jobTitle, profile, code, sponsorPackageId }) {
   const pdf = await PDFDocument.create();
-  const page = pdf.addPage([340, 540]);
+  const page = pdf.addPage([BADGE.width, BADGE.height]);
   const fontBold = await pdf.embedFont(StandardFonts.HelveticaBold);
   const font = await pdf.embedFont(StandardFonts.Helvetica);
   const logo = await loadAgrexLogo(pdf);
-  const theme = badgeTheme(kind, sponsorPackageId);
-  const category = badgeCategory({ kind, lang, profile, sponsorPackageId });
-  const statusLabel = badgeStatus({ status, lang });
-  const displayName = `${firstName} ${lastName}`.trim();
-  const profileLabel =
-    kind === "sponsor"
-      ? lang === "en"
-        ? "PACKAGE"
-        : "FORMULE"
-      : lang === "en"
-        ? "PROFILE"
-        : "PROFIL";
-  const displayProfile =
-    profile || (lang === "en" ? "Visitor Pass" : "Pass Visiteur");
-  const pageWidth = 340;
-  const cardX = 12;
-  const cardY = 12;
-  const cardWidth = 316;
-  const cardHeight = 516;
+  const meta = roleMeta({ kind, profile, sponsorPackageId });
+  const statusPill = statusMeta(status);
+  const cardX = BADGE.margin;
+  const cardY = BADGE.margin;
+  const cardWidth = BADGE.width - BADGE.margin * 2;
+  const cardHeight = BADGE.height - BADGE.margin * 2;
 
-  page.drawRectangle({ x: 0, y: 0, width: pageWidth, height: 540, color: rgb(0.93, 0.95, 0.98) });
   page.drawRectangle({
+    x: 0,
+    y: 0,
+    width: BADGE.width,
+    height: BADGE.height,
+    color: rgb(0.95, 0.95, 0.95)
+  });
+
+  drawRoundedRect(page, {
     x: cardX,
     y: cardY,
     width: cardWidth,
     height: cardHeight,
-    color: theme.card,
-    borderColor: theme.border,
-    borderWidth: 2
-  });
-  page.drawRectangle({
-    x: cardX,
-    y: 398,
-    width: cardWidth,
-    height: 130,
-    color: theme.header
-  });
-
-  page.drawText("AGREX 2026", {
-    x: 28,
-    y: 501,
-    size: 16,
-    font: fontBold,
-    color: theme.headerText
-  });
-  page.drawText("AFRICA GULF REAL ESTATE EXPO", {
-    x: 28,
-    y: 486,
-    size: 7.8,
-    font,
-    color: theme.headerText
-  });
-  page.drawText(lang === "en" ? EVENT.dateEn : EVENT.dateFr, {
-    x: 28,
-    y: 472,
-    size: 8.4,
-    font: fontBold,
-    color: theme.headerText
-  });
-  page.drawText("Dubai World Trade Centre", {
-    x: 28,
-    y: 459,
-    size: 7.8,
-    font,
-    color: theme.headerText
-  });
-
-  page.drawRectangle({
-    x: 88,
-    y: 414,
-    width: 164,
-    height: 48,
-    color: theme.panel,
-    borderColor: theme.border,
+    radius: BADGE.radius,
+    color: BADGE.white,
+    borderColor: BADGE.goldLine,
     borderWidth: 1.2
   });
 
+  page.drawRectangle({
+    x: cardX,
+    y: cardY + cardHeight - 128,
+    width: cardWidth,
+    height: 128,
+    color: BADGE.gold
+  });
+  page.drawCircle({
+    x: cardX + BADGE.radius,
+    y: cardY + cardHeight - BADGE.radius,
+    size: BADGE.radius,
+    color: BADGE.gold
+  });
+  page.drawCircle({
+    x: cardX + cardWidth - BADGE.radius,
+    y: cardY + cardHeight - BADGE.radius,
+    size: BADGE.radius,
+    color: BADGE.gold
+  });
+
+  page.drawEllipse({
+    x: BADGE.width / 2,
+    y: 382,
+    xScale: 178,
+    yScale: 54,
+    color: BADGE.white
+  });
+
+  drawRoundedRect(page, {
+    x: BADGE.width / 2 - 22,
+    y: cardY + cardHeight - 22,
+    width: 44,
+    height: 14,
+    radius: 7,
+    color: BADGE.slot
+  });
+
+  drawRoundedRect(page, {
+    x: 112,
+    y: 354,
+    width: 136,
+    height: 76,
+    radius: 14,
+    color: BADGE.white,
+    borderColor: BADGE.goldSoft,
+    borderWidth: 1
+  });
+
   if (logo) {
-    const dimensions = fitImage(logo, 146, 34);
+    const dimensions = fitImage(logo, 188, 60);
     page.drawImage(logo, {
-      x: 88 + (164 - dimensions.width) / 2,
-      y: 414 + (48 - dimensions.height) / 2,
+      x: (BADGE.width - dimensions.width) / 2,
+      y: 365,
       width: dimensions.width,
       height: dimensions.height
     });
   } else {
-    page.drawText("AGREX", {
-      x: 136,
-      y: 431,
-      size: 18,
+    drawCenteredText(page, "AGREX", {
+      x: 40,
+      y: 395,
+      width: BADGE.width - 80,
       font: fontBold,
-      color: theme.text
+      size: 26,
+      color: BADGE.navy
     });
   }
 
-  const chipWidth = Math.max(122, Math.min(194, fontBold.widthOfTextAtSize(category, 11) + 24));
-  const chipX = cardX + (cardWidth - chipWidth) / 2;
-  page.drawRectangle({
-    x: chipX,
-    y: 384,
-    width: chipWidth,
-    height: 24,
-    color: theme.chip
+  page.drawLine({
+    start: { x: 34, y: 345 },
+    end: { x: BADGE.width - 34, y: 345 },
+    thickness: 0.8,
+    color: BADGE.rule
   });
-  page.drawText(category, {
-    x: chipX + (chipWidth - fontBold.widthOfTextAtSize(category, 11)) / 2,
-    y: 391,
-    size: 11,
+
+  drawRoundedRect(page, {
+    x: BADGE.width - 136,
+    y: 352,
+    width: 102,
+    height: 16,
+    radius: 8,
+    color: statusPill.fill
+  });
+  drawCenteredText(page, statusPill.label, {
+    x: BADGE.width - 136,
+    y: 357,
+    width: 102,
     font: fontBold,
-    color: theme.chipText
+    size: 5.7,
+    color: statusPill.text
   });
 
-  page.drawText(lang === "en" ? "NAME" : "NOM", {
-    x: 28,
-    y: 354,
-    size: 8.5,
-    font: fontBold,
-    color: theme.muted
+  page.drawText(`REF. ${code}`, {
+    x: 34,
+    y: 356,
+    size: 6.3,
+    font,
+    color: BADGE.muted
   });
 
-  const nameLines = wrapText(displayName, 18).slice(0, 2);
-  const nameSize = nameLines.some((line) => line.length > 16) ? 20 : 23;
-  let nameY = 329;
-  nameY = drawTextBlock(page, nameLines, {
-    x: 28,
-    y: nameY,
-    size: nameSize,
-    lineHeight: nameSize + 4,
-    font: fontBold,
-    color: theme.text,
-    width: cardWidth - 32
+  drawInfoRow(page, {
+    topY: 320,
+    iconKind: "person",
+    labelFr: "NOM ET PRENOM",
+    labelEn: "FULL NAME",
+    value: `${firstName} ${lastName}`,
+    font,
+    fontBold,
+    valueSize: 14,
+    maxChars: 24
   });
 
-  page.drawRectangle({
-    x: 28,
-    y: nameY - 2,
-    width: cardWidth - 32,
-    height: 1,
-    color: theme.divider
-  });
-
-  let contentY = nameY - 22;
-  contentY = drawField(page, {
-    label: lang === "en" ? "ORGANISATION" : "ORGANISATION",
+  drawInfoRow(page, {
+    topY: 276,
+    iconKind: "building",
+    labelFr: "COMPANY / ORGANISATION",
+    labelEn: "COMPANY / ORGANISATION",
     value: company,
-    y: contentY,
     font,
     fontBold,
-    theme,
-    width: cardWidth - 12,
+    valueSize: 12.3,
     maxChars: 28
   });
-  contentY = drawField(page, {
-    label: lang === "en" ? "JOB TITLE" : "FONCTION",
+
+  drawInfoRow(page, {
+    topY: 232,
+    iconKind: "briefcase",
+    labelFr: "FONCTION",
+    labelEn: "JOB TITLE",
     value: jobTitle,
-    y: contentY,
     font,
     fontBold,
-    theme,
-    width: cardWidth - 12,
+    valueSize: 12.2,
     maxChars: 28
   });
-  contentY = drawField(page, {
-    label: profileLabel,
-    value: displayProfile,
-    y: contentY,
+
+  drawTypeOptions(page, {
+    topY: 188,
+    selected: meta.typeChoice,
     font,
-    fontBold,
-    theme,
-    width: cardWidth - 12,
-    maxChars: 28
+    fontBold
+  });
+
+  drawBottomInfo(page, {
+    font,
+    fontBold
+  });
+
+  page.drawRectangle({
+    x: cardX,
+    y: 48,
+    width: cardWidth,
+    height: 26,
+    color: BADGE.gold
+  });
+
+  drawCenteredText(page, `${EVENT.website}   |   ${CONTACT_EMAIL}`, {
+    x: cardX + 18,
+    y: 56,
+    width: cardWidth - 36,
+    font,
+    size: 8,
+    color: BADGE.white
   });
 
   page.drawRectangle({
     x: cardX,
     y: cardY,
     width: cardWidth,
-    height: 76,
-    color: theme.footer
+    height: 38,
+    color: BADGE.navy
+  });
+  page.drawCircle({
+    x: cardX + BADGE.radius,
+    y: cardY + BADGE.radius,
+    size: BADGE.radius,
+    color: BADGE.navy
+  });
+  page.drawCircle({
+    x: cardX + cardWidth - BADGE.radius,
+    y: cardY + BADGE.radius,
+    size: BADGE.radius,
+    color: BADGE.navy
   });
 
-  const statusWidth = Math.min(204, fontBold.widthOfTextAtSize(statusLabel, 10) + 22);
-  page.drawRectangle({
-    x: 28,
-    y: 58,
-    width: statusWidth,
-    height: 18,
-    color: theme.status
+  page.drawLine({
+    start: { x: 28, y: 28 },
+    end: { x: 64, y: 28 },
+    thickness: 1,
+    color: BADGE.goldSoft
   });
-  page.drawText(statusLabel, {
-    x: 28 + (statusWidth - fontBold.widthOfTextAtSize(statusLabel, 10)) / 2,
-    y: 63,
-    size: 10,
-    font: fontBold,
-    color: theme.statusText
+  page.drawLine({
+    start: { x: BADGE.width - 64, y: 28 },
+    end: { x: BADGE.width - 28, y: 28 },
+    thickness: 1,
+    color: BADGE.goldSoft
   });
 
-  page.drawText(`${lang === "en" ? "Reference" : "Reference"}: ${code}`, {
-    x: 28,
-    y: 40,
-    size: 10.2,
+  drawCenteredText(page, meta.bandLabel, {
+    x: 78,
+    y: 19,
+    width: BADGE.width - 156,
     font: fontBold,
-    color: theme.footerText
-  });
-  drawTextBlock(page, wrapText(`${EVENT.website} | ${EVENT.venue}`, 42).slice(0, 2), {
-    x: 28,
-    y: 24,
-    size: 8.6,
-    lineHeight: 10.5,
-    font,
-    color: theme.footerText,
-    width: cardWidth - 32
+    size: meta.bandLabel.length > 16 ? 11 : 12.4,
+    color: meta.bandColor
   });
 
   return Buffer.from(await pdf.save());
