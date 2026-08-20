@@ -95,17 +95,17 @@ const SPONSOR_PACKAGES = {
   },
   "simple-registration": {
     id: "simple-registration",
-    labelFr: "Inscription simple",
-    labelEn: "Simple Registration",
+    labelFr: "Pass Business",
+    labelEn: "Business Pass",
     amountEur: 500,
     theme: "standard",
     benefitsFr: [
-      "Inscription simple pour 1 participant",
+      "Pass Business pour 1 participant",
       "Acces au forum AGREX",
       "Acces aux sessions de networking"
     ],
     benefitsEn: [
-      "Simple registration for 1 participant",
+      "Business pass for 1 participant",
       "Access to the AGREX forum",
       "Access to networking sessions"
     ]

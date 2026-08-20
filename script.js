@@ -424,11 +424,11 @@ const siteContent = {
         },
         {
           id: "simple-registration",
-          tier: "Inscription simple",
+          tier: "Pass Business",
           price: "500€",
           accent: "access",
           items: [
-            "Inscription simple pour 1 participant",
+            "Pass Business pour 1 participant",
             "Acces au forum AGREX",
             "Acces aux sessions de networking"
           ]
@@ -461,7 +461,7 @@ const siteContent = {
         error:
           "L'envoi n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
         steps: [
-          "Choisissez le pack Platinum, Gold, Silver, Bronze ou Inscription simple a 500 EUR selon votre objectif.",
+          "Choisissez le pack Platinum, Gold, Silver, Bronze ou le Pass Business a 500 EUR selon votre objectif.",
           "Le site genere automatiquement votre contrat sponsor et votre badge numerique sponsor provisoire.",
           "L'organisateur confirme ensuite le paiement pour declencher le badge sponsor final et l'impression du badge physique."
         ]
@@ -473,7 +473,7 @@ const siteContent = {
       lead:
         "Le parcours visiteur reprend les codes des salons premium : message clair, qualification en amont, promesse de rencontres de valeur et call-to-action fort.",
       body:
-        "Le formulaire ci-dessous permet de vous inscrire gratuitement comme participant simple et de generer automatiquement votre badge numerique nominatif.",
+        "Le formulaire ci-dessous permet de vous inscrire gratuitement avec un Pass Visiteur et de generer automatiquement votre badge numerique nominatif AGREX.",
       benefits: [
         "Sessions B2B entre investisseurs, promoteurs, autorites et banques",
         "Acces direct aux presentations DAMAC et aux opportunites Dubai",
@@ -493,12 +493,12 @@ const siteContent = {
       interest: "Votre objectif ou centre d'interet (optionnel)",
       submit: "Generer mon badge participant",
       note:
-        "Votre inscription gratuite genere un badge numerique avec nom, prenom, organisation et fonction. Un email automatique est envoye si la messagerie SMTP est configuree.",
+        "Votre inscription gratuite en Pass Visiteur genere un badge numerique AGREX avec nom, prenom, organisation et fonction. Un email automatique est envoye si la messagerie SMTP est configuree.",
       success:
         "Votre inscription gratuite a bien ete enregistree et votre badge participant a ete genere.",
       error:
         "L'inscription n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
-      roles: ["Participant", "Investisseur", "Sponsor", "Partenaire", "Media"]
+      roles: ["Pass Visiteur", "Investisseur", "Sponsor", "Partenaire", "Media"]
     },
     keep: {
       kicker: "Let's keep in touch",
@@ -970,11 +970,11 @@ const siteContent = {
         },
         {
           id: "simple-registration",
-          tier: "Simple Registration",
+          tier: "Business Pass",
           price: "500€",
           accent: "access",
           items: [
-            "Simple registration for 1 participant",
+            "Business pass for 1 participant",
             "Access to the AGREX forum",
             "Access to networking sessions"
           ]
@@ -1007,7 +1007,7 @@ const siteContent = {
         error:
           "The submission could not be completed right now. Please try again or write to contact@agrex.events.",
         steps: [
-          "Choose Platinum, Gold, Silver, Bronze or the 500 EUR Simple Registration package.",
+          "Choose Platinum, Gold, Silver, Bronze or the 500 EUR Business Pass package.",
           "The website automatically generates your sponsor agreement and your provisional sponsor digital badge.",
           "The organiser then confirms payment to release the final sponsor badge and physical badge production."
         ]
@@ -1019,7 +1019,7 @@ const siteContent = {
       lead:
         "The visitor journey adopts the codes of premium event platforms: clear message, early qualification, high-value meetings and strong calls to action.",
       body:
-        "The form below lets you register as a free attendee and automatically generates your personalised digital badge.",
+        "The form below lets you register with a free Visitor Pass and automatically generates your personalised AGREX digital badge.",
       benefits: [
         "B2B sessions between investors, developers, authorities and banks",
         "Direct access to DAMAC presentations and Dubai opportunities",
@@ -1039,12 +1039,12 @@ const siteContent = {
       interest: "Your objective or area of interest (optional)",
       submit: "Generate my attendee badge",
       note:
-        "Your free registration generates a digital badge with first name, last name, organisation and job title. An automatic email is sent if SMTP is configured.",
+        "Your free Visitor Pass registration generates an AGREX digital badge with first name, last name, organisation and job title. An automatic email is sent if SMTP is configured.",
       success:
         "Your free registration has been recorded and your attendee badge has been generated.",
       error:
         "The registration could not be completed right now. Please try again or write to contact@agrex.events.",
-      roles: ["Participant", "Investor", "Sponsor", "Partner", "Media"]
+      roles: ["Visitor Pass", "Investor", "Sponsor", "Partner", "Media"]
     },
     keep: {
       kicker: "Let's keep in touch",
@@ -1704,7 +1704,7 @@ function buildRegistrationAutoresponse(roleName) {
   if (currentLang === "en") {
     return [
       "Thank you for your AGREX 2026 registration.",
-      `Submitted profile: ${roleName || "Participant"}.`,
+      `Submitted profile: ${roleName || "Visitor Pass"}.`,
       "Our team has received your request and will contact you shortly with the next steps.",
       "AGREX 2026",
       "www.agrex.events",
@@ -1716,7 +1716,7 @@ function buildRegistrationAutoresponse(roleName) {
 
   return [
     "Merci pour votre inscription a AGREX 2026.",
-    `Profil soumis : ${roleName || "Participant"}.`,
+    `Profil soumis : ${roleName || "Pass Visiteur"}.`,
     "Notre equipe a bien recu votre demande et reviendra vers vous rapidement avec les prochaines etapes.",
     "AGREX 2026",
     "www.agrex.events",

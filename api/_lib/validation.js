@@ -25,17 +25,20 @@ function normalizeParticipant(payload) {
   assertRequired(payload.jobTitle, "Job title");
   assertRequired(payload.country, "Country");
 
+  const lang = normalizeString(payload.lang) === "en" ? "en" : "fr";
+  const defaultProfile = lang === "en" ? "Visitor Pass" : "Pass Visiteur";
+
   return {
     firstName: normalizeString(payload.firstName),
     lastName: normalizeString(payload.lastName),
     organization: normalizeString(payload.organization),
     jobTitle: normalizeString(payload.jobTitle),
-    profile: normalizeString(payload.profile) || "Participant",
+    profile: normalizeString(payload.profile) || defaultProfile,
     country: normalizeString(payload.country),
     email: validateEmail(payload.email),
     phone: normalizeString(payload.phone),
     interest: normalizeString(payload.interest),
-    lang: normalizeString(payload.lang) === "en" ? "en" : "fr"
+    lang
   };
 }
 
