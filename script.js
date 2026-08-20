@@ -1103,6 +1103,8 @@ const newsletterForm = document.getElementById("newsletter-form");
 const formStatus = document.getElementById("form-status");
 const sponsorFormStatus = document.getElementById("sponsor-form-status");
 const newsletterStatus = document.getElementById("newsletter-status");
+const registrationDownloads = document.getElementById("registration-downloads");
+const sponsorDownloads = document.getElementById("sponsor-downloads");
 const roleSelect = document.getElementById("role-select");
 const sponsorPackageSelect = document.getElementById("sponsor-package");
 const registrationSubjectInput = document.getElementById("registration-subject");
@@ -1129,15 +1131,104 @@ function setFormMessage(target, type, message) {
   target.textContent = message || "";
 }
 
+function revokeDownloadLinks(container) {
+  if (!container) return;
+  container.querySelectorAll("[data-object-url]").forEach((link) => {
+    const objectUrl = link.dataset.objectUrl;
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
+    }
+  });
+}
+
+function clearDownloadPanel(container) {
+  if (!container) return;
+  revokeDownloadLinks(container);
+  container.innerHTML = "";
+  container.hidden = true;
+}
+
+function fileToObjectUrl(file) {
+  if (!file?.base64) return null;
+
+  const binary = atob(file.base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let index = 0; index < binary.length; index += 1) {
+    bytes[index] = binary.charCodeAt(index);
+  }
+
+  return URL.createObjectURL(new Blob([bytes], { type: file.mimeType || "application/octet-stream" }));
+}
+
+function createDownloadButton(file, label, variant = "secondary") {
+  if (!file?.base64 || !file?.fileName) return null;
+
+  const objectUrl = fileToObjectUrl(file);
+  if (!objectUrl) return null;
+
+  const link = document.createElement("a");
+  link.href = objectUrl;
+  link.download = file.fileName;
+  link.target = "_blank";
+  link.rel = "noopener";
+  link.className = `button ${variant === "primary" ? "button-primary" : "button-secondary"}`;
+  link.textContent = label;
+  link.dataset.objectUrl = objectUrl;
+  return link;
+}
+
 function triggerFileDownload(file) {
   if (!file?.base64 || !file?.fileName) return;
 
+  const objectUrl = fileToObjectUrl(file);
+  if (!objectUrl) return;
+
   const link = document.createElement("a");
-  link.href = `data:${file.mimeType || "application/octet-stream"};base64,${file.base64}`;
+  link.href = objectUrl;
   link.download = file.fileName;
   document.body.appendChild(link);
   link.click();
   link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(objectUrl), 8000);
+}
+
+function getDownloadPanelCopy(type, recordCode) {
+  if (type === "sponsor") {
+    return currentLang === "en"
+      ? `Your provisional sponsor badge and contract are ready. Reference: ${recordCode || "-"}`
+      : `Votre badge sponsor provisoire et votre contrat sont prets. Reference : ${recordCode || "-"}`
+  }
+
+  return currentLang === "en"
+    ? `Your digital participant badge is ready. Reference: ${recordCode || "-"}`
+    : `Votre badge numerique participant est pret. Reference : ${recordCode || "-"}`
+}
+
+function showDownloadPanel(container, options) {
+  if (!container) return;
+
+  clearDownloadPanel(container);
+
+  const title = document.createElement("p");
+  title.className = "download-panel-title";
+  title.textContent = options.title;
+
+  const copy = document.createElement("p");
+  copy.className = "download-panel-copy";
+  copy.textContent = options.copy;
+
+  const actions = document.createElement("div");
+  actions.className = "download-actions";
+
+  options.files.forEach((item, index) => {
+    const button = createDownloadButton(item.file, item.label, index === 0 ? "primary" : "secondary");
+    if (button) {
+      actions.appendChild(button);
+    }
+  });
+
+  container.append(title, copy, actions);
+  container.hidden = actions.childElementCount === 0;
 }
 
 async function postJson(url, payload) {
@@ -1770,6 +1861,7 @@ registrationForm?.addEventListener("submit", async (event) => {
   submitButton.disabled = true;
   submitButton.textContent = currentLang === "en" ? "Generating..." : "Generation...";
   setFormMessage(formStatus, "", "");
+  clearDownloadPanel(registrationDownloads);
 
   try {
     const formData = new FormData(registrationForm);
@@ -1782,10 +1874,21 @@ registrationForm?.addEventListener("submit", async (event) => {
 
     const result = await postJson("/api/register-participant", payload);
     triggerFileDownload(result.badge);
+    showDownloadPanel(registrationDownloads, {
+      title: currentLang === "en" ? "Participant badge ready" : "Badge participant pret",
+      copy: getDownloadPanelCopy("participant", result.record?.code),
+      files: [
+        {
+          file: result.badge,
+          label: currentLang === "en" ? "Open or download badge PDF" : "Ouvrir ou telecharger le badge PDF"
+        }
+      ]
+    });
     registrationForm.reset();
     renderRoleOptions(siteContent[currentLang].form.roles);
     setFormMessage(formStatus, "success", result.message || siteContent[currentLang].form.success);
   } catch (error) {
+    clearDownloadPanel(registrationDownloads);
     setFormMessage(formStatus, "error", error.message || siteContent[currentLang].form.error);
   } finally {
     submitButton.disabled = false;
@@ -1804,6 +1907,7 @@ sponsorForm?.addEventListener("submit", async (event) => {
   submitButton.disabled = true;
   submitButton.textContent = siteContent[currentLang].sponsors.form.sending;
   setFormMessage(sponsorFormStatus, "", "");
+  clearDownloadPanel(sponsorDownloads);
 
   try {
     const formData = new FormData(sponsorForm);
@@ -1818,10 +1922,25 @@ sponsorForm?.addEventListener("submit", async (event) => {
     const result = await postJson("/api/register-sponsor", payload);
     triggerFileDownload(result.contract);
     triggerFileDownload(result.badge);
+    showDownloadPanel(sponsorDownloads, {
+      title: currentLang === "en" ? "Sponsor files ready" : "Documents sponsor prets",
+      copy: getDownloadPanelCopy("sponsor", result.record?.code),
+      files: [
+        {
+          file: result.badge,
+          label: currentLang === "en" ? "Open or download sponsor badge" : "Ouvrir ou telecharger le badge sponsor"
+        },
+        {
+          file: result.contract,
+          label: currentLang === "en" ? "Open or download contract" : "Ouvrir ou telecharger le contrat"
+        }
+      ]
+    });
     sponsorForm.reset();
     renderSponsorPackageOptions(siteContent[currentLang].sponsors.cards);
     setFormMessage(sponsorFormStatus, "success", result.message || siteContent[currentLang].sponsors.form.success);
   } catch (error) {
+    clearDownloadPanel(sponsorDownloads);
     setFormMessage(sponsorFormStatus, "error", error.message || siteContent[currentLang].sponsors.form.error);
   } finally {
     submitButton.disabled = false;

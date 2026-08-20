@@ -1542,6 +1542,45 @@ option {
   color: #ffb2b2;
 }
 
+.download-panel {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(143, 242, 216, 0.32);
+  background: linear-gradient(180deg, rgba(16, 32, 56, 0.88), rgba(8, 17, 31, 0.94));
+  border-radius: 1rem;
+}
+
+.download-panel[hidden] {
+  display: none;
+}
+
+.download-panel-title {
+  margin: 0;
+  color: #f8fbff;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.download-panel-copy {
+  margin: 0;
+  color: rgba(236, 243, 255, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.download-actions .button {
+  min-height: 3rem;
+}
+
 button:disabled {
   opacity: 0.72;
   cursor: wait;
