@@ -5,6 +5,26 @@ const { EVENT, getSponsorPackage } = require("./agrex-config");
 
 const AGREX_LOGO_PATH = path.join(__dirname, "..", "..", "assets", "images", "agrex-logo.jpeg");
 const CONTACT_EMAIL = "contact@agrex.events";
+const BADGE_IMAGE = {
+  width: 1080,
+  height: 1620,
+  cardX: 30,
+  cardY: 30,
+  cardWidth: 1020,
+  cardHeight: 1560,
+  radius: 66
+};
+const BADGE_HEX = {
+  gold: "#baa27a",
+  goldSoft: "#f2e6cf",
+  goldLine: "#c7ae84",
+  navy: "#173d66",
+  white: "#ffffff",
+  ink: "#2a2c35",
+  muted: "#6d7682",
+  rule: "#d6c6b2",
+  slot: "#2f343b"
+};
 
 const BADGE = {
   width: 360,
@@ -25,6 +45,7 @@ const BADGE = {
 };
 
 let agrexLogoBytesPromise;
+let agrexLogoDataUriPromise;
 
 function euros(amount) {
   return `${Number(amount || 0).toLocaleString("fr-FR")} EUR`;
@@ -77,12 +98,116 @@ async function loadAgrexLogo(pdf) {
   }
 }
 
+async function loadAgrexLogoDataUri() {
+  try {
+    if (!agrexLogoDataUriPromise) {
+      agrexLogoDataUriPromise = fs
+        .readFile(AGREX_LOGO_PATH)
+        .then((bytes) => `data:image/jpeg;base64,${bytes.toString("base64")}`);
+    }
+    return await agrexLogoDataUriPromise;
+  } catch {
+    return null;
+  }
+}
+
 function fitImage(image, maxWidth, maxHeight) {
   const ratio = Math.min(maxWidth / image.width, maxHeight / image.height);
   return {
     width: image.width * ratio,
     height: image.height * ratio
   };
+}
+
+function escapeXml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function normalizeBadgeValue(value) {
+  return String(value || "-").replace(/\s+/g, " ").trim() || "-";
+}
+
+function shortenText(value, maxChars) {
+  const text = normalizeBadgeValue(value);
+  if (text.length <= maxChars) return text;
+  return `${text.slice(0, Math.max(0, maxChars - 3)).trim()}...`;
+}
+
+function fitSvgFontSize(text, options) {
+  const { baseSize, minSize, softLimit } = options;
+  const value = normalizeBadgeValue(text);
+  if (value.length <= softLimit) return baseSize;
+  const nextSize = baseSize - (value.length - softLimit) * 1.05;
+  return Math.max(minSize, Number(nextSize.toFixed(1)));
+}
+
+function svgText(options) {
+  const {
+    x,
+    y,
+    text,
+    size,
+    fill,
+    weight = 400,
+    anchor = "start",
+    letterSpacing = 0,
+    opacity = 1
+  } = options;
+
+  return `<text x="${x}" y="${y}" fill="${fill}" font-family="Arial, Helvetica, sans-serif" font-size="${size}" font-weight="${weight}" text-anchor="${anchor}" letter-spacing="${letterSpacing}" opacity="${opacity}">${escapeXml(text)}</text>`;
+}
+
+function svgLine(x1, y1, x2, y2, color, width) {
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${width}" />`;
+}
+
+function svgBadgeIcon(kind, x, y) {
+  const base = `<circle cx="${x}" cy="${y}" r="34" fill="${BADGE_HEX.gold}" />`;
+
+  if (kind === "person") {
+    return `${base}
+      <circle cx="${x}" cy="${y - 10}" r="9" fill="${BADGE_HEX.white}" />
+      <ellipse cx="${x}" cy="${y + 16}" rx="18" ry="13" fill="${BADGE_HEX.white}" />`;
+  }
+
+  if (kind === "building") {
+    return `${base}
+      <rect x="${x - 14}" y="${y - 17}" width="28" height="32" rx="2" fill="${BADGE_HEX.white}" />
+      <rect x="${x - 4}" y="${y + 1}" width="8" height="14" fill="${BADGE_HEX.gold}" />
+      <line x1="${x - 8}" y1="${y - 8}" x2="${x - 8}" y2="${y + 8}" stroke="${BADGE_HEX.gold}" stroke-width="2" />
+      <line x1="${x + 8}" y1="${y - 8}" x2="${x + 8}" y2="${y + 8}" stroke="${BADGE_HEX.gold}" stroke-width="2" />`;
+  }
+
+  if (kind === "briefcase") {
+    return `${base}
+      <rect x="${x - 18}" y="${y - 8}" width="36" height="20" rx="2" fill="${BADGE_HEX.white}" />
+      <rect x="${x - 8}" y="${y - 15}" width="16" height="7" rx="2" fill="${BADGE_HEX.white}" />`;
+  }
+
+  if (kind === "group") {
+    return `${base}
+      <circle cx="${x - 10}" cy="${y - 8}" r="7" fill="${BADGE_HEX.white}" />
+      <circle cx="${x + 10}" cy="${y - 8}" r="7" fill="${BADGE_HEX.white}" />
+      <ellipse cx="${x - 10}" cy="${y + 12}" rx="13" ry="9" fill="${BADGE_HEX.white}" />
+      <ellipse cx="${x + 10}" cy="${y + 12}" rx="13" ry="9" fill="${BADGE_HEX.white}" />`;
+  }
+
+  if (kind === "calendar") {
+    return `${base}
+      <rect x="${x - 16}" y="${y - 14}" width="32" height="28" rx="3" fill="${BADGE_HEX.white}" />
+      <rect x="${x - 16}" y="${y - 14}" width="32" height="8" fill="${BADGE_HEX.gold}" />
+      <line x1="${x - 8}" y1="${y - 22}" x2="${x - 8}" y2="${y - 8}" stroke="${BADGE_HEX.white}" stroke-width="3" />
+      <line x1="${x + 8}" y1="${y - 22}" x2="${x + 8}" y2="${y - 8}" stroke="${BADGE_HEX.white}" stroke-width="3" />`;
+  }
+
+  return `${base}
+    <circle cx="${x}" cy="${y - 5}" r="8" fill="${BADGE_HEX.white}" />
+    <path d="M ${x} ${y + 18} L ${x - 12} ${y - 1} Q ${x} ${y + 5} ${x + 12} ${y - 1} Z" fill="${BADGE_HEX.white}" />`;
 }
 
 function roundedRectPath(x, y, width, height, radius) {
@@ -425,248 +550,160 @@ function drawBottomInfo(page, options) {
   });
 }
 
-async function createBadgePdf({ kind, status, firstName, lastName, company, jobTitle, profile, code, sponsorPackageId }) {
-  const pdf = await PDFDocument.create();
-  const page = pdf.addPage([BADGE.width, BADGE.height]);
-  const fontBold = await pdf.embedFont(StandardFonts.HelveticaBold);
-  const font = await pdf.embedFont(StandardFonts.Helvetica);
-  const logo = await loadAgrexLogo(pdf);
+function svgInfoRow(options) {
+  const {
+    y,
+    iconKind,
+    labelFr,
+    labelEn,
+    value,
+    baseSize = 44,
+    minSize = 31,
+    softLimit = 26
+  } = options;
+
+  const displayText = shortenText(value, 34);
+  const valueSize = fitSvgFontSize(displayText, { baseSize, minSize, softLimit });
+
+  return `
+    ${svgBadgeIcon(iconKind, 126, y + 62)}
+    ${svgText({ x: 190, y: y + 18, text: labelFr, size: 24, fill: BADGE_HEX.ink, weight: 700 })}
+    ${svgText({ x: 190, y: y + 56, text: labelEn, size: 18, fill: BADGE_HEX.muted })}
+    ${svgText({ x: 190, y: y + 118, text: displayText, size: valueSize, fill: BADGE_HEX.ink, weight: 700 })}
+    ${svgLine(190, y + 152, 900, y + 152, BADGE_HEX.rule, 2)}
+  `;
+}
+
+function svgTypeOptions(selected) {
+  const items = [
+    { id: "delegate", label: "DELEGUE", x: 255 },
+    { id: "sponsor", label: "SPONSOR", x: 425 },
+    { id: "investor", label: "INVESTOR", x: 595 },
+    { id: "other", label: "AUTRE", x: 765 }
+  ];
+
+  return `
+    ${svgBadgeIcon("group", 126, 1186)}
+    ${svgText({ x: 190, y: 1142, text: "TYPE DE PARTICIPANT", size: 24, fill: BADGE_HEX.ink, weight: 700 })}
+    ${svgText({ x: 190, y: 1180, text: "TYPE OF PARTICIPANT", size: 18, fill: BADGE_HEX.muted })}
+    ${items
+      .map((item) => {
+        const checked = item.id === selected;
+        return `
+          <rect x="${item.x - 16}" y="1220" width="32" height="32" fill="${BADGE_HEX.white}" stroke="${BADGE_HEX.gold}" stroke-width="4" />
+          ${
+            checked
+              ? `<rect x="${item.x - 8}" y="1228" width="16" height="16" fill="${BADGE_HEX.navy}" />`
+              : ""
+          }
+          ${svgText({ x: item.x, y: 1288, text: item.label, size: 18, fill: BADGE_HEX.ink, weight: 700, anchor: "middle" })}
+        `;
+      })
+      .join("")}
+    ${svgLine(190, 1336, 900, 1336, BADGE_HEX.rule, 2)}
+  `;
+}
+
+function svgDateVenueSection() {
+  return `
+    ${svgBadgeIcon("calendar", 126, 1424)}
+    ${svgText({ x: 190, y: 1388, text: "DATE", size: 24, fill: BADGE_HEX.ink, weight: 700 })}
+    ${svgText({ x: 190, y: 1424, text: "DATE", size: 18, fill: BADGE_HEX.muted })}
+    ${svgText({ x: 190, y: 1484, text: "19-20 OCT 2026", size: 20, fill: BADGE_HEX.ink, weight: 700 })}
+    ${svgLine(540, 1384, 540, 1506, BADGE_HEX.rule, 2)}
+    ${svgBadgeIcon("pin", 600, 1424)}
+    ${svgText({ x: 666, y: 1388, text: "LIEU", size: 24, fill: BADGE_HEX.ink, weight: 700 })}
+    ${svgText({ x: 666, y: 1424, text: "VENUE", size: 18, fill: BADGE_HEX.muted })}
+    ${svgText({ x: 666, y: 1484, text: "DUBAI WORLD TRADE CENTRE", size: 19, fill: BADGE_HEX.ink, weight: 700 })}
+  `;
+}
+
+function badgeBandTextColor(meta) {
+  return /GOLD|PLATINUM|BRONZE/.test(meta.bandLabel) ? BADGE_HEX.goldSoft : BADGE_HEX.white;
+}
+
+function badgeStatusVisual(status) {
+  if (status === "sponsor_paid") {
+    return { label: "PAYE / PAID", fill: BADGE_HEX.navy, text: BADGE_HEX.goldSoft };
+  }
+  if (status === "participant_confirmed") {
+    return null;
+  }
+  return { label: "PROVISOIRE / PROVISIONAL", fill: BADGE_HEX.gold, text: BADGE_HEX.white };
+}
+
+async function createBadgeImage({ kind, status, firstName, lastName, company, jobTitle, profile, code, sponsorPackageId }) {
+  const logoDataUri = await loadAgrexLogoDataUri();
   const meta = roleMeta({ kind, profile, sponsorPackageId });
-  const statusPill = statusMeta(status);
-  const cardX = BADGE.margin;
-  const cardY = BADGE.margin;
-  const cardWidth = BADGE.width - BADGE.margin * 2;
-  const cardHeight = BADGE.height - BADGE.margin * 2;
+  const statusPill = badgeStatusVisual(status);
+  const bandTextColor = badgeBandTextColor(meta);
+  const logoMarkup = logoDataUri
+    ? `<image href="${logoDataUri}" x="342" y="326" width="396" height="126" preserveAspectRatio="xMidYMid meet" />`
+    : svgText({ x: 540, y: 388, text: "AGREX", size: 58, fill: BADGE_HEX.navy, weight: 700, anchor: "middle" });
 
-  page.drawRectangle({
-    x: 0,
-    y: 0,
-    width: BADGE.width,
-    height: BADGE.height,
-    color: BADGE.white
-  });
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="${BADGE_IMAGE.width}" height="${BADGE_IMAGE.height}" viewBox="0 0 ${BADGE_IMAGE.width} ${BADGE_IMAGE.height}">
+      <rect width="1080" height="1620" fill="${BADGE_HEX.white}" />
+      <rect x="${BADGE_IMAGE.cardX}" y="${BADGE_IMAGE.cardY}" width="${BADGE_IMAGE.cardWidth}" height="${BADGE_IMAGE.cardHeight}" rx="${BADGE_IMAGE.radius}" fill="${BADGE_HEX.white}" stroke="${BADGE_HEX.goldLine}" stroke-width="4" />
+      <rect x="30" y="30" width="1020" height="360" rx="66" fill="${BADGE_HEX.gold}" />
+      <ellipse cx="540" cy="402" rx="510" ry="120" fill="${BADGE_HEX.white}" />
+      <rect x="474" y="52" width="132" height="42" rx="21" fill="${BADGE_HEX.slot}" />
+      <rect x="292" y="300" width="496" height="176" rx="36" fill="${BADGE_HEX.white}" stroke="${BADGE_HEX.goldSoft}" stroke-width="3" />
+      ${logoMarkup}
+      ${svgLine(105, 588, 975, 588, BADGE_HEX.rule, 3)}
+      ${svgText({ x: 105, y: 548, text: `REF. ${code}`, size: 26, fill: BADGE_HEX.muted })}
+      ${
+        statusPill
+          ? `
+            <rect x="675" y="520" width="300" height="52" rx="26" fill="${statusPill.fill}" />
+            ${svgText({ x: 825, y: 555, text: statusPill.label, size: 23, fill: statusPill.text, weight: 700, anchor: "middle" })}
+          `
+          : ""
+      }
+      ${svgInfoRow({
+        y: 628,
+        iconKind: "person",
+        labelFr: "NOM ET PRENOM",
+        labelEn: "FULL NAME",
+        value: `${firstName} ${lastName}`,
+        baseSize: 56,
+        minSize: 40,
+        softLimit: 20
+      })}
+      ${svgInfoRow({
+        y: 786,
+        iconKind: "building",
+        labelFr: "COMPANY / ORGANISATION",
+        labelEn: "COMPANY / ORGANISATION",
+        value: company,
+        baseSize: 46,
+        minSize: 32,
+        softLimit: 24
+      })}
+      ${svgInfoRow({
+        y: 944,
+        iconKind: "briefcase",
+        labelFr: "FONCTION",
+        labelEn: "JOB TITLE",
+        value: jobTitle,
+        baseSize: 46,
+        minSize: 32,
+        softLimit: 24
+      })}
+      ${svgTypeOptions(meta.typeChoice)}
+      ${svgDateVenueSection()}
+      <rect x="30" y="1445" width="1020" height="78" fill="${BADGE_HEX.gold}" />
+      ${svgText({ x: 540, y: 1496, text: `${EVENT.website}  |  ${CONTACT_EMAIL}`, size: 28, fill: BADGE_HEX.white, anchor: "middle" })}
+      <path d="M 30 1535 h 1020 v 75 h -1020 z" fill="${BADGE_HEX.navy}" />
+      <circle cx="96" cy="1572" r="56" fill="${BADGE_HEX.navy}" />
+      <circle cx="984" cy="1572" r="56" fill="${BADGE_HEX.navy}" />
+      ${svgLine(82, 1578, 192, 1578, BADGE_HEX.goldSoft, 3)}
+      ${svgLine(888, 1578, 998, 1578, BADGE_HEX.goldSoft, 3)}
+      ${svgText({ x: 540, y: 1614, text: meta.bandLabel, size: meta.bandLabel.length > 16 ? 34 : 40, fill: bandTextColor, weight: 700, anchor: "middle" })}
+    </svg>
+  `;
 
-  drawRoundedRect(page, {
-    x: cardX,
-    y: cardY,
-    width: cardWidth,
-    height: cardHeight,
-    radius: BADGE.radius,
-    color: BADGE.white,
-    borderColor: BADGE.goldLine,
-    borderWidth: 1.2
-  });
-
-  page.drawRectangle({
-    x: cardX,
-    y: cardY + cardHeight - 124,
-    width: cardWidth,
-    height: 124,
-    color: BADGE.gold
-  });
-  page.drawCircle({
-    x: cardX + BADGE.radius,
-    y: cardY + cardHeight - BADGE.radius,
-    size: BADGE.radius,
-    color: BADGE.gold
-  });
-  page.drawCircle({
-    x: cardX + cardWidth - BADGE.radius,
-    y: cardY + cardHeight - BADGE.radius,
-    size: BADGE.radius,
-    color: BADGE.gold
-  });
-
-  page.drawEllipse({
-    x: BADGE.width / 2,
-    y: 392,
-    xScale: 170,
-    yScale: 42,
-    color: BADGE.white
-  });
-
-  drawRoundedRect(page, {
-    x: BADGE.width / 2 - 22,
-    y: cardY + cardHeight - 22,
-    width: 44,
-    height: 14,
-    radius: 7,
-    color: BADGE.slot
-  });
-
-  drawRoundedRect(page, {
-    x: 95,
-    y: 344,
-    width: 170,
-    height: 88,
-    radius: 18,
-    color: BADGE.white,
-    borderColor: BADGE.goldSoft,
-    borderWidth: 1
-  });
-
-  if (logo) {
-    const dimensions = fitImage(logo, 196, 62);
-    page.drawImage(logo, {
-      x: (BADGE.width - dimensions.width) / 2,
-      y: 358,
-      width: dimensions.width,
-      height: dimensions.height
-    });
-  } else {
-    drawCenteredText(page, "AGREX", {
-      x: 40,
-      y: 394,
-      width: BADGE.width - 80,
-      font: fontBold,
-      size: 26,
-      color: BADGE.navy
-    });
-  }
-
-  page.drawLine({
-    start: { x: 34, y: 345 },
-    end: { x: BADGE.width - 34, y: 345 },
-    thickness: 0.8,
-    color: BADGE.rule
-  });
-
-  if (statusPill) {
-    page.drawRectangle({
-      x: BADGE.width - 136,
-      y: 352,
-      width: 102,
-      height: 16,
-      color: statusPill.fill
-    });
-    drawCenteredText(page, statusPill.label, {
-      x: BADGE.width - 136,
-      y: 357,
-      width: 102,
-      font: fontBold,
-      size: 5.7,
-      color: statusPill.text
-    });
-  }
-
-  page.drawText(`REF. ${code}`, {
-    x: 34,
-    y: 356,
-    size: 6.3,
-    font,
-    color: BADGE.muted
-  });
-
-  let nextTopY = 332;
-
-  nextTopY = drawInfoRow(page, {
-    topY: nextTopY,
-    iconKind: "person",
-    labelFr: "NOM ET PRENOM",
-    labelEn: "FULL NAME",
-    value: `${firstName} ${lastName}`,
-    font,
-    fontBold,
-    valueSize: 14,
-    maxWidth: 228
-  });
-
-  nextTopY = drawInfoRow(page, {
-    topY: nextTopY,
-    iconKind: "building",
-    labelFr: "COMPANY / ORGANISATION",
-    labelEn: "COMPANY / ORGANISATION",
-    value: company,
-    font,
-    fontBold,
-    valueSize: 12.2,
-    maxWidth: 228
-  });
-
-  nextTopY = drawInfoRow(page, {
-    topY: nextTopY,
-    iconKind: "briefcase",
-    labelFr: "FONCTION",
-    labelEn: "JOB TITLE",
-    value: jobTitle,
-    font,
-    fontBold,
-    valueSize: 12.2,
-    maxWidth: 228
-  });
-
-  drawTypeOptions(page, {
-    topY: nextTopY - 2,
-    selected: meta.typeChoice,
-    font,
-    fontBold
-  });
-
-  drawBottomInfo(page, {
-    font,
-    fontBold
-  });
-
-  page.drawRectangle({
-    x: cardX,
-    y: 44,
-    width: cardWidth,
-    height: 24,
-    color: BADGE.gold
-  });
-
-  drawCenteredText(page, `${EVENT.website}   |   ${CONTACT_EMAIL}`, {
-    x: cardX + 18,
-    y: 50,
-    width: cardWidth - 36,
-    font,
-    size: 7.6,
-    color: BADGE.white
-  });
-
-  page.drawRectangle({
-    x: cardX,
-    y: 8,
-    width: cardWidth,
-    height: 34,
-    color: BADGE.navy
-  });
-  page.drawCircle({
-    x: cardX + BADGE.radius,
-    y: 8 + BADGE.radius,
-    size: BADGE.radius,
-    color: BADGE.navy
-  });
-  page.drawCircle({
-    x: cardX + cardWidth - BADGE.radius,
-    y: 8 + BADGE.radius,
-    size: BADGE.radius,
-    color: BADGE.navy
-  });
-
-  page.drawLine({
-    start: { x: 28, y: 28 },
-    end: { x: 64, y: 28 },
-    thickness: 1,
-    color: BADGE.goldSoft
-  });
-  page.drawLine({
-    start: { x: BADGE.width - 64, y: 28 },
-    end: { x: BADGE.width - 28, y: 28 },
-    thickness: 1,
-    color: BADGE.goldSoft
-  });
-
-  drawCenteredText(page, meta.bandLabel, {
-    x: 78,
-    y: 16,
-    width: BADGE.width - 156,
-    font: fontBold,
-    size: meta.bandLabel.length > 16 ? 11 : 12.4,
-    color: meta.bandColor
-  });
-
-  return Buffer.from(await pdf.save());
+  return Buffer.from(svg.trim(), "utf8");
 }
 
 async function createSponsorContractPdf({ sponsor, lang }) {
@@ -761,6 +798,6 @@ async function createSponsorContractPdf({ sponsor, lang }) {
 
 module.exports = {
   makeCode,
-  createBadgePdf,
+  createBadgeImage,
   createSponsorContractPdf
 };

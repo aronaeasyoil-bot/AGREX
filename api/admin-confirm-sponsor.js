@@ -1,6 +1,6 @@
 const { allowMethods, readRequestBody, sendJson } = require("./_lib/http");
 const { getSponsorById, updateSponsor, getStorageMode } = require("./_lib/storage");
-const { createBadgePdf } = require("./_lib/documents");
+const { createBadgeImage } = require("./_lib/documents");
 const { sendSponsorConfirmedEmail } = require("./_lib/email");
 
 function requireToken(req, res) {
@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
 
     await updateSponsor(updated);
 
-    const badgeBuffer = await createBadgePdf({
+    const badgeBuffer = await createBadgeImage({
       kind: "sponsor",
       status: updated.status,
       firstName: updated.firstName,
@@ -73,8 +73,8 @@ module.exports = async (req, res) => {
             : "Paiement sponsor confirme. Le badge final a ete regenere. L'envoi email demarrera des que le service mail sera active.",
       record: updated,
       badge: {
-        fileName: `${updated.code}-badge-sponsor-confirme.pdf`,
-        mimeType: "application/pdf",
+        fileName: `${updated.code}-badge-sponsor-confirme.svg`,
+        mimeType: "image/svg+xml",
         base64: badgeBuffer.toString("base64")
       },
       email: emailResult,

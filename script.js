@@ -1880,7 +1880,7 @@ registrationForm?.addEventListener("submit", async (event) => {
       files: [
         {
           file: result.badge,
-          label: currentLang === "en" ? "Open or download badge PDF" : "Ouvrir ou telecharger le badge PDF"
+          label: currentLang === "en" ? "Open or download badge image" : "Ouvrir ou telecharger l'image du badge"
         }
       ]
     });
@@ -1928,7 +1928,7 @@ sponsorForm?.addEventListener("submit", async (event) => {
       files: [
         {
           file: result.badge,
-          label: currentLang === "en" ? "Open or download sponsor badge" : "Ouvrir ou telecharger le badge sponsor"
+          label: currentLang === "en" ? "Open or download sponsor badge image" : "Ouvrir ou telecharger l'image du badge sponsor"
         },
         {
           file: result.contract,

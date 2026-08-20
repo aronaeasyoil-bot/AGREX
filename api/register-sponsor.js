@@ -1,7 +1,7 @@
 const crypto = require("node:crypto");
 const { allowMethods, readRequestBody, sendJson } = require("./_lib/http");
 const { normalizeSponsor } = require("./_lib/validation");
-const { makeCode, createBadgePdf, createSponsorContractPdf } = require("./_lib/documents");
+const { makeCode, createBadgeImage, createSponsorContractPdf } = require("./_lib/documents");
 const { saveSponsor, getStorageMode } = require("./_lib/storage");
 const { sendSponsorPendingEmail } = require("./_lib/email");
 const { getSponsorPackage } = require("./_lib/agrex-config");
@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
     };
 
     await saveSponsor(record);
-    const badgeBuffer = await createBadgePdf({
+    const badgeBuffer = await createBadgeImage({
       kind: "sponsor",
       status: record.status,
       firstName: record.firstName,
@@ -60,8 +60,8 @@ module.exports = async (req, res) => {
         amountEur: record.amountEur
       },
       badge: {
-        fileName: `${record.code}-badge-sponsor-provisoire.pdf`,
-        mimeType: "application/pdf",
+        fileName: `${record.code}-badge-sponsor-provisoire.svg`,
+        mimeType: "image/svg+xml",
         base64: badgeBuffer.toString("base64")
       },
       contract: {

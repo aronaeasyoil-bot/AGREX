@@ -1,7 +1,7 @@
 const crypto = require("node:crypto");
 const { allowMethods, readRequestBody, sendJson } = require("./_lib/http");
 const { normalizeParticipant } = require("./_lib/validation");
-const { makeCode, createBadgePdf } = require("./_lib/documents");
+const { makeCode, createBadgeImage } = require("./_lib/documents");
 const { saveParticipant, getStorageMode } = require("./_lib/storage");
 const { sendParticipantEmail } = require("./_lib/email");
 
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     };
 
     await saveParticipant(record);
-    const badgeBuffer = await createBadgePdf({
+    const badgeBuffer = await createBadgeImage({
       kind: "participant",
       status: record.status,
       firstName: record.firstName,
@@ -52,8 +52,8 @@ module.exports = async (req, res) => {
         status: record.status
       },
       badge: {
-        fileName: `${record.code}-badge-participant.pdf`,
-        mimeType: "application/pdf",
+        fileName: `${record.code}-badge-participant.svg`,
+        mimeType: "image/svg+xml",
         base64: badgeBuffer.toString("base64")
       },
       email: emailResult,
