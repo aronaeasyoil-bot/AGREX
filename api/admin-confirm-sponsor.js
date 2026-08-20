@@ -67,10 +67,10 @@ module.exports = async (req, res) => {
         updated.lang === "en"
           ? emailResult.sent
             ? "Sponsor payment confirmed. The final badge has been regenerated and sent."
-            : "Sponsor payment confirmed. The final badge has been regenerated. Email delivery is waiting for SMTP configuration."
+            : "Sponsor payment confirmed. The final badge has been regenerated. Email delivery will start once the mail service is activated."
           : emailResult.sent
             ? "Paiement sponsor confirme. Le badge final a ete regenere et envoye."
-            : "Paiement sponsor confirme. Le badge final a ete regenere. L'envoi email attend la configuration SMTP.",
+            : "Paiement sponsor confirme. Le badge final a ete regenere. L'envoi email demarrera des que le service mail sera active.",
       record: updated,
       badge: {
         fileName: `${updated.code}-badge-sponsor-confirme.pdf`,

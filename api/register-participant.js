@@ -38,10 +38,10 @@ module.exports = async (req, res) => {
       record.lang === "en"
         ? emailResult.sent
           ? "Registration recorded. The digital badge has been generated and sent by email."
-          : "Registration recorded. The digital badge has been generated. Email delivery is waiting for SMTP configuration."
+          : "Registration recorded. The digital badge has been generated. Email delivery will start once the mail service is activated."
         : emailResult.sent
           ? "Inscription enregistree. Le badge numerique a ete genere et envoye par email."
-          : "Inscription enregistree. Le badge numerique a ete genere. L'envoi email attend la configuration SMTP.";
+          : "Inscription enregistree. Le badge numerique a ete genere. L'envoi email demarrera des que le service mail sera active.";
 
     sendJson(res, 200, {
       ok: true,

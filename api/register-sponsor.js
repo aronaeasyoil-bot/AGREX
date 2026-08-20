@@ -45,10 +45,10 @@ module.exports = async (req, res) => {
       record.lang === "en"
         ? emailResult.sent
           ? "Sponsor file recorded. The contract and provisional badge have been generated and sent by email."
-          : "Sponsor file recorded. The contract and provisional badge have been generated. Email delivery is waiting for SMTP configuration."
+          : "Sponsor file recorded. The contract and provisional badge have been generated. Email delivery will start once the mail service is activated."
         : emailResult.sent
           ? "Dossier sponsor enregistre. Le contrat et le badge provisoire ont ete generes et envoyes par email."
-          : "Dossier sponsor enregistre. Le contrat et le badge provisoire ont ete generes. L'envoi email attend la configuration SMTP.";
+          : "Dossier sponsor enregistre. Le contrat et le badge provisoire ont ete generes. L'envoi email demarrera des que le service mail sera active.";
 
     sendJson(res, 200, {
       ok: true,
