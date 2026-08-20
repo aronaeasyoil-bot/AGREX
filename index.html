@@ -224,22 +224,21 @@
               class="sponsor-form panel"
               id="sponsor-form"
               data-reveal
-              action="https://formsubmit.co/contact@agrex.events"
+              action="/api/register-sponsor"
               method="POST"
             >
-              <input type="hidden" name="_cc" value="contact@lebrief.energy,psgueye1@gmail.com" />
-              <input type="hidden" name="_subject" id="sponsor-subject" value="Nouvelle inscription sponsor AGREX" />
-              <input type="hidden" name="_autoresponse" id="sponsor-autoresponse" value="" />
-              <input type="hidden" name="_next" id="sponsor-next" value="" />
-              <input type="hidden" name="_template" value="table" />
               <div class="form-grid">
                 <label>
                   <span data-text="sponsors.form.package"></span>
-                  <select name="sponsorPackage" id="sponsor-package" required></select>
+                  <select name="sponsorPackageId" id="sponsor-package" required></select>
                 </label>
                 <label>
-                  <span data-text="sponsors.form.fullName"></span>
-                  <input type="text" name="fullName" required />
+                  <span data-text="sponsors.form.firstName"></span>
+                  <input type="text" name="firstName" required />
+                </label>
+                <label>
+                  <span data-text="sponsors.form.lastName"></span>
+                  <input type="text" name="lastName" required />
                 </label>
                 <label>
                   <span data-text="sponsors.form.jobTitle"></span>
@@ -267,11 +266,11 @@
                 </label>
                 <label class="field-full">
                   <span data-text="sponsors.form.message"></span>
-                  <textarea name="message" rows="5" required></textarea>
+                  <textarea name="message" rows="5"></textarea>
                 </label>
                 <label class="form-honeypot" aria-hidden="true" tabindex="-1">
                   <span>Company fax</span>
-                  <input type="text" name="_honey" autocomplete="off" tabindex="-1" />
+                  <input type="text" name="companyFax" autocomplete="off" tabindex="-1" />
                 </label>
                 <label class="field-full form-check">
                   <input type="checkbox" name="consent" required />
@@ -372,26 +371,29 @@
               class="pass-form panel"
               id="registration-form"
               data-reveal
-              action="https://formsubmit.co/contact@agrex.events"
+              action="/api/register-participant"
               method="POST"
             >
-              <input type="hidden" name="_cc" value="contact@lebrief.energy,psgueye1@gmail.com" />
-              <input type="hidden" name="_subject" id="registration-subject" value="Nouvelle inscription AGREX" />
-              <input type="hidden" name="_autoresponse" id="registration-autoresponse" value="" />
-              <input type="hidden" name="_next" id="registration-next" value="" />
-              <input type="hidden" name="_template" value="table" />
               <div class="form-grid">
                 <label>
-                  <span data-text="form.fullName"></span>
-                  <input type="text" name="fullName" required />
+                  <span data-text="form.firstName"></span>
+                  <input type="text" name="firstName" required />
+                </label>
+                <label>
+                  <span data-text="form.lastName"></span>
+                  <input type="text" name="lastName" required />
                 </label>
                 <label>
                   <span data-text="form.organization"></span>
                   <input type="text" name="organization" required />
                 </label>
                 <label>
-                  <span data-text="form.role"></span>
-                  <select name="role" id="role-select" required></select>
+                  <span data-text="form.jobTitle"></span>
+                  <input type="text" name="jobTitle" required />
+                </label>
+                <label>
+                  <span data-text="form.profile"></span>
+                  <select name="profile" id="role-select" required></select>
                 </label>
                 <label>
                   <span data-text="form.country"></span>
@@ -407,11 +409,11 @@
                 </label>
                 <label class="field-full">
                   <span data-text="form.interest"></span>
-                  <textarea name="interest" rows="4" required></textarea>
+                  <textarea name="interest" rows="4"></textarea>
                 </label>
                 <label class="form-honeypot" aria-hidden="true" tabindex="-1">
                   <span>Office line</span>
-                  <input type="text" name="_honey" autocomplete="off" tabindex="-1" />
+                  <input type="text" name="officeLine" autocomplete="off" tabindex="-1" />
                 </label>
               </div>
 

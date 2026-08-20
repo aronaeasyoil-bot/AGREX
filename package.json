@@ -1,0 +1,12 @@
+{
+  "name": "agrex-2026",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AGREX 2026 website with participant and sponsor registration workflows",
+  "dependencies": {
+    "nodemailer": "^6.9.15",
+    "pdf-lib": "^1.17.1",
+    "pg": "^8.13.1",
+    "resend": "^4.0.1"
+  }
+}

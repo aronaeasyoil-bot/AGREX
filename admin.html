@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AGREX Admin | Registrations</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07101d;
+        --panel: #0d1830;
+        --panel-soft: rgba(13, 24, 48, 0.82);
+        --line: rgba(255, 255, 255, 0.12);
+        --text: #f7f8fb;
+        --muted: rgba(247, 248, 251, 0.7);
+        --gold: #efbf59;
+        --teal: #38d4c7;
+        --danger: #ff8a8a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Manrope, Arial, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(56, 212, 199, 0.14), transparent 30%),
+          radial-gradient(circle at top right, rgba(239, 191, 89, 0.12), transparent 25%),
+          var(--bg);
+        color: var(--text);
+      }
+
+      .shell {
+        width: min(1240px, calc(100% - 32px));
+        margin: 32px auto 64px;
+      }
+
+      .panel {
+        background: var(--panel-soft);
+        border: 1px solid var(--line);
+        padding: 24px;
+        backdrop-filter: blur(12px);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      .eyebrow {
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.75rem;
+        font-weight: 800;
+      }
+
+      .topbar,
+      .metrics,
+      .exports,
+      .table-actions,
+      .status-bar {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .topbar {
+        align-items: end;
+      }
+
+      .topbar .field {
+        flex: 1 1 320px;
+      }
+
+      .field label,
+      .table-wrap th,
+      .metric strong {
+        display: block;
+      }
+
+      .field label {
+        margin-bottom: 8px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      input,
+      button,
+      a {
+        font: inherit;
+      }
+
+      input {
+        width: 100%;
+        min-height: 48px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+      }
+
+      button,
+      .button-link {
+        min-height: 48px;
+        padding: 0 18px;
+        border: 0;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .button-primary {
+        background: linear-gradient(90deg, #f2c96c, #d6a43b);
+        color: #091321;
+        font-weight: 800;
+      }
+
+      .button-secondary {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        border: 1px solid var(--line);
+      }
+
+      .button-danger {
+        background: rgba(255, 138, 138, 0.16);
+        color: var(--danger);
+        border: 1px solid rgba(255, 138, 138, 0.28);
+      }
+
+      .metrics {
+        margin: 20px 0;
+      }
+
+      .metric {
+        flex: 1 1 200px;
+        min-width: 180px;
+        padding: 18px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+
+      .metric span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .metric strong {
+        margin-top: 8px;
+        font-size: 1.8rem;
+      }
+
+      .status-bar {
+        margin: 16px 0 0;
+        color: var(--muted);
+      }
+
+      .table-section {
+        margin-top: 24px;
+      }
+
+      .table-wrap {
+        overflow: auto;
+        border: 1px solid var(--line);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 900px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      th,
+      td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        position: sticky;
+        top: 0;
+        background: #0c1730;
+        color: var(--gold);
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      td {
+        font-size: 0.94rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        border: 1px solid var(--line);
+      }
+
+      .badge-paid {
+        background: rgba(56, 212, 199, 0.14);
+        color: var(--teal);
+      }
+
+      .badge-pending {
+        background: rgba(239, 191, 89, 0.14);
+        color: var(--gold);
+      }
+
+      .small {
+        font-size: 0.84rem;
+        color: var(--muted);
+      }
+
+      .message {
+        margin-top: 16px;
+        min-height: 24px;
+        color: var(--muted);
+      }
+
+      .message.is-error {
+        color: var(--danger);
+      }
+
+      .message.is-success {
+        color: var(--teal);
+      }
+
+      @media (max-width: 720px) {
+        .shell {
+          width: min(100% - 20px, 100%);
+          margin-top: 20px;
+        }
+
+        .panel {
+          padding: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel">
+        <p class="eyebrow">AGREX private admin</p>
+        <h1>Inscriptions participants et sponsors</h1>
+        <p class="small">
+          Cette page permet de consulter les inscriptions, exporter les listes CSV et confirmer les
+          sponsors payes afin de generer leur badge final.
+        </p>
+
+        <div class="topbar">
+          <div class="field">
+            <label for="token">Admin access token</label>
+            <input id="token" type="password" autocomplete="off" />
+          </div>
+          <button class="button-primary" id="load-data" type="button">Charger les inscriptions</button>
+        </div>
+
+        <div class="metrics" id="metrics"></div>
+
+        <div class="exports">
+          <a class="button-link button-secondary" id="export-participants" href="#" target="_blank" rel="noreferrer">
+            Export participants CSV
+          </a>
+          <a class="button-link button-secondary" id="export-sponsors" href="#" target="_blank" rel="noreferrer">
+            Export sponsors CSV
+          </a>
+          <a class="button-link button-secondary" id="export-sponsors-paid" href="#" target="_blank" rel="noreferrer">
+            Export sponsors paid CSV
+          </a>
+        </div>
+
+        <div class="status-bar" id="meta"></div>
+        <p class="message" id="message" aria-live="polite"></p>
+      </section>
+
+      <section class="panel table-section">
+        <div class="table-actions">
+          <div>
+            <p class="eyebrow">Participants</p>
+            <h2>Participants gratuits</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Nom</th>
+                <th>Organisation</th>
+                <th>Fonction</th>
+                <th>Profil</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>Pays</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="participants-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel table-section">
+        <div class="table-actions">
+          <div>
+            <p class="eyebrow">Sponsors</p>
+            <h2>Dossiers sponsor</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Nom</th>
+                <th>Societe</th>
+                <th>Fonction</th>
+                <th>Pack</th>
+                <th>Montant</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>Statut</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="sponsors-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const tokenInput = document.getElementById("token");
+      const loadButton = document.getElementById("load-data");
+      const metrics = document.getElementById("metrics");
+      const meta = document.getElementById("meta");
+      const message = document.getElementById("message");
+      const participantsBody = document.getElementById("participants-body");
+      const sponsorsBody = document.getElementById("sponsors-body");
+      const exportParticipants = document.getElementById("export-participants");
+      const exportSponsors = document.getElementById("export-sponsors");
+      const exportSponsorsPaid = document.getElementById("export-sponsors-paid");
+
+      const urlToken = new URLSearchParams(window.location.search).get("token") || "";
+      if (urlToken) {
+        tokenInput.value = urlToken;
+        localStorage.setItem("agrex-admin-token", urlToken);
+      } else {
+        tokenInput.value = localStorage.getItem("agrex-admin-token") || "";
+      }
+
+      function setMessage(type, text) {
+        message.className = "message";
+        if (type) message.classList.add(`is-${type}`);
+        message.textContent = text || "";
+      }
+
+      function getToken() {
+        const token = tokenInput.value.trim();
+        if (token) {
+          localStorage.setItem("agrex-admin-token", token);
+        }
+        return token;
+      }
+
+      function authHeaders() {
+        return {
+          "x-admin-token": getToken(),
+          Accept: "application/json"
+        };
+      }
+
+      function badge(status) {
+        const paid = status === "sponsor_paid";
+        return `<span class="badge ${paid ? "badge-paid" : "badge-pending"}">${status}</span>`;
+      }
+
+      function updateExports(token) {
+        const encoded = encodeURIComponent(token);
+        exportParticipants.href = `/api/admin-records?format=csv&type=participants&token=${encoded}`;
+        exportSponsors.href = `/api/admin-records?format=csv&type=sponsors&token=${encoded}`;
+        exportSponsorsPaid.href = `/api/admin-records?format=csv&type=sponsors-paid&token=${encoded}`;
+      }
+
+      function renderMetrics(participants, sponsors, metaData) {
+        const paidSponsors = sponsors.filter((item) => item.status === "sponsor_paid").length;
+        const pendingSponsors = sponsors.filter((item) => item.status !== "sponsor_paid").length;
+
+        metrics.innerHTML = `
+          <article class="metric">
+            <span>Participants</span>
+            <strong>${participants.length}</strong>
+          </article>
+          <article class="metric">
+            <span>Sponsors total</span>
+            <strong>${sponsors.length}</strong>
+          </article>
+          <article class="metric">
+            <span>Sponsors payes</span>
+            <strong>${paidSponsors}</strong>
+          </article>
+          <article class="metric">
+            <span>Sponsors en attente</span>
+            <strong>${pendingSponsors}</strong>
+          </article>
+        `;
+
+        meta.innerHTML = `
+          <span>Storage: ${metaData.storageMode}</span>
+          <span>Email SMTP: ${metaData.emailConfigured ? "configured" : "not configured"}</span>
+        `;
+      }
+
+      function renderParticipants(rows) {
+        participantsBody.innerHTML = rows.length
+          ? rows
+              .map(
+                (row) => `
+                  <tr>
+                    <td>${row.code || ""}</td>
+                    <td>${row.firstName || ""} ${row.lastName || ""}</td>
+                    <td>${row.organization || ""}</td>
+                    <td>${row.jobTitle || ""}</td>
+                    <td>${row.profile || ""}</td>
+                    <td>${row.email || ""}</td>
+                    <td>${row.phone || ""}</td>
+                    <td>${row.country || ""}</td>
+                    <td>${new Date(row.createdAt).toLocaleString("fr-FR")}</td>
+                  </tr>
+                `
+              )
+              .join("")
+          : `<tr><td colspan="9">Aucune inscription participant pour le moment.</td></tr>`;
+      }
+
+      function renderSponsors(rows) {
+        sponsorsBody.innerHTML = rows.length
+          ? rows
+              .map(
+                (row) => `
+                  <tr>
+                    <td>${row.code || ""}</td>
+                    <td>${row.firstName || ""} ${row.lastName || ""}</td>
+                    <td>${row.company || ""}</td>
+                    <td>${row.jobTitle || ""}</td>
+                    <td>${row.packageLabel || ""}</td>
+                    <td>${Number(row.amountEur || 0).toLocaleString("fr-FR")} EUR</td>
+                    <td>${row.email || ""}</td>
+                    <td>${row.phone || ""}</td>
+                    <td>${badge(row.status)}</td>
+                    <td>
+                      ${
+                        row.status === "sponsor_paid"
+                          ? `<span class="small">Deja confirme</span>`
+                          : `<button class="button-primary" type="button" data-confirm-id="${row.id}">Confirmer le paiement</button>`
+                      }
+                    </td>
+                  </tr>
+                `
+              )
+              .join("")
+          : `<tr><td colspan="10">Aucun dossier sponsor pour le moment.</td></tr>`;
+      }
+
+      function triggerFileDownload(file) {
+        if (!file?.base64 || !file?.fileName) return;
+        const link = document.createElement("a");
+        link.href = `data:${file.mimeType || "application/pdf"};base64,${file.base64}`;
+        link.download = file.fileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      }
+
+      async function loadData() {
+        const token = getToken();
+        if (!token) {
+          setMessage("error", "Le token admin est requis.");
+          return;
+        }
+
+        loadButton.disabled = true;
+        setMessage("", "Chargement des inscriptions...");
+
+        try {
+          updateExports(token);
+          const response = await fetch("/api/admin-records", { headers: authHeaders() });
+          const result = await response.json();
+          if (!response.ok || !result.ok) {
+            throw new Error(result.error || "Impossible de charger les inscriptions.");
+          }
+
+          renderMetrics(result.data.participants, result.data.sponsors, result.meta);
+          renderParticipants(result.data.participants);
+          renderSponsors(result.data.sponsors);
+          setMessage("success", "Inscriptions chargees.");
+        } catch (error) {
+          setMessage("error", error.message || "Erreur de chargement.");
+        } finally {
+          loadButton.disabled = false;
+        }
+      }
+
+      async function confirmSponsor(id, button) {
+        const token = getToken();
+        if (!token) {
+          setMessage("error", "Le token admin est requis.");
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = "Confirmation...";
+
+        try {
+          const response = await fetch("/api/admin-confirm-sponsor", {
+            method: "POST",
+            headers: {
+              ...authHeaders(),
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id })
+          });
+          const result = await response.json();
+          if (!response.ok || !result.ok) {
+            throw new Error(result.error || "Confirmation impossible.");
+          }
+
+          triggerFileDownload(result.badge);
+          setMessage("success", result.message || "Paiement sponsor confirme.");
+          await loadData();
+        } catch (error) {
+          setMessage("error", error.message || "Erreur pendant la confirmation.");
+          button.disabled = false;
+          button.textContent = "Confirmer le paiement";
+        }
+      }
+
+      loadButton.addEventListener("click", loadData);
+
+      sponsorsBody.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-confirm-id]");
+        if (!button) return;
+        confirmSponsor(button.dataset.confirmId, button);
+      });
+
+      if (tokenInput.value) {
+        loadData();
+      }
+    </script>
+  </body>
+</html>

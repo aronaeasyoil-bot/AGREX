@@ -373,6 +373,7 @@ const siteContent = {
       cardCta: "Choisir cette formule",
       cards: [
         {
+          id: "platinum",
           tier: "Platinum Sponsor",
           price: "35,000€",
           accent: "platinum",
@@ -385,6 +386,7 @@ const siteContent = {
           ]
         },
         {
+          id: "gold",
           tier: "Gold Sponsor",
           price: "25,000€",
           accent: "gold",
@@ -397,6 +399,7 @@ const siteContent = {
           ]
         },
         {
+          id: "silver",
           tier: "Silver Sponsor",
           price: "15,000€",
           accent: "silver",
@@ -408,6 +411,7 @@ const siteContent = {
           ]
         },
         {
+          id: "bronze",
           tier: "Bronze Sponsor",
           price: "10,000€",
           accent: "bronze",
@@ -419,6 +423,7 @@ const siteContent = {
           ]
         },
         {
+          id: "simple-registration",
           tier: "Inscription simple",
           price: "500€",
           accent: "access",
@@ -431,33 +436,34 @@ const siteContent = {
       ],
       form: {
         kicker: "Inscription sponsor",
-        title: "Validez votre demande de sponsoring en ligne",
+        title: "Generez votre dossier sponsor AGREX en ligne",
         lead:
-          "Choisissez votre formule, laissez vos coordonnees et AGREX vous recontactera avec la confirmation, les prochaines etapes et les instructions de paiement.",
+          "Choisissez votre formule, renseignez votre contact et AGREX genere votre dossier sponsor avec contrat, badge numerique et suivi de validation.",
         note:
-          "Les demandes sont transmises automatiquement a contact@agrex.events, contact@lebrief.energy et psgueye1@gmail.com. Le sponsor inscrit recoit aussi un email automatique de remerciement.",
+          "Les demandes sont transmises automatiquement a contact@agrex.events, contact@lebrief.energy et psgueye1@gmail.com. Le sponsor recoit immediatement son contrat PDF, son badge numerique provisoire et un email automatique.",
         package: "Pack sponsor",
         packagePlaceholder: "Selectionnez une formule",
-        fullName: "Nom complet",
+        firstName: "Prenom",
+        lastName: "Nom",
         jobTitle: "Fonction",
         company: "Societe",
         country: "Pays",
         email: "Email professionnel",
         phone: "Telephone",
         website: "Site web (optionnel)",
-        message: "Objectifs, besoins ou commentaires",
+        message: "Objectifs, besoins ou commentaires (optionnel)",
         consent:
           "J'autorise AGREX a utiliser ces informations pour me recontacter au sujet du sponsoring et de l'organisation de l'evenement.",
-        submit: "Valider mon inscription sponsor",
+        submit: "Generer mon dossier sponsor",
         sending: "Envoi en cours...",
         success:
-          "Merci. Votre demande sponsor a bien ete envoyee. Un email de confirmation vous a ete adresse.",
+          "Votre dossier sponsor a bien ete genere. Le contrat et le badge provisoire sont prets.",
         error:
           "L'envoi n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
         steps: [
-          "Choisissez le pack Platinum, Gold, Silver, Bronze ou Inscription simple selon votre objectif.",
-          "Renseignez les coordonnees de votre societe et la personne de contact a joindre.",
-          "Notre equipe recoit automatiquement votre dossier et vous adresse une confirmation par email."
+          "Choisissez le pack Platinum, Gold, Silver, Bronze ou Inscription simple a 500 EUR selon votre objectif.",
+          "Le site genere automatiquement votre contrat sponsor et votre badge numerique sponsor provisoire.",
+          "L'organisateur confirme ensuite le paiement pour declencher le badge sponsor final et l'impression du badge physique."
         ]
       }
     },
@@ -467,7 +473,7 @@ const siteContent = {
       lead:
         "Le parcours visiteur reprend les codes des salons premium : message clair, qualification en amont, promesse de rencontres de valeur et call-to-action fort.",
       body:
-        "Le formulaire ci-dessous permet de soumettre directement votre demande de participation a l'equipe AGREX, avec confirmation automatique par email.",
+        "Le formulaire ci-dessous permet de vous inscrire gratuitement comme participant simple et de generer automatiquement votre badge numerique nominatif.",
       benefits: [
         "Sessions B2B entre investisseurs, promoteurs, autorites et banques",
         "Acces direct aux presentations DAMAC et aux opportunites Dubai",
@@ -476,18 +482,22 @@ const siteContent = {
       ]
     },
     form: {
-      fullName: "Nom complet",
+      firstName: "Prenom",
+      lastName: "Nom",
       organization: "Organisation",
-      role: "Profil",
+      jobTitle: "Fonction",
+      profile: "Profil",
       country: "Pays",
       email: "Email",
       phone: "Telephone",
-      interest: "Votre objectif ou centre d'interet",
-      submit: "Envoyer ma demande",
+      interest: "Votre objectif ou centre d'interet (optionnel)",
+      submit: "Generer mon badge participant",
       note:
-        "Les demandes sont transmises a l'equipe AGREX. Vous recevrez automatiquement un email confirmant la bonne reception de votre inscription.",
+        "Votre inscription gratuite genere un badge numerique avec nom, prenom, organisation et fonction. Un email automatique est envoye si la messagerie SMTP est configuree.",
       success:
-        "Merci. Votre demande a bien ete envoyee a l'equipe AGREX et un email de confirmation vous a ete adresse.",
+        "Votre inscription gratuite a bien ete enregistree et votre badge participant a ete genere.",
+      error:
+        "L'inscription n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
       roles: ["Participant", "Investisseur", "Sponsor", "Partenaire", "Media"]
     },
     keep: {
@@ -499,7 +509,7 @@ const siteContent = {
       lastName: "Nom",
       email: "Email",
       submit: "S'abonner",
-      success: "Merci. L'inscription newsletter a ete simulee dans cette version de demonstration."
+      success: "Merci. Votre demande d'abonnement a bien ete prise en compte."
     },
     footer: {
       brandKicker: "Africa Gulf Real Estate Expo",
@@ -909,6 +919,7 @@ const siteContent = {
       cardCta: "Choose this package",
       cards: [
         {
+          id: "platinum",
           tier: "Platinum Sponsor",
           price: "35,000€",
           accent: "platinum",
@@ -921,6 +932,7 @@ const siteContent = {
           ]
         },
         {
+          id: "gold",
           tier: "Gold Sponsor",
           price: "25,000€",
           accent: "gold",
@@ -933,6 +945,7 @@ const siteContent = {
           ]
         },
         {
+          id: "silver",
           tier: "Silver Sponsor",
           price: "15,000€",
           accent: "silver",
@@ -944,6 +957,7 @@ const siteContent = {
           ]
         },
         {
+          id: "bronze",
           tier: "Bronze Sponsor",
           price: "10,000€",
           accent: "bronze",
@@ -955,6 +969,7 @@ const siteContent = {
           ]
         },
         {
+          id: "simple-registration",
           tier: "Simple Registration",
           price: "500€",
           accent: "access",
@@ -967,33 +982,34 @@ const siteContent = {
       ],
       form: {
         kicker: "Sponsor registration",
-        title: "Validate your sponsorship request online",
+        title: "Generate your AGREX sponsor file online",
         lead:
-          "Choose your package, share your details and the AGREX team will revert with confirmation, next steps and payment instructions.",
+          "Choose your package, submit your contact details and AGREX will generate your sponsorship file with contract, digital badge and validation workflow.",
         note:
-          "Requests are automatically sent to contact@agrex.events, contact@lebrief.energy and psgueye1@gmail.com. The sponsor also receives an automatic thank-you email.",
+          "Requests are automatically sent to contact@agrex.events, contact@lebrief.energy and psgueye1@gmail.com. The sponsor immediately receives the PDF contract, the provisional digital badge and an automatic email.",
         package: "Sponsorship package",
         packagePlaceholder: "Select a package",
-        fullName: "Full name",
+        firstName: "First name",
+        lastName: "Last name",
         jobTitle: "Job title",
         company: "Company",
         country: "Country",
         email: "Business email",
         phone: "Phone",
         website: "Website (optional)",
-        message: "Objectives, needs or comments",
+        message: "Objectives, needs or comments (optional)",
         consent:
           "I authorise AGREX to use this information to contact me regarding sponsorship and event organisation.",
-        submit: "Confirm my sponsor registration",
+        submit: "Generate my sponsor file",
         sending: "Sending...",
         success:
-          "Thank you. Your sponsor request has been sent successfully. A confirmation email has been delivered to you.",
+          "Your sponsor file has been generated successfully. The contract and provisional badge are ready.",
         error:
           "The submission could not be completed right now. Please try again or write to contact@agrex.events.",
         steps: [
-          "Choose the Platinum, Gold, Silver, Bronze or Simple Registration package based on your objective.",
-          "Share your company details and the main contact person for sponsorship follow-up.",
-          "Our team receives your file automatically and sends a confirmation email back to you."
+          "Choose Platinum, Gold, Silver, Bronze or the 500 EUR Simple Registration package.",
+          "The website automatically generates your sponsor agreement and your provisional sponsor digital badge.",
+          "The organiser then confirms payment to release the final sponsor badge and physical badge production."
         ]
       }
     },
@@ -1003,7 +1019,7 @@ const siteContent = {
       lead:
         "The visitor journey adopts the codes of premium event platforms: clear message, early qualification, high-value meetings and strong calls to action.",
       body:
-        "The form below submits your participation request directly to the AGREX team, with an automatic confirmation email sent back to you.",
+        "The form below lets you register as a free attendee and automatically generates your personalised digital badge.",
       benefits: [
         "B2B sessions between investors, developers, authorities and banks",
         "Direct access to DAMAC presentations and Dubai opportunities",
@@ -1012,18 +1028,22 @@ const siteContent = {
       ]
     },
     form: {
-      fullName: "Full name",
+      firstName: "First name",
+      lastName: "Last name",
       organization: "Organisation",
-      role: "Profile",
+      jobTitle: "Job title",
+      profile: "Profile",
       country: "Country",
       email: "Email",
       phone: "Phone",
-      interest: "Your objective or area of interest",
-      submit: "Send my request",
+      interest: "Your objective or area of interest (optional)",
+      submit: "Generate my attendee badge",
       note:
-        "Requests are sent directly to the AGREX team. You will automatically receive a confirmation email once your registration is submitted.",
+        "Your free registration generates a digital badge with first name, last name, organisation and job title. An automatic email is sent if SMTP is configured.",
       success:
-        "Thank you. Your request has been sent successfully to the AGREX team and a confirmation email has been sent to you.",
+        "Your free registration has been recorded and your attendee badge has been generated.",
+      error:
+        "The registration could not be completed right now. Please try again or write to contact@agrex.events.",
       roles: ["Participant", "Investor", "Sponsor", "Partner", "Media"]
     },
     keep: {
@@ -1035,7 +1055,7 @@ const siteContent = {
       lastName: "Last name",
       email: "Email",
       submit: "Subscribe",
-      success: "Thank you. Newsletter signup has been simulated in this demonstration version."
+      success: "Thank you. Your newsletter request has been recorded."
     },
     footer: {
       brandKicker: "Africa Gulf Real Estate Expo",
@@ -1091,6 +1111,52 @@ const registrationNextInput = document.getElementById("registration-next");
 const sponsorSubjectInput = document.getElementById("sponsor-subject");
 const sponsorAutoresponseInput = document.getElementById("sponsor-autoresponse");
 const sponsorNextInput = document.getElementById("sponsor-next");
+
+function normaliseWebsite(value) {
+  return String(value || "").trim();
+}
+
+function formDataToObject(formData) {
+  return Object.fromEntries(formData.entries());
+}
+
+function setFormMessage(target, type, message) {
+  if (!target) return;
+  target.className = "form-status";
+  if (type) {
+    target.classList.add(`is-${type}`);
+  }
+  target.textContent = message || "";
+}
+
+function triggerFileDownload(file) {
+  if (!file?.base64 || !file?.fileName) return;
+
+  const link = document.createElement("a");
+  link.href = `data:${file.mimeType || "application/octet-stream"};base64,${file.base64}`;
+  link.download = file.fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+async function postJson(url, payload) {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok || !result.ok) {
+    throw new Error(result.error || result.message || "Request failed");
+  }
+
+  return result;
+}
 
 function getByPath(object, path) {
   return path.split(".").reduce((value, key) => (value ? value[key] : undefined), object);
@@ -1393,7 +1459,7 @@ function renderSponsors(items) {
           <div class="sponsor-list">
             ${item.items.map((entry) => `<div class="sponsor-item">${entry}</div>`).join("")}
           </div>
-          <button class="button button-secondary sponsor-card-button" type="button" data-sponsor-tier="${item.tier}">
+          <button class="button button-secondary sponsor-card-button" type="button" data-sponsor-package-id="${item.id}">
             ${siteContent[currentLang].sponsors.cardCta}
           </button>
         </article>
@@ -1419,10 +1485,10 @@ function renderSponsorPackageOptions(items) {
 
   sponsorPackageSelect.innerHTML = `
     <option value="">${placeholder}</option>
-    ${items.map((item) => `<option value="${item.tier}">${item.tier} - ${item.price}</option>`).join("")}
+    ${items.map((item) => `<option value="${item.id}">${item.tier} - ${item.price}</option>`).join("")}
   `;
 
-  sponsorPackageSelect.value = items.some((item) => item.tier === currentValue) ? currentValue : "";
+  sponsorPackageSelect.value = items.some((item) => item.id === currentValue) ? currentValue : "";
 }
 
 function renderBenefits(items) {
@@ -1435,7 +1501,7 @@ function renderBenefits(items) {
 function renderRoleOptions(items) {
   const select = document.getElementById("role-select");
   select.innerHTML = items
-    .map((item) => `<option value="${item.toLowerCase()}">${item}</option>`)
+    .map((item) => `<option value="${item}">${item}</option>`)
     .join("");
 }
 
@@ -1668,10 +1734,10 @@ document.querySelectorAll("[data-lang-switch]").forEach((button) => {
 });
 
 document.addEventListener("click", (event) => {
-  const tierButton = event.target.closest("[data-sponsor-tier]");
+  const tierButton = event.target.closest("[data-sponsor-package-id]");
   if (!tierButton) return;
 
-  setSponsorTier(tierButton.dataset.sponsorTier);
+  setSponsorTier(tierButton.dataset.sponsorPackageId);
 });
 
 navToggle?.addEventListener("click", () => {
@@ -1697,26 +1763,70 @@ roleSelect?.addEventListener("change", () => {
   configureRegistrationFormMeta();
 });
 
-registrationForm?.addEventListener("submit", () => {
+registrationForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
   const submitButton = registrationForm.querySelector('button[type="submit"]');
-  configureRegistrationFormMeta();
-  formStatus.className = "form-status";
-  formStatus.textContent = "";
+  const defaultText = siteContent[currentLang].form.submit;
   submitButton.disabled = true;
-  submitButton.textContent = currentLang === "en" ? "Sending..." : "Envoi en cours...";
+  submitButton.textContent = currentLang === "en" ? "Generating..." : "Generation...";
+  setFormMessage(formStatus, "", "");
+
+  try {
+    const formData = new FormData(registrationForm);
+    if (String(formData.get("officeLine") || "").trim()) {
+      throw new Error(currentLang === "en" ? "Invalid submission." : "Soumission invalide.");
+    }
+
+    const payload = formDataToObject(formData);
+    payload.lang = currentLang;
+
+    const result = await postJson("/api/register-participant", payload);
+    triggerFileDownload(result.badge);
+    registrationForm.reset();
+    renderRoleOptions(siteContent[currentLang].form.roles);
+    setFormMessage(formStatus, "success", result.message || siteContent[currentLang].form.success);
+  } catch (error) {
+    setFormMessage(formStatus, "error", error.message || siteContent[currentLang].form.error);
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = defaultText;
+  }
 });
 
 sponsorPackageSelect?.addEventListener("change", () => {
   configureSponsorFormMeta();
 });
 
-sponsorForm?.addEventListener("submit", () => {
+sponsorForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
   const submitButton = sponsorForm.querySelector('button[type="submit"]');
-  configureSponsorFormMeta();
-  sponsorFormStatus.className = "form-status";
-  sponsorFormStatus.textContent = "";
+  const defaultText = siteContent[currentLang].sponsors.form.submit;
   submitButton.disabled = true;
   submitButton.textContent = siteContent[currentLang].sponsors.form.sending;
+  setFormMessage(sponsorFormStatus, "", "");
+
+  try {
+    const formData = new FormData(sponsorForm);
+    if (String(formData.get("companyFax") || "").trim()) {
+      throw new Error(currentLang === "en" ? "Invalid submission." : "Soumission invalide.");
+    }
+
+    const payload = formDataToObject(formData);
+    payload.website = normaliseWebsite(payload.website);
+    payload.lang = currentLang;
+
+    const result = await postJson("/api/register-sponsor", payload);
+    triggerFileDownload(result.contract);
+    triggerFileDownload(result.badge);
+    sponsorForm.reset();
+    renderSponsorPackageOptions(siteContent[currentLang].sponsors.cards);
+    setFormMessage(sponsorFormStatus, "success", result.message || siteContent[currentLang].sponsors.form.success);
+  } catch (error) {
+    setFormMessage(sponsorFormStatus, "error", error.message || siteContent[currentLang].sponsors.form.error);
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = defaultText;
+  }
 });
 
 newsletterForm?.addEventListener("submit", (event) => {
