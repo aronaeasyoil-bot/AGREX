@@ -114,6 +114,20 @@ function drawRoundedRect(page, options) {
   });
 }
 
+function drawCapsule(page, options) {
+  const { x, y, width, height, color } = options;
+  const radius = height / 2;
+  page.drawRectangle({
+    x: x + radius,
+    y,
+    width: width - radius * 2,
+    height,
+    color
+  });
+  page.drawCircle({ x: x + radius, y: y + radius, size: radius, color });
+  page.drawCircle({ x: x + width - radius, y: y + radius, size: radius, color });
+}
+
 function drawCenteredText(page, text, options) {
   const { x, y, width, font, size, color } = options;
   const textWidth = font.widthOfTextAtSize(text, size);
@@ -124,6 +138,30 @@ function drawCenteredText(page, text, options) {
     font,
     color
   });
+}
+
+function fitLineText(text, font, options) {
+  const { maxWidth, maxSize, minSize = 8.5 } = options;
+  const value = String(text || "-").replace(/\s+/g, " ").trim() || "-";
+  let size = maxSize;
+
+  while (size > minSize && font.widthOfTextAtSize(value, size) > maxWidth) {
+    size -= 0.4;
+  }
+
+  if (font.widthOfTextAtSize(value, size) <= maxWidth) {
+    return { text: value, size };
+  }
+
+  let trimmed = value;
+  while (trimmed.length > 3 && font.widthOfTextAtSize(`${trimmed}...`, size) > maxWidth) {
+    trimmed = trimmed.slice(0, -1);
+  }
+
+  return {
+    text: `${trimmed}...`,
+    size
+  };
 }
 
 function drawIconBadge(page, options) {
@@ -180,22 +218,6 @@ function drawIconBadge(page, options) {
   }
 }
 
-function drawValueLines(page, lines, options) {
-  const { x, y, font, size, color, fontBold } = options;
-  let currentY = y;
-  for (const [index, line] of lines.entries()) {
-    page.drawText(line, {
-      x,
-      y: currentY,
-      size: index === 0 ? size : Math.max(size - 1, 9),
-      font: index === 0 ? fontBold : font,
-      color
-    });
-    currentY -= size + 2;
-  }
-  return currentY;
-}
-
 function drawInfoRow(page, options) {
   const {
     topY,
@@ -206,41 +228,48 @@ function drawInfoRow(page, options) {
     font,
     fontBold,
     valueSize = 13,
-    maxChars = 28
+    maxWidth = 226
   } = options;
 
-  drawIconBadge(page, { x: 40, y: topY - 10, kind: iconKind });
+  const fitted = fitLineText(value, fontBold, {
+    maxWidth,
+    maxSize: valueSize,
+    minSize: 9
+  });
+
+  drawIconBadge(page, { x: 42, y: topY - 12, kind: iconKind });
 
   page.drawText(labelFr, {
     x: 62,
-    y: topY - 2,
+    y: topY,
     size: 7.9,
     font: fontBold,
     color: BADGE.ink
   });
   page.drawText(labelEn, {
     x: 62,
-    y: topY - 13,
+    y: topY - 11,
     size: 6.5,
     font,
     color: BADGE.muted
   });
 
-  const nextY = drawValueLines(page, fitLines(value || "-", maxChars, 2), {
+  page.drawText(fitted.text, {
     x: 62,
-    y: topY - 31,
-    font,
-    fontBold,
-    size: valueSize,
+    y: topY - 34,
+    size: fitted.size,
+    font: fontBold,
     color: BADGE.ink
   });
 
   page.drawLine({
-    start: { x: 62, y: nextY - 4 },
-    end: { x: 300, y: nextY - 4 },
+    start: { x: 62, y: topY - 44 },
+    end: { x: 302, y: topY - 44 },
     thickness: 0.7,
     color: BADGE.rule
   });
+
+  return topY - 54;
 }
 
 function roleMeta({ kind, profile, sponsorPackageId }) {
@@ -280,11 +309,11 @@ function roleMeta({ kind, profile, sponsorPackageId }) {
 }
 
 function statusMeta(status) {
-  if (status === "participant_confirmed") {
-    return { label: "CONFIRME / CONFIRMED", fill: BADGE.navy, text: BADGE.white };
-  }
   if (status === "sponsor_paid") {
     return { label: "PAYE / PAID", fill: BADGE.navy, text: BADGE.goldSoft };
+  }
+  if (status === "participant_confirmed") {
+    return null;
   }
   return { label: "PROVISOIRE / PROVISIONAL", fill: BADGE.gold, text: BADGE.white };
 }
@@ -292,33 +321,33 @@ function statusMeta(status) {
 function drawTypeOptions(page, options) {
   const { topY, selected, font, fontBold } = options;
 
-  drawIconBadge(page, { x: 40, y: topY - 12, kind: "group" });
+  drawIconBadge(page, { x: 42, y: topY - 12, kind: "group" });
 
   page.drawText("TYPE DE PARTICIPANT", {
     x: 62,
-    y: topY - 2,
+    y: topY,
     size: 7.9,
     font: fontBold,
     color: BADGE.ink
   });
   page.drawText("TYPE OF PARTICIPANT", {
     x: 62,
-    y: topY - 13,
+    y: topY - 11,
     size: 6.5,
     font,
     color: BADGE.muted
   });
 
   const items = [
-    { id: "delegate", fr: "DELEGUE", en: "DELEGATE" },
-    { id: "sponsor", fr: "SPONSOR", en: "SPONSOR" },
-    { id: "investor", fr: "INVESTISSEUR", en: "INVESTOR" },
-    { id: "other", fr: "AUTRE", en: "OTHER" }
+    { id: "delegate", label: "DELEGUE" },
+    { id: "sponsor", label: "SPONSOR" },
+    { id: "investor", label: "INVESTOR" },
+    { id: "other", label: "AUTRE" }
   ];
 
-  const startX = 74;
-  const boxY = topY - 35;
-  const gap = 60;
+  const startX = 78;
+  const boxY = topY - 26;
+  const gap = 56;
 
   items.forEach((item, index) => {
     const x = startX + gap * index;
@@ -343,76 +372,56 @@ function drawTypeOptions(page, options) {
       });
     }
 
-    drawCenteredText(page, item.fr, {
-      x: x - 12,
-      y: boxY - 16,
-      width: 34,
+    drawCenteredText(page, item.label, {
+      x: x - 15,
+      y: boxY - 12,
+      width: 40,
       font: fontBold,
-      size: 5.8,
+      size: 6,
       color: BADGE.ink
-    });
-    drawCenteredText(page, item.en, {
-      x: x - 12,
-      y: boxY - 25,
-      width: 34,
-      font,
-      size: 5.3,
-      color: BADGE.muted
     });
   });
 
   page.drawLine({
-    start: { x: 62, y: 126 },
-    end: { x: 300, y: 126 },
+    start: { x: 62, y: topY - 54 },
+    end: { x: 302, y: topY - 54 },
     thickness: 0.7,
     color: BADGE.rule
   });
+
+  return topY - 60;
 }
 
 function drawBottomInfo(page, options) {
   const { font, fontBold } = options;
 
-  drawIconBadge(page, { x: 40, y: 100, kind: "calendar" });
-  page.drawText("DATE", { x: 62, y: 108, size: 7.7, font: fontBold, color: BADGE.ink });
-  page.drawText("DATE", { x: 62, y: 97, size: 6.3, font, color: BADGE.muted });
-  page.drawText("19 & 20 OCTOBRE 2026", {
+  drawIconBadge(page, { x: 42, y: 84, kind: "calendar" });
+  page.drawText("DATE", { x: 62, y: 92, size: 7.7, font: fontBold, color: BADGE.ink });
+  page.drawText("DATE", { x: 62, y: 81, size: 6.3, font, color: BADGE.muted });
+  page.drawText("19-20 OCT 2026", {
     x: 62,
-    y: 79,
-    size: 8.7,
+    y: 75,
+    size: 8.8,
     font: fontBold,
     color: BADGE.ink
   });
-  page.drawText("19th & 20th OCTOBER 2026", {
-    x: 62,
-    y: 67,
-    size: 7.2,
-    font,
-    color: BADGE.muted
-  });
 
   page.drawLine({
-    start: { x: 176, y: 62 },
-    end: { x: 176, y: 116 },
+    start: { x: 178, y: 56 },
+    end: { x: 178, y: 100 },
     thickness: 0.6,
     color: BADGE.rule
   });
 
-  drawIconBadge(page, { x: 194, y: 100, kind: "pin" });
-  page.drawText("LIEU", { x: 216, y: 108, size: 7.7, font: fontBold, color: BADGE.ink });
-  page.drawText("VENUE", { x: 216, y: 97, size: 6.3, font, color: BADGE.muted });
-  page.drawText("DUBAI - EMIRATS ARABES UNIS", {
+  drawIconBadge(page, { x: 196, y: 84, kind: "pin" });
+  page.drawText("LIEU", { x: 218, y: 92, size: 7.7, font: fontBold, color: BADGE.ink });
+  page.drawText("VENUE", { x: 218, y: 81, size: 6.3, font, color: BADGE.muted });
+  page.drawText("DUBAI WORLD TRADE CENTRE", {
     x: 216,
-    y: 79,
-    size: 6.2,
+    y: 75,
+    size: 6.3,
     font: fontBold,
     color: BADGE.ink
-  });
-  page.drawText("DUBAI - UNITED ARAB EMIRATES", {
-    x: 216,
-    y: 67,
-    size: 5.8,
-    font,
-    color: BADGE.muted
   });
 }
 
@@ -434,7 +443,7 @@ async function createBadgePdf({ kind, status, firstName, lastName, company, jobT
     y: 0,
     width: BADGE.width,
     height: BADGE.height,
-    color: rgb(0.95, 0.95, 0.95)
+    color: BADGE.white
   });
 
   drawRoundedRect(page, {
@@ -450,9 +459,9 @@ async function createBadgePdf({ kind, status, firstName, lastName, company, jobT
 
   page.drawRectangle({
     x: cardX,
-    y: cardY + cardHeight - 128,
+    y: cardY + cardHeight - 124,
     width: cardWidth,
-    height: 128,
+    height: 124,
     color: BADGE.gold
   });
   page.drawCircle({
@@ -470,9 +479,9 @@ async function createBadgePdf({ kind, status, firstName, lastName, company, jobT
 
   page.drawEllipse({
     x: BADGE.width / 2,
-    y: 382,
-    xScale: 178,
-    yScale: 54,
+    y: 392,
+    xScale: 170,
+    yScale: 42,
     color: BADGE.white
   });
 
@@ -486,28 +495,28 @@ async function createBadgePdf({ kind, status, firstName, lastName, company, jobT
   });
 
   drawRoundedRect(page, {
-    x: 112,
-    y: 354,
-    width: 136,
-    height: 76,
-    radius: 14,
+    x: 95,
+    y: 344,
+    width: 170,
+    height: 88,
+    radius: 18,
     color: BADGE.white,
     borderColor: BADGE.goldSoft,
     borderWidth: 1
   });
 
   if (logo) {
-    const dimensions = fitImage(logo, 188, 60);
+    const dimensions = fitImage(logo, 196, 62);
     page.drawImage(logo, {
       x: (BADGE.width - dimensions.width) / 2,
-      y: 365,
+      y: 358,
       width: dimensions.width,
       height: dimensions.height
     });
   } else {
     drawCenteredText(page, "AGREX", {
       x: 40,
-      y: 395,
+      y: 394,
       width: BADGE.width - 80,
       font: fontBold,
       size: 26,
@@ -522,22 +531,23 @@ async function createBadgePdf({ kind, status, firstName, lastName, company, jobT
     color: BADGE.rule
   });
 
-  drawRoundedRect(page, {
-    x: BADGE.width - 136,
-    y: 352,
-    width: 102,
-    height: 16,
-    radius: 8,
-    color: statusPill.fill
-  });
-  drawCenteredText(page, statusPill.label, {
-    x: BADGE.width - 136,
-    y: 357,
-    width: 102,
-    font: fontBold,
-    size: 5.7,
-    color: statusPill.text
-  });
+  if (statusPill) {
+    page.drawRectangle({
+      x: BADGE.width - 136,
+      y: 352,
+      width: 102,
+      height: 16,
+      color: statusPill.fill
+    });
+    drawCenteredText(page, statusPill.label, {
+      x: BADGE.width - 136,
+      y: 357,
+      width: 102,
+      font: fontBold,
+      size: 5.7,
+      color: statusPill.text
+    });
+  }
 
   page.drawText(`REF. ${code}`, {
     x: 34,
@@ -547,8 +557,10 @@ async function createBadgePdf({ kind, status, firstName, lastName, company, jobT
     color: BADGE.muted
   });
 
-  drawInfoRow(page, {
-    topY: 320,
+  let nextTopY = 332;
+
+  nextTopY = drawInfoRow(page, {
+    topY: nextTopY,
     iconKind: "person",
     labelFr: "NOM ET PRENOM",
     labelEn: "FULL NAME",
@@ -556,23 +568,23 @@ async function createBadgePdf({ kind, status, firstName, lastName, company, jobT
     font,
     fontBold,
     valueSize: 14,
-    maxChars: 24
+    maxWidth: 228
   });
 
-  drawInfoRow(page, {
-    topY: 276,
+  nextTopY = drawInfoRow(page, {
+    topY: nextTopY,
     iconKind: "building",
     labelFr: "COMPANY / ORGANISATION",
     labelEn: "COMPANY / ORGANISATION",
     value: company,
     font,
     fontBold,
-    valueSize: 12.3,
-    maxChars: 28
+    valueSize: 12.2,
+    maxWidth: 228
   });
 
-  drawInfoRow(page, {
-    topY: 232,
+  nextTopY = drawInfoRow(page, {
+    topY: nextTopY,
     iconKind: "briefcase",
     labelFr: "FONCTION",
     labelEn: "JOB TITLE",
@@ -580,11 +592,11 @@ async function createBadgePdf({ kind, status, firstName, lastName, company, jobT
     font,
     fontBold,
     valueSize: 12.2,
-    maxChars: 28
+    maxWidth: 228
   });
 
   drawTypeOptions(page, {
-    topY: 188,
+    topY: nextTopY - 2,
     selected: meta.typeChoice,
     font,
     fontBold
@@ -597,37 +609,37 @@ async function createBadgePdf({ kind, status, firstName, lastName, company, jobT
 
   page.drawRectangle({
     x: cardX,
-    y: 48,
+    y: 44,
     width: cardWidth,
-    height: 26,
+    height: 24,
     color: BADGE.gold
   });
 
   drawCenteredText(page, `${EVENT.website}   |   ${CONTACT_EMAIL}`, {
     x: cardX + 18,
-    y: 56,
+    y: 50,
     width: cardWidth - 36,
     font,
-    size: 8,
+    size: 7.6,
     color: BADGE.white
   });
 
   page.drawRectangle({
     x: cardX,
-    y: cardY,
+    y: 8,
     width: cardWidth,
-    height: 38,
+    height: 34,
     color: BADGE.navy
   });
   page.drawCircle({
     x: cardX + BADGE.radius,
-    y: cardY + BADGE.radius,
+    y: 8 + BADGE.radius,
     size: BADGE.radius,
     color: BADGE.navy
   });
   page.drawCircle({
     x: cardX + cardWidth - BADGE.radius,
-    y: cardY + BADGE.radius,
+    y: 8 + BADGE.radius,
     size: BADGE.radius,
     color: BADGE.navy
   });
@@ -647,7 +659,7 @@ async function createBadgePdf({ kind, status, firstName, lastName, company, jobT
 
   drawCenteredText(page, meta.bandLabel, {
     x: 78,
-    y: 19,
+    y: 16,
     width: BADGE.width - 156,
     font: fontBold,
     size: meta.bandLabel.length > 16 ? 11 : 12.4,
