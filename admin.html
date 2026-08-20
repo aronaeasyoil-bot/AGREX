@@ -256,7 +256,7 @@
         <h1>Inscriptions participants et sponsors</h1>
         <p class="small">
           Cette page permet de consulter les inscriptions, exporter les listes CSV et confirmer les
-          sponsors payes afin de generer leur badge final.
+          sponsors payes afin de valider administrativement leur dossier.
         </p>
 
         <div class="topbar">
@@ -537,7 +537,6 @@
             throw new Error(result.error || "Confirmation impossible.");
           }
 
-          triggerFileDownload(result.badge);
           setMessage("success", result.message || "Paiement sponsor confirme.");
           await loadData();
         } catch (error) {

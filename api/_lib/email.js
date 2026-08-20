@@ -82,12 +82,11 @@ function detailRow(label, value) {
   return `<li><strong>${label}:</strong> ${value || "-"}</li>`;
 }
 
-async function sendParticipantEmail(record, badgeBuffer) {
+async function sendParticipantEmail(record) {
   if (!isEmailConfigured()) {
     return { sent: false, reason: "email_not_configured" };
   }
 
-  const badgeFilename = `${record.code}-badge-participant.svg`;
   const organizers = getOrganizerEmails();
 
   return sendWithConfiguredProvider({
@@ -95,18 +94,18 @@ async function sendParticipantEmail(record, badgeBuffer) {
     cc: organizers.join(", "),
     subject:
       record.lang === "en"
-        ? `AGREX 2026 - participant badge - ${record.code}`
-        : `AGREX 2026 - badge participant - ${record.code}`,
+        ? `AGREX 2026 - registration confirmation - ${record.code}`
+        : `AGREX 2026 - confirmation d'inscription - ${record.code}`,
     html: `
       ${
         record.lang === "en"
           ? `<p>Hello ${record.firstName} ${record.lastName},</p>
       <p>Your free registration for AGREX 2026 has been recorded successfully.</p>
-      <p>Your digital participant badge image is attached to this email.</p>
+      <p>Your event badge will be sent separately by the organisers.</p>
       <p><strong>File reference:</strong> ${record.code}</p>`
           : `<p>Bonjour ${record.firstName} ${record.lastName},</p>
       <p>Votre inscription gratuite a AGREX 2026 a bien ete enregistree.</p>
-      <p>Vous trouverez votre badge numerique participant en image jointe.</p>
+      <p>Votre badge evenementiel vous sera envoye separement par les organisateurs.</p>
       <p><strong>Code dossier:</strong> ${record.code}</p>`
       }
       <p>${EVENT.name}<br/>${record.lang === "en" ? EVENT.dateEn : EVENT.dateFr}<br/>${EVENT.venue}</p>
@@ -123,12 +122,11 @@ async function sendParticipantEmail(record, badgeBuffer) {
         ${detailRow(record.lang === "en" ? "Phone" : "Telephone", record.phone)}
         ${detailRow(record.lang === "en" ? "Interest" : "Interet", record.interest)}
       </ul>
-    `,
-    attachments: [buildAttachment(badgeFilename, badgeBuffer, "image/svg+xml")]
+    `
   });
 }
 
-async function sendSponsorPendingEmail(record, badgeBuffer, contractBuffer) {
+async function sendSponsorPendingEmail(record, contractBuffer) {
   if (!isEmailConfigured()) {
     return { sent: false, reason: "email_not_configured" };
   }
@@ -150,14 +148,14 @@ async function sendSponsorPendingEmail(record, badgeBuffer, contractBuffer) {
       <p>Your AGREX 2026 sponsor registration has been recorded successfully.</p>
       <p><strong>Package:</strong> ${pack.labelEn}</p>
       <p><strong>Amount due:</strong> ${pack.amountEur.toLocaleString("fr-FR")} EUR</p>
-      <p>Your sponsorship contract and provisional digital badge image are attached.</p>
-      <p>The physical sponsor badge will be printed once payment has been confirmed by the organiser.</p>`
+      <p>Your sponsorship contract is attached.</p>
+      <p>Your event badge will be prepared and sent separately by the organisers.</p>`
           : `<p>Bonjour ${record.firstName} ${record.lastName},</p>
       <p>Votre dossier sponsor AGREX 2026 a bien ete enregistre.</p>
       <p><strong>Formule:</strong> ${pack.labelFr}</p>
       <p><strong>Montant:</strong> ${pack.amountEur.toLocaleString("fr-FR")} EUR</p>
-      <p>Vous trouverez en pieces jointes votre contrat et votre badge numerique provisoire en image.</p>
-      <p>Le badge physique sera imprime apres confirmation du paiement par l'organisateur.</p>`
+      <p>Vous trouverez en piece jointe votre contrat de sponsoring.</p>
+      <p>Votre badge evenementiel sera prepare et envoye separement par les organisateurs.</p>`
       }
       <hr />
       <p><strong>${record.lang === "en" ? "Sponsor details" : "Details du sponsor"}</strong></p>
@@ -175,13 +173,12 @@ async function sendSponsorPendingEmail(record, badgeBuffer, contractBuffer) {
       </ul>
     `,
     attachments: [
-      buildAttachment(`${record.code}-badge-sponsor-provisoire.svg`, badgeBuffer, "image/svg+xml"),
       buildAttachment(`${record.code}-contrat-sponsor.pdf`, contractBuffer, "application/pdf")
     ]
   });
 }
 
-async function sendSponsorConfirmedEmail(record, badgeBuffer) {
+async function sendSponsorConfirmedEmail(record) {
   if (!isEmailConfigured()) {
     return { sent: false, reason: "email_not_configured" };
   }
@@ -200,15 +197,12 @@ async function sendSponsorConfirmedEmail(record, badgeBuffer) {
         record.lang === "en"
           ? `<p>Hello ${record.firstName} ${record.lastName},</p>
       <p>Your AGREX 2026 sponsor payment has been confirmed by the organiser.</p>
-      <p>Your final sponsor digital badge image is attached.</p>
-      <p>Your physical badge can now be produced for the forum.</p>`
+      <p>Your event badge will be issued separately by the organisers.</p>`
           : `<p>Bonjour ${record.firstName} ${record.lastName},</p>
       <p>Le paiement de votre dossier sponsor AGREX 2026 a ete confirme par l'organisateur.</p>
-      <p>Vous trouverez ci-joint votre badge numerique sponsor confirme en image.</p>
-      <p>Le badge physique pourra etre imprime pour le jour du forum.</p>`
+      <p>Votre badge evenementiel vous sera transmis separement par les organisateurs.</p>`
       }
-    `,
-    attachments: [buildAttachment(`${record.code}-badge-sponsor-confirme.svg`, badgeBuffer, "image/svg+xml")]
+    `
   });
 }
 

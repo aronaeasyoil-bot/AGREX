@@ -1,6 +1,5 @@
 const { allowMethods, readRequestBody, sendJson } = require("./_lib/http");
 const { getSponsorById, updateSponsor, getStorageMode } = require("./_lib/storage");
-const { createBadgeImage } = require("./_lib/documents");
 const { sendSponsorConfirmedEmail } = require("./_lib/email");
 
 function requireToken(req, res) {
@@ -45,38 +44,19 @@ module.exports = async (req, res) => {
     };
 
     await updateSponsor(updated);
-
-    const badgeBuffer = await createBadgeImage({
-      kind: "sponsor",
-      status: updated.status,
-      firstName: updated.firstName,
-      lastName: updated.lastName,
-      company: updated.company,
-      jobTitle: updated.jobTitle,
-      profile: updated.packageLabel,
-      code: updated.code,
-      sponsorPackageId: updated.sponsorPackageId,
-      lang: updated.lang
-    });
-
-    const emailResult = await sendSponsorConfirmedEmail(updated, badgeBuffer);
+    const emailResult = await sendSponsorConfirmedEmail(updated);
 
     sendJson(res, 200, {
       ok: true,
       message:
         updated.lang === "en"
           ? emailResult.sent
-            ? "Sponsor payment confirmed. The final badge has been regenerated and sent."
-            : "Sponsor payment confirmed. The final badge has been regenerated. Email delivery will start once the mail service is activated."
+            ? "Sponsor payment confirmed. A confirmation email has been sent."
+            : "Sponsor payment confirmed. Email delivery will start once the mail service is activated."
           : emailResult.sent
-            ? "Paiement sponsor confirme. Le badge final a ete regenere et envoye."
-            : "Paiement sponsor confirme. Le badge final a ete regenere. L'envoi email demarrera des que le service mail sera active.",
+            ? "Paiement sponsor confirme. Un email de confirmation a ete envoye."
+            : "Paiement sponsor confirme. L'envoi email demarrera des que le service mail sera active.",
       record: updated,
-      badge: {
-        fileName: `${updated.code}-badge-sponsor-confirme.svg`,
-        mimeType: "image/svg+xml",
-        base64: badgeBuffer.toString("base64")
-      },
       email: emailResult,
       storageMode: getStorageMode()
     });

@@ -438,9 +438,9 @@ const siteContent = {
         kicker: "Inscription sponsor",
         title: "Generez votre dossier sponsor AGREX en ligne",
         lead:
-          "Choisissez votre formule, renseignez votre contact et AGREX genere votre dossier sponsor avec contrat, badge numerique et suivi de validation.",
+          "Choisissez votre formule, renseignez votre contact et AGREX genere votre dossier sponsor avec contrat et suivi de validation.",
         note:
-          "Les demandes sont transmises automatiquement a contact@agrex.events, contact@lebrief.energy et psgueye1@gmail.com. Le sponsor recoit immediatement son contrat PDF, son badge numerique provisoire et un email automatique.",
+          "Les demandes sont transmises automatiquement a contact@agrex.events, contact@lebrief.energy et psgueye1@gmail.com. Le sponsor recoit immediatement son contrat PDF et un email automatique.",
         package: "Pack sponsor",
         packagePlaceholder: "Selectionnez une formule",
         firstName: "Prenom",
@@ -457,13 +457,13 @@ const siteContent = {
         submit: "Generer mon dossier sponsor",
         sending: "Envoi en cours...",
         success:
-          "Votre dossier sponsor a bien ete genere. Le contrat et le badge provisoire sont prets.",
+          "Votre dossier sponsor a bien ete enregistre. Le contrat est pret.",
         error:
           "L'envoi n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
         steps: [
           "Choisissez le pack Platinum, Gold, Silver, Bronze ou le Pass Business a 500 EUR selon votre objectif.",
-          "Le site genere automatiquement votre contrat sponsor et votre badge numerique sponsor provisoire.",
-          "L'organisateur confirme ensuite le paiement pour declencher le badge sponsor final et l'impression du badge physique."
+          "Le site genere automatiquement votre contrat sponsor et enregistre votre dossier.",
+          "L'organisateur confirme ensuite le paiement et vous transmet separement votre badge evenementiel."
         ]
       }
     },
@@ -473,7 +473,7 @@ const siteContent = {
       lead:
         "Le parcours visiteur reprend les codes des salons premium : message clair, qualification en amont, promesse de rencontres de valeur et call-to-action fort.",
       body:
-        "Le formulaire ci-dessous permet de vous inscrire gratuitement avec un Pass Visiteur et de generer automatiquement votre badge numerique nominatif AGREX.",
+        "Le formulaire ci-dessous permet de vous inscrire gratuitement avec un Pass Visiteur et d'enregistrer directement votre participation.",
       benefits: [
         "Sessions B2B entre investisseurs, promoteurs, autorites et banques",
         "Acces direct aux presentations DAMAC et aux opportunites Dubai",
@@ -491,11 +491,11 @@ const siteContent = {
       email: "Email",
       phone: "Telephone",
       interest: "Votre objectif ou centre d'interet (optionnel)",
-      submit: "Generer mon badge participant",
+      submit: "Valider mon inscription",
       note:
-        "Votre inscription gratuite en Pass Visiteur genere un badge numerique AGREX avec nom, prenom, organisation et fonction. Un email automatique est envoye si la messagerie SMTP est configuree.",
+        "Votre inscription gratuite en Pass Visiteur enregistre vos informations et declenche un email automatique si la messagerie SMTP est configuree.",
       success:
-        "Votre inscription gratuite a bien ete enregistree et votre badge participant a ete genere.",
+        "Votre inscription gratuite a bien ete enregistree.",
       error:
         "L'inscription n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
       roles: ["Pass Visiteur", "Investisseur", "Sponsor", "Partenaire", "Media"]
@@ -984,9 +984,9 @@ const siteContent = {
         kicker: "Sponsor registration",
         title: "Generate your AGREX sponsor file online",
         lead:
-          "Choose your package, submit your contact details and AGREX will generate your sponsorship file with contract, digital badge and validation workflow.",
+          "Choose your package, submit your contact details and AGREX will generate your sponsorship file with contract and validation workflow.",
         note:
-          "Requests are automatically sent to contact@agrex.events, contact@lebrief.energy and psgueye1@gmail.com. The sponsor immediately receives the PDF contract, the provisional digital badge and an automatic email.",
+          "Requests are automatically sent to contact@agrex.events, contact@lebrief.energy and psgueye1@gmail.com. The sponsor immediately receives the PDF contract and an automatic email.",
         package: "Sponsorship package",
         packagePlaceholder: "Select a package",
         firstName: "First name",
@@ -1003,13 +1003,13 @@ const siteContent = {
         submit: "Generate my sponsor file",
         sending: "Sending...",
         success:
-          "Your sponsor file has been generated successfully. The contract and provisional badge are ready.",
+          "Your sponsor file has been recorded successfully. The contract is ready.",
         error:
           "The submission could not be completed right now. Please try again or write to contact@agrex.events.",
         steps: [
           "Choose Platinum, Gold, Silver, Bronze or the 500 EUR Business Pass package.",
-          "The website automatically generates your sponsor agreement and your provisional sponsor digital badge.",
-          "The organiser then confirms payment to release the final sponsor badge and physical badge production."
+          "The website automatically generates your sponsor agreement and records your file.",
+          "The organiser then confirms payment and sends the event badge separately."
         ]
       }
     },
@@ -1019,7 +1019,7 @@ const siteContent = {
       lead:
         "The visitor journey adopts the codes of premium event platforms: clear message, early qualification, high-value meetings and strong calls to action.",
       body:
-        "The form below lets you register with a free Visitor Pass and automatically generates your personalised AGREX digital badge.",
+        "The form below lets you register with a free Visitor Pass and record your participation directly.",
       benefits: [
         "B2B sessions between investors, developers, authorities and banks",
         "Direct access to DAMAC presentations and Dubai opportunities",
@@ -1037,11 +1037,11 @@ const siteContent = {
       email: "Email",
       phone: "Phone",
       interest: "Your objective or area of interest (optional)",
-      submit: "Generate my attendee badge",
+      submit: "Submit my registration",
       note:
-        "Your free Visitor Pass registration generates an AGREX digital badge with first name, last name, organisation and job title. An automatic email is sent if SMTP is configured.",
+        "Your free Visitor Pass registration records your details and sends an automatic email if SMTP is configured.",
       success:
-        "Your free registration has been recorded and your attendee badge has been generated.",
+        "Your free registration has been recorded.",
       error:
         "The registration could not be completed right now. Please try again or write to contact@agrex.events.",
       roles: ["Visitor Pass", "Investor", "Sponsor", "Partner", "Media"]
@@ -1195,13 +1195,13 @@ function triggerFileDownload(file) {
 function getDownloadPanelCopy(type, recordCode) {
   if (type === "sponsor") {
     return currentLang === "en"
-      ? `Your provisional sponsor badge and contract are ready. Reference: ${recordCode || "-"}`
-      : `Votre badge sponsor provisoire et votre contrat sont prets. Reference : ${recordCode || "-"}`
+      ? `Your sponsor contract is ready. Reference: ${recordCode || "-"}`
+      : `Votre contrat sponsor est pret. Reference : ${recordCode || "-"}`
   }
 
   return currentLang === "en"
-    ? `Your digital participant badge is ready. Reference: ${recordCode || "-"}`
-    : `Votre badge numerique participant est pret. Reference : ${recordCode || "-"}`
+    ? `Your registration has been recorded. Reference: ${recordCode || "-"}`
+    : `Votre inscription a bien ete enregistree. Reference : ${recordCode || "-"}`
 }
 
 function showDownloadPanel(container, options) {
@@ -1873,17 +1873,6 @@ registrationForm?.addEventListener("submit", async (event) => {
     payload.lang = currentLang;
 
     const result = await postJson("/api/register-participant", payload);
-    triggerFileDownload(result.badge);
-    showDownloadPanel(registrationDownloads, {
-      title: currentLang === "en" ? "Participant badge ready" : "Badge participant pret",
-      copy: getDownloadPanelCopy("participant", result.record?.code),
-      files: [
-        {
-          file: result.badge,
-          label: currentLang === "en" ? "Open or download badge image" : "Ouvrir ou telecharger l'image du badge"
-        }
-      ]
-    });
     registrationForm.reset();
     renderRoleOptions(siteContent[currentLang].form.roles);
     setFormMessage(formStatus, "success", result.message || siteContent[currentLang].form.success);
@@ -1921,15 +1910,10 @@ sponsorForm?.addEventListener("submit", async (event) => {
 
     const result = await postJson("/api/register-sponsor", payload);
     triggerFileDownload(result.contract);
-    triggerFileDownload(result.badge);
     showDownloadPanel(sponsorDownloads, {
-      title: currentLang === "en" ? "Sponsor files ready" : "Documents sponsor prets",
+      title: currentLang === "en" ? "Sponsor contract ready" : "Contrat sponsor pret",
       copy: getDownloadPanelCopy("sponsor", result.record?.code),
       files: [
-        {
-          file: result.badge,
-          label: currentLang === "en" ? "Open or download sponsor badge image" : "Ouvrir ou telecharger l'image du badge sponsor"
-        },
         {
           file: result.contract,
           label: currentLang === "en" ? "Open or download contract" : "Ouvrir ou telecharger le contrat"

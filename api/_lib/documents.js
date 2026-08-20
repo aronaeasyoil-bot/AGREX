@@ -767,12 +767,12 @@ async function createSponsorContractPdf({ sponsor, lang }) {
 
   const notes = lang === "en"
     ? [
-        "The digital sponsor badge attached to this registration remains provisional until payment has been confirmed by the organiser.",
-        "Physical sponsor badges will be printed only for paid registrations confirmed by the organiser."
+        "The organiser will review this sponsor file and confirm the next operational steps directly with the sponsor.",
+        "Event badges and final access credentials are managed separately by the organiser."
       ]
     : [
-        "Le badge sponsor numerique joint a cette inscription reste provisoire tant que le paiement n'a pas ete confirme par l'organisateur.",
-        "Les badges physiques sponsor seront imprimes uniquement pour les inscriptions reglees et confirmees par l'organisateur."
+        "L'organisateur examinera ce dossier sponsor et confirmera directement au sponsor les prochaines etapes operationnelles.",
+        "Les badges evenementiels et les acces definitifs sont geres separement par l'organisateur."
       ];
 
   y -= 10;
