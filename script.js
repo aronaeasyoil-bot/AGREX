@@ -41,8 +41,36 @@ const siteContent = {
       ]
     },
     highlights: {
-      title: "AGREX 2026",
-      badge: "Highlights 2026"
+      title: "Delegation d'honneur & intervenants invites",
+      badge: "Intervenants AGREX 2026",
+      lead:
+        "Une selection de profils invites pour incarner le niveau institutionnel, business et international du dialogue AGREX entre l'Afrique, le Golfe et Dubai.",
+      cards: [
+        {
+          image: "assets/images/featured-speaker-01.jpg",
+          tag: "Voix institutionnelle",
+          title: "Delegation du Golfe",
+          text: "Profils de haut niveau mobilises pour ouvrir les echanges entre investisseurs, autorites et operateurs."
+        },
+        {
+          image: "assets/images/featured-speaker-02.jpg",
+          tag: "Leadership business",
+          title: "Intervenant invite",
+          text: "Presence executive attendue pour nourrir les rencontres B2B, la confiance et les decisions d'investissement."
+        },
+        {
+          image: "assets/images/featured-speaker-03.jpg",
+          tag: "Perspective strategique",
+          title: "Expertise internationale",
+          text: "Regards complementaires sur le developpement immobilier, les partenariats et la structuration de projets."
+        },
+        {
+          image: "assets/images/featured-speaker-04.jpg",
+          tag: "Capital & partenariats",
+          title: "Voix du marche",
+          text: "Profils seniors appeles a connecter l'offre, le capital et les opportunites Afrique-Golfe."
+        }
+      ]
     },
     officialPartners: {
       kicker: "Partenaires officiels AGREX 2026",
@@ -587,8 +615,36 @@ const siteContent = {
       ]
     },
     highlights: {
-      title: "AGREX 2026",
-      badge: "2026 Highlights"
+      title: "Honor delegation & guest speakers",
+      badge: "AGREX speakers 2026",
+      lead:
+        "A curated selection of invited profiles reflecting the institutional, business and international level of the AGREX dialogue between Africa, the Gulf and Dubai.",
+      cards: [
+        {
+          image: "assets/images/featured-speaker-01.jpg",
+          tag: "Institutional voice",
+          title: "Gulf delegation",
+          text: "Senior profiles expected to open dialogue between investors, authorities and market operators."
+        },
+        {
+          image: "assets/images/featured-speaker-02.jpg",
+          tag: "Business leadership",
+          title: "Guest speaker",
+          text: "Executive presence supporting B2B meetings, trust-building and investment decisions."
+        },
+        {
+          image: "assets/images/featured-speaker-03.jpg",
+          tag: "Strategic perspective",
+          title: "International expertise",
+          text: "Complementary insight on real estate development, partnerships and project structuring."
+        },
+        {
+          image: "assets/images/featured-speaker-04.jpg",
+          tag: "Capital & partnerships",
+          title: "Market voice",
+          text: "Senior profiles connecting product, capital and Africa-Gulf opportunities."
+        }
+      ]
     },
     officialPartners: {
       kicker: "AGREX 2026 official partners",
@@ -1281,14 +1337,20 @@ function applyTexts(data) {
   });
 }
 
-function renderHeroStats(items) {
-  const container = document.getElementById("hero-stats");
+function renderFeaturedVoices(items) {
+  const container = document.getElementById("featured-voice-cards");
   container.innerHTML = items
     .map(
       (item) => `
-        <article class="stat-tile" data-reveal>
-          <strong>${item.value}</strong>
-          <span>${item.label}</span>
+        <article class="featured-voice-card" data-reveal>
+          <div class="featured-voice-media">
+            <img src="${item.image}" alt="${item.title}" />
+          </div>
+          <div class="featured-voice-copy">
+            <span class="featured-voice-tag">${item.tag}</span>
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+          </div>
         </article>
       `
     )
@@ -1670,7 +1732,7 @@ function renderSite(lang) {
   setMeta(data, lang);
   applyTexts(data);
   renderOfficialPartners(data.officialPartners.cards);
-  renderHeroStats(data.hero.stats);
+  renderFeaturedVoices(data.highlights.cards);
   renderTicker(data.ticker.items);
   renderStories(data.showcase.stories);
   renderSpeakers(data.speakers.cards);
