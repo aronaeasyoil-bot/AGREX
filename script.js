@@ -47,28 +47,46 @@ const siteContent = {
         "Une selection de profils invites pour incarner le niveau institutionnel, business et international du dialogue AGREX entre l'Afrique, le Golfe et Dubai.",
       cards: [
         {
+          image: "assets/images/featured-voice-minister.jpg",
+          tag: "Senegal",
+          title: "Monsieur Moussa Bala FOFANA",
+          text: "Ministre de l'Urbanisme, des Collectivites Territoriales et de l'Amenagement des Territoires."
+        },
+        {
+          image: "assets/images/featured-voice-saudi.jpg",
+          tag: "Arabie saoudite",
+          title: "Delegation du Royaume",
+          text: "Profil institutionnel et diplomatique mobilise pour renforcer l'ancrage regional et la portee internationale d'AGREX."
+        },
+        {
+          image: "assets/images/featured-voice-lady.jpg",
+          tag: "Guest speaker",
+          title: "Intervenante invitee",
+          text: "Voix feminine de haut niveau pour representer l'ouverture internationale, l'influence et les dynamiques d'affaires."
+        },
+        {
+          image: "assets/images/featured-voice-business.jpg",
+          tag: "Capital & partenariats",
+          title: "Leadership business",
+          text: "Profil executif attendu sur les sujets d'investissement, de structuration commerciale et de connexions a haute valeur."
+        },
+        {
           image: "assets/images/featured-speaker-01.jpg",
-          tag: "Voix institutionnelle",
-          title: "Delegation du Golfe",
-          text: "Profils de haut niveau mobilises pour ouvrir les echanges entre investisseurs, autorites et operateurs."
+          tag: "Emirats arabes unis",
+          title: "Delegation des Emirats",
+          text: "Intervenant du Golfe mis en avant pour porter la relation entre l'offre immobiliere de Dubai et les investisseurs africains."
         },
         {
           image: "assets/images/featured-speaker-02.jpg",
-          tag: "Leadership business",
-          title: "Intervenant invite",
-          text: "Presence executive attendue pour nourrir les rencontres B2B, la confiance et les decisions d'investissement."
+          tag: "Emirats arabes unis",
+          title: "Voix des Emirats",
+          text: "Representation executive des ecosystemes UAE pour renforcer le dialogue, la visibilite et les partenariats du salon."
         },
         {
-          image: "assets/images/featured-speaker-03.jpg",
-          tag: "Perspective strategique",
-          title: "Expertise internationale",
-          text: "Regards complementaires sur le developpement immobilier, les partenariats et la structuration de projets."
-        },
-        {
-          image: "assets/images/featured-speaker-04.jpg",
-          tag: "Capital & partenariats",
-          title: "Voix du marche",
-          text: "Profils seniors appeles a connecter l'offre, le capital et les opportunites Afrique-Golfe."
+          image: "assets/images/featured-voice-advisor.jpg",
+          tag: "Expertise internationale",
+          title: "Conseil & vision",
+          text: "Perspective complementaire sur les marches, la gouvernance de projet et les opportunites transfrontalieres autour d'AGREX."
         }
       ]
     },
@@ -621,28 +639,46 @@ const siteContent = {
         "A curated selection of invited profiles reflecting the institutional, business and international level of the AGREX dialogue between Africa, the Gulf and Dubai.",
       cards: [
         {
+          image: "assets/images/featured-voice-minister.jpg",
+          tag: "Senegal",
+          title: "Monsieur Moussa Bala FOFANA",
+          text: "Minister of Urbanism, Territorial Communities and Land Planning."
+        },
+        {
+          image: "assets/images/featured-voice-saudi.jpg",
+          tag: "Saudi Arabia",
+          title: "Kingdom delegation",
+          text: "Institutional and diplomatic profile reinforcing AGREX regional depth and international positioning."
+        },
+        {
+          image: "assets/images/featured-voice-lady.jpg",
+          tag: "Guest speaker",
+          title: "Invited speaker",
+          text: "High-level female voice representing international openness, influence and business dynamics."
+        },
+        {
+          image: "assets/images/featured-voice-business.jpg",
+          tag: "Capital & partnerships",
+          title: "Business leadership",
+          text: "Executive profile expected on investment, commercial structuring and high-value market connections."
+        },
+        {
           image: "assets/images/featured-speaker-01.jpg",
-          tag: "Institutional voice",
-          title: "Gulf delegation",
-          text: "Senior profiles expected to open dialogue between investors, authorities and market operators."
+          tag: "United Arab Emirates",
+          title: "UAE delegation",
+          text: "Gulf representative highlighted to connect Dubai real estate product with African investors."
         },
         {
           image: "assets/images/featured-speaker-02.jpg",
-          tag: "Business leadership",
-          title: "Guest speaker",
-          text: "Executive presence supporting B2B meetings, trust-building and investment decisions."
+          tag: "United Arab Emirates",
+          title: "UAE market voice",
+          text: "Executive presence from the UAE ecosystem to reinforce dialogue, visibility and partnerships."
         },
         {
-          image: "assets/images/featured-speaker-03.jpg",
-          tag: "Strategic perspective",
-          title: "International expertise",
-          text: "Complementary insight on real estate development, partnerships and project structuring."
-        },
-        {
-          image: "assets/images/featured-speaker-04.jpg",
-          tag: "Capital & partnerships",
-          title: "Market voice",
-          text: "Senior profiles connecting product, capital and Africa-Gulf opportunities."
+          image: "assets/images/featured-voice-advisor.jpg",
+          tag: "International expertise",
+          title: "Advisory & vision",
+          text: "Additional perspective on markets, project governance and cross-border opportunity around AGREX."
         }
       ]
     },
@@ -1339,22 +1375,32 @@ function applyTexts(data) {
 
 function renderFeaturedVoices(items) {
   const container = document.getElementById("featured-voice-cards");
-  container.innerHTML = items
-    .map(
-      (item) => `
-        <article class="featured-voice-card" data-reveal>
-          <div class="featured-voice-media">
-            <img src="${item.image}" alt="${item.title}" />
-          </div>
-          <div class="featured-voice-copy">
-            <span class="featured-voice-tag">${item.tag}</span>
-            <h3>${item.title}</h3>
-            <p>${item.text}</p>
-          </div>
-        </article>
-      `
-    )
-    .join("");
+  if (!container) return;
+
+  const repeatedItems = [...items, ...items];
+
+  container.innerHTML = `
+    <div class="featured-voices-marquee-window" data-reveal>
+      <div class="featured-voices-marquee-track">
+        ${repeatedItems
+          .map(
+            (item, index) => `
+              <article class="featured-voice-card" ${index >= items.length ? 'aria-hidden="true"' : ""}>
+                <div class="featured-voice-media">
+                  <img src="${item.image}" alt="${item.title}" />
+                </div>
+                <div class="featured-voice-copy">
+                  <span class="featured-voice-tag">${item.tag}</span>
+                  <h3>${item.title}</h3>
+                  <p>${item.text}</p>
+                </div>
+              </article>
+            `
+          )
+          .join("")}
+      </div>
+    </div>
+  `;
 }
 
 function renderOfficialPartners(items) {

@@ -801,13 +801,56 @@ select:focus-visible {
   line-height: 1.8;
 }
 
-.featured-voices-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem;
+.featured-voices-marquee-shell {
+  overflow: hidden;
+  border: 1px solid rgba(23, 221, 200, 0.18);
+  background:
+    linear-gradient(180deg, rgba(24, 21, 80, 0.92), rgba(11, 13, 47, 0.96)),
+    rgba(8, 15, 28, 0.84);
+}
+
+.featured-voices-marquee-window {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.featured-voices-marquee-window::before,
+.featured-voices-marquee-window::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.featured-voices-marquee-window::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(15, 13, 54, 0.98), rgba(15, 13, 54, 0));
+}
+
+.featured-voices-marquee-window::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(15, 13, 54, 0.98), rgba(15, 13, 54, 0));
+}
+
+.featured-voices-marquee-track {
+  --voices-gap: 1.2rem;
+  display: flex;
+  gap: var(--voices-gap);
+  width: max-content;
+  padding: 0 1rem;
+  animation: featuredVoicesMarquee 42s linear infinite;
+}
+
+.featured-voices-marquee-shell:hover .featured-voices-marquee-track {
+  animation-play-state: paused;
 }
 
 .featured-voice-card {
+  flex: 0 0 19rem;
   position: relative;
   overflow: hidden;
   min-height: 29rem;
@@ -893,6 +936,16 @@ select:focus-visible {
   color: rgba(255, 255, 255, 0.84);
   font-size: 0.95rem;
   line-height: 1.7;
+}
+
+@keyframes featuredVoicesMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - (var(--voices-gap) / 2)));
+  }
 }
 
 .story-grid,
@@ -1750,8 +1803,8 @@ button:disabled {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .featured-voices-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .featured-voice-card {
+    flex-basis: 17rem;
   }
 
   .speaker-grid,
@@ -1852,7 +1905,6 @@ button:disabled {
     font-size: 1rem;
   }
 
-  .featured-voices-grid,
   .story-grid,
   .speaker-grid,
   .conference-grid,
@@ -1881,18 +1933,14 @@ button:disabled {
     aspect-ratio: 4 / 5;
   }
 
-  .featured-voices-grid {
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(72vw, 72vw);
-    grid-template-columns: none;
-    overflow-x: auto;
-    padding-bottom: 0.3rem;
-    scroll-snap-type: x mandatory;
+  .featured-voices-marquee-window::before,
+  .featured-voices-marquee-window::after {
+    width: 2rem;
   }
 
   .featured-voice-card {
+    flex-basis: min(72vw, 18rem);
     min-height: 27rem;
-    scroll-snap-align: start;
   }
 
   .featured-voice-copy {
