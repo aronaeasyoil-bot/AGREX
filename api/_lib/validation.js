@@ -26,7 +26,7 @@ function normalizeParticipant(payload) {
   assertRequired(payload.country, "Country");
 
   const lang = normalizeString(payload.lang) === "en" ? "en" : "fr";
-  const defaultProfile = lang === "en" ? "Visitor Pass" : "Pass Visiteur";
+  const defaultProfile = lang === "en" ? "Free Visitor Pass" : "Pass Visiteur Gratuit";
 
   return {
     firstName: normalizeString(payload.firstName),

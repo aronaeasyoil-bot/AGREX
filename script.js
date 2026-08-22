@@ -470,13 +470,26 @@ const siteContent = {
         },
         {
           id: "simple-registration",
-          tier: "Pass Business",
+          tier: "Pass Business Entreprise",
           price: "500€",
           accent: "access",
           items: [
-            "Pass Business pour 1 participant",
+            "Pack destine aux entreprises",
+            "Pass Business Entreprise pour 1 participant",
             "Acces au forum AGREX",
             "Acces aux sessions de networking"
+          ]
+        },
+        {
+          tier: "Pass Visiteur Gratuit",
+          price: "Gratuit",
+          accent: "visitor",
+          registrationProfile: "Pass Visiteur Gratuit",
+          cta: "S'inscrire gratuitement",
+          items: [
+            "Inscription 100% gratuite",
+            "Acces simple au forum AGREX",
+            "Aucun avantage sponsor, aucun stand, aucune option VIP"
           ]
         }
       ],
@@ -507,7 +520,7 @@ const siteContent = {
         error:
           "L'envoi n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
         steps: [
-          "Choisissez le pack Platinum, Gold, Silver, Bronze ou le Pass Business a 500 EUR selon votre objectif.",
+          "Choisissez le pack Platinum, Gold, Silver, Bronze ou le Pass Business Entreprise a 500 EUR selon votre objectif.",
           "Renseignez les coordonnees de votre societe et la personne de contact a joindre.",
           "Notre equipe recoit automatiquement votre dossier et vous adresse une confirmation par email."
         ]
@@ -519,7 +532,7 @@ const siteContent = {
       lead:
         "Le parcours visiteur reprend les codes des salons premium : message clair, qualification en amont, promesse de rencontres de valeur et call-to-action fort.",
       body:
-        "Le formulaire ci-dessous permet de vous inscrire gratuitement avec un Pass Visiteur et d'enregistrer directement votre participation.",
+        "Le formulaire ci-dessous permet de vous inscrire gratuitement avec un Pass Visiteur Gratuit, sans avantage sponsor, uniquement pour assister au forum.",
       benefits: [
         "Sessions B2B entre investisseurs, promoteurs, autorites et banques",
         "Acces direct aux presentations DAMAC et aux opportunites Dubai",
@@ -539,12 +552,12 @@ const siteContent = {
       interest: "Votre objectif ou centre d'interet (optionnel)",
       submit: "Valider mon inscription",
       note:
-        "Votre inscription gratuite en Pass Visiteur enregistre vos informations et declenche un email automatique si la messagerie SMTP est configuree.",
+        "Votre inscription gratuite en Pass Visiteur Gratuit enregistre vos informations et declenche un email automatique si la messagerie SMTP est configuree.",
       success:
         "Votre inscription gratuite a bien ete enregistree.",
       error:
         "L'inscription n'a pas pu aboutir pour le moment. Merci de reessayer ou d'ecrire a contact@agrex.events.",
-      roles: ["Pass Visiteur", "Investisseur", "Sponsor", "Partenaire", "Media"]
+      roles: ["Pass Visiteur Gratuit", "Investisseur", "Sponsor", "Partenaire", "Media"]
     },
     keep: {
       kicker: "Let's keep in touch",
@@ -1062,13 +1075,26 @@ const siteContent = {
         },
         {
           id: "simple-registration",
-          tier: "Business Pass",
+          tier: "Business Company Pass",
           price: "500€",
           accent: "access",
           items: [
-            "Business pass for 1 participant",
+            "Package intended for companies",
+            "Business Company Pass for 1 participant",
             "Access to the AGREX forum",
             "Access to networking sessions"
+          ]
+        },
+        {
+          tier: "Free Visitor Pass",
+          price: "Free",
+          accent: "visitor",
+          registrationProfile: "Free Visitor Pass",
+          cta: "Register for free",
+          items: [
+            "100% free registration",
+            "Simple access to the AGREX forum",
+            "No sponsor benefits, no stand, no VIP option"
           ]
         }
       ],
@@ -1099,7 +1125,7 @@ const siteContent = {
         error:
           "The submission could not be completed right now. Please try again or write to contact@agrex.events.",
         steps: [
-          "Choose Platinum, Gold, Silver, Bronze or the 500 EUR Business Pass package.",
+          "Choose Platinum, Gold, Silver, Bronze or the 500 EUR Business Company Pass package.",
           "Share your company details and the main contact person for sponsorship follow-up.",
           "Our team receives your file automatically and sends a confirmation email back to you."
         ]
@@ -1111,7 +1137,7 @@ const siteContent = {
       lead:
         "The visitor journey adopts the codes of premium event platforms: clear message, early qualification, high-value meetings and strong calls to action.",
       body:
-        "The form below lets you register with a free Visitor Pass and record your participation directly.",
+        "The form below lets you register with a Free Visitor Pass, with no sponsor benefits and access limited to attending the forum.",
       benefits: [
         "B2B sessions between investors, developers, authorities and banks",
         "Direct access to DAMAC presentations and Dubai opportunities",
@@ -1131,12 +1157,12 @@ const siteContent = {
       interest: "Your objective or area of interest (optional)",
       submit: "Submit my registration",
       note:
-        "Your free Visitor Pass registration records your details and sends an automatic email if SMTP is configured.",
+        "Your Free Visitor Pass registration records your details and sends an automatic email if SMTP is configured.",
       success:
         "Your free registration has been recorded.",
       error:
         "The registration could not be completed right now. Please try again or write to contact@agrex.events.",
-      roles: ["Visitor Pass", "Investor", "Sponsor", "Partner", "Media"]
+      roles: ["Free Visitor Pass", "Investor", "Sponsor", "Partner", "Media"]
     },
     keep: {
       kicker: "Let's keep in touch",
@@ -1658,9 +1684,15 @@ function renderSponsors(items) {
           <div class="sponsor-list">
             ${item.items.map((entry) => `<div class="sponsor-item">${entry}</div>`).join("")}
           </div>
-          <button class="button button-secondary sponsor-card-button" type="button" data-sponsor-package-id="${item.id}">
-            ${siteContent[currentLang].sponsors.cardCta}
-          </button>
+          ${
+            item.registrationProfile
+              ? `<button class="button button-secondary sponsor-card-button" type="button" data-registration-profile="${item.registrationProfile}">
+            ${item.cta || siteContent[currentLang].sponsors.cardCta}
+          </button>`
+              : `<button class="button button-secondary sponsor-card-button" type="button" data-sponsor-package-id="${item.id}">
+            ${item.cta || siteContent[currentLang].sponsors.cardCta}
+          </button>`
+          }
         </article>
       `
     )
@@ -1681,10 +1713,11 @@ function renderSponsorPackageOptions(items) {
 
   const currentPackageId = sponsorPackageSelect.dataset.selectedPackageId || "";
   const placeholder = siteContent[currentLang].sponsors.form.packagePlaceholder;
+  const sponsorPackages = items.filter((item) => !item.registrationProfile);
 
   sponsorPackageSelect.innerHTML = `
     <option value="">${placeholder}</option>
-    ${items
+    ${sponsorPackages
       .map(
         (item) =>
           `<option data-package-id="${item.id}" value="${item.tier} - ${item.price}">${item.tier} - ${item.price}</option>`
@@ -1821,11 +1854,20 @@ function setSponsorTier(tier) {
   sponsorPackageSelect.focus({ preventScroll: true });
 }
 
+function setRegistrationProfile(profile) {
+  if (!roleSelect) return;
+
+  roleSelect.value = profile;
+  configureRegistrationFormMeta();
+  registrationForm?.scrollIntoView({ behavior: "smooth", block: "start" });
+  roleSelect.focus({ preventScroll: true });
+}
+
 function buildRegistrationAutoresponse(roleName) {
   if (currentLang === "en") {
     return [
       "Thank you for your AGREX 2026 registration.",
-      `Submitted profile: ${roleName || "Visitor Pass"}.`,
+      `Submitted profile: ${roleName || "Free Visitor Pass"}.`,
       "Our team has received your request and will contact you shortly with the next steps.",
       "AGREX 2026",
       "www.agrex.events",
@@ -1837,7 +1879,7 @@ function buildRegistrationAutoresponse(roleName) {
 
   return [
     "Merci pour votre inscription a AGREX 2026.",
-    `Profil soumis : ${roleName || "Pass Visiteur"}.`,
+    `Profil soumis : ${roleName || "Pass Visiteur Gratuit"}.`,
     "Notre equipe a bien recu votre demande et reviendra vers vous rapidement avec les prochaines etapes.",
     "AGREX 2026",
     "www.agrex.events",
@@ -1947,9 +1989,15 @@ document.querySelectorAll("[data-lang-switch]").forEach((button) => {
 
 document.addEventListener("click", (event) => {
   const tierButton = event.target.closest("[data-sponsor-package-id]");
-  if (!tierButton) return;
+  if (tierButton) {
+    setSponsorTier(tierButton.dataset.sponsorPackageId);
+    return;
+  }
 
-  setSponsorTier(tierButton.dataset.sponsorPackageId);
+  const registrationButton = event.target.closest("[data-registration-profile]");
+  if (!registrationButton) return;
+
+  setRegistrationProfile(registrationButton.dataset.registrationProfile);
 });
 
 navToggle?.addEventListener("click", () => {

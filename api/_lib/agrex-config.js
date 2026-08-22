@@ -95,17 +95,19 @@ const SPONSOR_PACKAGES = {
   },
   "simple-registration": {
     id: "simple-registration",
-    labelFr: "Pass Business",
-    labelEn: "Business Pass",
+    labelFr: "Pass Business Entreprise",
+    labelEn: "Business Company Pass",
     amountEur: 500,
     theme: "standard",
     benefitsFr: [
-      "Pass Business pour 1 participant",
+      "Pack destine aux entreprises",
+      "Pass Business Entreprise pour 1 participant",
       "Acces au forum AGREX",
       "Acces aux sessions de networking"
     ],
     benefitsEn: [
-      "Business pass for 1 participant",
+      "Package intended for companies",
+      "Business Company Pass for 1 participant",
       "Access to the AGREX forum",
       "Access to networking sessions"
     ]

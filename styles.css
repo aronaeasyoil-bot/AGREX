@@ -1398,6 +1398,10 @@ select:focus-visible {
   background: linear-gradient(90deg, #7debdc, #17ddc8);
 }
 
+.sponsor-card-visitor::before {
+  background: linear-gradient(90deg, #9fd2ff, #5b8cff);
+}
+
 .sponsor-card-cap {
   display: inline-flex;
   align-items: center;
@@ -1435,6 +1439,11 @@ select:focus-visible {
 .sponsor-card-access .sponsor-card-cap {
   background: linear-gradient(180deg, #d9fff9, #64e7d6);
   color: #072033;
+}
+
+.sponsor-card-visitor .sponsor-card-cap {
+  background: linear-gradient(180deg, #edf5ff, #9cc1ff);
+  color: #10213f;
 }
 
 .sponsor-price {
