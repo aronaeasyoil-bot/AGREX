@@ -842,7 +842,7 @@ select:focus-visible {
   gap: var(--voices-gap);
   width: max-content;
   padding: 0 1rem;
-  animation: featuredVoicesMarquee 42s linear infinite;
+  animation: featuredVoicesMarquee 64s linear infinite;
 }
 
 .featured-voices-marquee-shell:hover .featured-voices-marquee-track {

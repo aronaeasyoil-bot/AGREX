@@ -87,6 +87,36 @@ const siteContent = {
           tag: "Expertise internationale",
           title: "Conseil & vision",
           text: "Perspective complementaire sur les marches, la gouvernance de projet et les opportunites transfrontalieres autour d'AGREX."
+        },
+        {
+          image: "assets/images/featured-guest-01.jpg",
+          tag: "Afrique",
+          title: "Delegue institutionnel",
+          text: "Profil invite pour enrichir le dialogue diplomatique et l'ouverture territoriale du forum."
+        },
+        {
+          image: "assets/images/featured-guest-02.jpg",
+          tag: "Golfe",
+          title: "Intervenante invitee",
+          text: "Presence feminine de haut niveau pour illustrer la diversite des echanges entre l'Afrique et le Golfe."
+        },
+        {
+          image: "assets/images/featured-guest-03.jpg",
+          tag: "Innovation",
+          title: "Jeune voix executive",
+          text: "Profil emergent appele a porter une lecture moderne de l'investissement, des reseaux et de l'influence."
+        },
+        {
+          image: "assets/images/featured-guest-04.jpg",
+          tag: "Leadership",
+          title: "Intervenant international",
+          text: "Voix experte supplementaire pour renforcer le niveau business et la stature premium de la delegation."
+        },
+        {
+          image: "assets/images/featured-guest-05.jpg",
+          tag: "Business",
+          title: "Profil investisseur",
+          text: "Representation orientee marche et capital pour prolonger la dynamique d'affaires du corridor Afrique-Golfe."
         }
       ]
     },
@@ -692,6 +722,36 @@ const siteContent = {
           tag: "International expertise",
           title: "Advisory & vision",
           text: "Additional perspective on markets, project governance and cross-border opportunity around AGREX."
+        },
+        {
+          image: "assets/images/featured-guest-01.jpg",
+          tag: "Africa",
+          title: "Institutional delegate",
+          text: "Invited profile expanding the diplomatic dialogue and territorial depth of the forum."
+        },
+        {
+          image: "assets/images/featured-guest-02.jpg",
+          tag: "Gulf",
+          title: "Invited speaker",
+          text: "Senior female presence illustrating the diversity of Africa-Gulf exchanges and representation."
+        },
+        {
+          image: "assets/images/featured-guest-03.jpg",
+          tag: "Innovation",
+          title: "Emerging executive voice",
+          text: "Next-generation profile bringing a modern perspective on investment, networks and influence."
+        },
+        {
+          image: "assets/images/featured-guest-04.jpg",
+          tag: "Leadership",
+          title: "International speaker",
+          text: "Additional expert voice reinforcing the business level and premium stature of the delegation."
+        },
+        {
+          image: "assets/images/featured-guest-05.jpg",
+          tag: "Business",
+          title: "Investor profile",
+          text: "Market-oriented representation extending the business momentum of the Africa-Gulf corridor."
         }
       ]
     },
