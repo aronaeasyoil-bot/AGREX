@@ -117,6 +117,72 @@ const siteContent = {
           tag: "Business",
           title: "Profil investisseur",
           text: "Representation orientee marche et capital pour prolonger la dynamique d'affaires du corridor Afrique-Golfe."
+        },
+        {
+          image: "assets/images/featured-guest-lucia-brito.jpg",
+          tag: "Cabo Verde",
+          title: "Ms. Lúcia Brito",
+          text: "President of the Human Leaders International Congress – Cabo Verde."
+        },
+        {
+          image: "assets/images/featured-guest-maria-oliver.jpg",
+          tag: "Leadership",
+          title: "Dr. Maria Oliver",
+          text: "President - Change The Narrative Limited."
+        },
+        {
+          image: "assets/images/featured-guest-06.jpg",
+          tag: "Golfe",
+          title: "Profil invite",
+          text: "Presence executive supplementaire pour renforcer la visibilite regionale et la qualite des connexions institutionnelles."
+        },
+        {
+          image: "assets/images/featured-guest-07.jpg",
+          tag: "Representation feminine",
+          title: "Invitee institutionnelle",
+          text: "Voix feminine invitee pour illustrer l'ouverture, la qualite du reseau et la dimension internationale d'AGREX."
+        },
+        {
+          image: "assets/images/featured-guest-08.jpg",
+          tag: "Afrique",
+          title: "Intervenante d'honneur",
+          text: "Profil de leadership mobilise pour nourrir les echanges sur l'influence, l'investissement et la cooperation."
+        },
+        {
+          image: "assets/images/featured-guest-09.jpg",
+          tag: "Expertise internationale",
+          title: "Conseil strategique",
+          text: "Perspective complementaire sur la structuration, les partenariats et les trajectoires de croissance transfrontaliere."
+        },
+        {
+          image: "assets/images/featured-guest-10.jpg",
+          tag: "Business",
+          title: "Delegue executif",
+          text: "Representation business additionnelle pour soutenir les echanges d'affaires, la mise en relation et les opportunites de corridor."
+        },
+        {
+          image: "assets/images/featured-guest-11.jpg",
+          tag: "Afrique",
+          title: "Invite d'honneur",
+          text: "Profil invite pour renforcer la credibilite institutionnelle et la profondeur des discussions entre acteurs publics et prives."
+        },
+        {
+          image: "assets/images/featured-guest-12.jpg",
+          tag: "Investissement",
+          title: "Participant executive",
+          text: "Voix additionnelle attendue sur les sujets de marche, d'accompagnement des investisseurs et de developpement de projets."
+        },
+        {
+          image: "assets/images/featured-guest-13.jpg",
+          tag: "Golfe",
+          title: "Invitee business",
+          text: "Presence invitee pour prolonger l'ouverture du salon vers les reseaux feminins, institutionnels et entrepreneuriaux du Golfe."
+        },
+        {
+          image: "assets/images/featured-guest-14.jpg",
+          tag: "Leadership",
+          title: "Delegue senior",
+          text: "Profil de haut niveau ajoute a la delegation pour consolider la stature premium et la portee internationale du forum."
         }
       ]
     },
@@ -752,6 +818,72 @@ const siteContent = {
           tag: "Business",
           title: "Investor profile",
           text: "Market-oriented representation extending the business momentum of the Africa-Gulf corridor."
+        },
+        {
+          image: "assets/images/featured-guest-lucia-brito.jpg",
+          tag: "Cabo Verde",
+          title: "Ms. Lúcia Brito",
+          text: "President of the Human Leaders International Congress – Cabo Verde."
+        },
+        {
+          image: "assets/images/featured-guest-maria-oliver.jpg",
+          tag: "Leadership",
+          title: "Dr. Maria Oliver",
+          text: "President - Change The Narrative Limited."
+        },
+        {
+          image: "assets/images/featured-guest-06.jpg",
+          tag: "Gulf",
+          title: "Invited profile",
+          text: "Additional executive presence reinforcing regional visibility and the quality of institutional connections."
+        },
+        {
+          image: "assets/images/featured-guest-07.jpg",
+          tag: "Women in leadership",
+          title: "Institutional guest",
+          text: "Invited female voice illustrating openness, network quality and the international dimension of AGREX."
+        },
+        {
+          image: "assets/images/featured-guest-08.jpg",
+          tag: "Africa",
+          title: "Honor speaker",
+          text: "Leadership profile invited to deepen conversations on influence, investment and cross-regional cooperation."
+        },
+        {
+          image: "assets/images/featured-guest-09.jpg",
+          tag: "International expertise",
+          title: "Strategic advisory voice",
+          text: "Complementary perspective on structuring, partnerships and cross-border growth trajectories."
+        },
+        {
+          image: "assets/images/featured-guest-10.jpg",
+          tag: "Business",
+          title: "Executive delegate",
+          text: "Additional business representation supporting deal flow, introductions and corridor opportunities."
+        },
+        {
+          image: "assets/images/featured-guest-11.jpg",
+          tag: "Africa",
+          title: "Honor guest",
+          text: "Invited profile strengthening institutional credibility and the depth of discussions between public and private actors."
+        },
+        {
+          image: "assets/images/featured-guest-12.jpg",
+          tag: "Investment",
+          title: "Executive participant",
+          text: "Additional voice expected on market access, investor support and project development topics."
+        },
+        {
+          image: "assets/images/featured-guest-13.jpg",
+          tag: "Gulf",
+          title: "Business guest",
+          text: "Invited presence extending the forum's reach toward female, institutional and entrepreneurial Gulf networks."
+        },
+        {
+          image: "assets/images/featured-guest-14.jpg",
+          tag: "Leadership",
+          title: "Senior delegate",
+          text: "High-level profile added to strengthen the premium stature and international reach of the forum."
         }
       ]
     },
