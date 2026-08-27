@@ -54,168 +54,168 @@ const siteContent = {
         {
           tier: "vip",
           featured: true,
-          image: "assets/images/highlight-vip-01-minister.jpg",
+          image: "assets/images/highlight-vip-01-minister.webp",
           tag: "Invite d'honneur",
           title: "Monsieur Moussa Bala FOFANA",
           text: "Ministre de l'Urbanisme, des Collectivites Territoriales et de l'Amenagement des Territoires."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-02-business.jpg",
+          image: "assets/images/highlight-vip-02-business.webp",
           tag: "Infrastructures & logistique UAE",
           title: "Zakee Siddiqi",
           text: "CEO de SIDDCO Group UAE, ancien directeur du Hamriyah Port a Dubai et figure reconnue des infrastructures, de la logistique et du developpement d'affaires dans le Golfe."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-03-saudi-royal.jpg",
+          image: "assets/images/highlight-vip-03-saudi-royal.webp",
           tag: "Construction - Arabie saoudite",
           title: "Cheikh Ebrahim Zara Mohamed",
           text: "CEO d'AL-REFAEI International Co. Ltd., reference de premier plan du secteur de la construction en Arabie saoudite et interlocuteur strategique sur les grands projets du Royaume."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-04-uae-senior.jpg",
+          image: "assets/images/highlight-vip-04-uae-senior.webp",
           tag: "Emirats arabes unis",
           title: "Sheikh Rashid Al-Shaibani",
           text: "Personnalite emirienne et membre d'honneur de la Gulf Africa Investment Chamber (GAIC), il apporte a AGREX une presence institutionnelle de premier rang et une lecture influente des passerelles entre le Golfe et l'Afrique."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-05-uae-executive.jpg",
+          image: "assets/images/highlight-vip-05-uae-executive.webp",
           tag: "Finance & investissement - UAE",
           title: "Sheikh Ali Al Khawlani",
           text: "Chairman de TFG UAE, figure emiratienne de la finance et de l'investissement, il apporte a AGREX une lecture strategique des flux de capitaux, des structurations financieres et des passerelles d'affaires entre le Golfe et l'Afrique."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-06-international-advisor.jpg",
+          image: "assets/images/highlight-vip-06-international-advisor.webp",
           tag: "Conseil international",
           title: "Reference strategique",
           text: "Expert de haut niveau apportant une lecture structurante des alliances, de la gouvernance de projet et des trajectoires de croissance transfrontalieres."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-07-hapsatou-sy.jpg",
+          image: "assets/images/highlight-vip-07-hapsatou-sy.webp",
           tag: "Entrepreneuriat & influence",
           title: "Hapsatou Sy",
           text: "Entrepreneure, host et speaker, CEO de MITH International, avec un ancrage au Conservatoire National des Arts et Metiers, elle apporte a AGREX une voix de leadership, d'innovation et de rayonnement entrepreneurial."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-08-zunaira-ulfat.jpg",
+          image: "assets/images/highlight-vip-08-zunaira-ulfat.webp",
           tag: "Leadership feminin MENA",
           title: "Ms. Zunaira Ulfat",
           text: "CEO de Women of MENA et reconnue parmi les UAE Top 10 Leaders 2026, elle incarne une voix montante du leadership feminin regional, au croisement de l'influence, des reseaux d'affaires et de l'impact."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-09-gcc-executive.jpg",
-          tag: "Leadership GCC",
-          title: "Representation strategique du Golfe",
-          text: "Figure executive de haut niveau venant consolider la credibilite regionale et la qualite des passerelles d'affaires Afrique-Golfe."
+          image: "assets/images/highlight-vip-09-gcc-executive.webp",
+          tag: "Leadership industriel saoudien",
+          title: "Abdulhamid Dagestany",
+          text: "Chairman de Dagestani International Group en Arabie saoudite, il apporte a AGREX une perspective de premier plan sur l'industrie, le developpement d'affaires et les passerelles strategiques entre le Royaume et l'Afrique."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-10-global-speaker.jpg",
+          image: "assets/images/highlight-vip-10-global-speaker.webp",
           tag: "Rayonnement international",
           title: "Intervenant de reference",
           text: "Personnalite selectionnee pour apporter une lecture d'influence sur les investissements, les reseaux de decision et les perspectives de cooperation."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-01.jpg",
+          image: "assets/images/featured-guest-01.webp",
           tag: "Afrique institutionnelle",
           title: "Representation institutionnelle africaine",
           text: "Presence qualifiee venant approfondir le dialogue diplomatique, territorial et economique du forum."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-02.jpg",
+          image: "assets/images/featured-guest-02.webp",
           tag: "Golfe",
           title: "Presence feminine de haut niveau",
           text: "Intervenante selectionnee pour refleter la qualite des echanges et la place des reseaux feminins dans le corridor Afrique-Golfe."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-03.jpg",
+          image: "assets/images/featured-guest-03.webp",
           tag: "Nouvelle generation",
           title: "Leadership emergent",
           text: "Nouvelle voix executive mobilisee autour de l'innovation, du capital relationnel et des nouveaux marches."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-04.jpg",
+          image: "assets/images/featured-guest-04.webp",
           tag: "Expertise internationale",
           title: "Reference sectorielle",
           text: "Intervenant additionnel appele a renforcer la profondeur business et la densite des echanges du salon."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-05.jpg",
+          image: "assets/images/featured-guest-05.webp",
           tag: "Investissement",
           title: "Lecture marche & capital",
           text: "Perspective orientee investissement pour prolonger la dynamique d'opportunites entre porteurs de projets et decideurs."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-lucia-brito.jpg",
+          image: "assets/images/featured-guest-lucia-brito.webp",
           tag: "Cabo Verde",
           title: "Ms. Lúcia Brito",
           text: "Presidente du Human Leaders International Congress - Cabo Verde."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-maria-oliver.jpg",
+          image: "assets/images/featured-guest-maria-oliver.webp",
           tag: "Leadership international",
           title: "Dr. Maria Oliver",
           text: "Presidente de Change The Narrative Limited."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-08.jpg",
+          image: "assets/images/featured-guest-08.webp",
           tag: "Leadership africain",
           title: "Voix de leadership africaine",
           text: "Presence mobilisee pour enrichir les echanges sur l'influence, l'investissement et la cooperation regionale."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-09.jpg",
+          image: "assets/images/featured-guest-09.webp",
           tag: "Conseil international",
           title: "Appui strategique",
           text: "Lecture complementaire des partenariats, de la structuration et des trajectoires de developpement transfrontalier."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-10.jpg",
+          image: "assets/images/featured-guest-10.webp",
           tag: "Affaires & investissement",
           title: "Representation executive",
           text: "Presence additionnelle engagee sur la mise en relation, les accords d'affaires et l'acceleration des opportunites."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-11.jpg",
+          image: "assets/images/featured-guest-11.webp",
           tag: "Afrique institutionnelle",
           title: "Personnalite institutionnelle invitee",
           text: "Acteur qualifie venant consolider la credibilite du dialogue entre institutions, investisseurs et operateurs."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-12.jpg",
+          image: "assets/images/featured-guest-12.webp",
           tag: "Developpement de projets",
           title: "Executif marche",
           text: "Intervenant mobilise sur l'accompagnement des investisseurs, l'acces au marche et la structuration de projets."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-13.jpg",
+          image: "assets/images/featured-guest-13.webp",
           tag: "Golfe entrepreneurial",
           title: "Leadership feminin business",
           text: "Presence feminine issue du Golfe pour ouvrir des perspectives entrepreneuriales, institutionnelles et relationnelles."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-14.jpg",
+          image: "assets/images/featured-guest-14.webp",
           tag: "Leadership international",
           title: "Personnalite senior",
           text: "Figure complementaire de haut niveau qui renforce le rayonnement et la qualite de la delegation AGREX."
@@ -791,168 +791,168 @@ const siteContent = {
         {
           tier: "vip",
           featured: true,
-          image: "assets/images/highlight-vip-01-minister.jpg",
+          image: "assets/images/highlight-vip-01-minister.webp",
           tag: "Guest of Honour",
           title: "Monsieur Moussa Bala FOFANA",
           text: "Minister of Urbanism, Territorial Communities and Land Planning."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-02-business.jpg",
+          image: "assets/images/highlight-vip-02-business.webp",
           tag: "UAE infrastructure & logistics",
           title: "Zakee Siddiqi",
           text: "CEO of SIDDCO Group UAE, former Director of Hamriyah Port in Dubai, and a recognised voice in Gulf infrastructure, logistics and business development."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-03-saudi-royal.jpg",
+          image: "assets/images/highlight-vip-03-saudi-royal.webp",
           tag: "Construction - Saudi Arabia",
           title: "Sheikh Ebrahim Zara Mohamed",
           text: "CEO of AL-REFAEI International Co. Ltd., a leading figure in Saudi Arabia's construction sector and a strategic voice on major projects across the Kingdom."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-04-uae-senior.jpg",
+          image: "assets/images/highlight-vip-04-uae-senior.webp",
           tag: "United Arab Emirates",
           title: "Sheikh Rashid Al-Shaibani",
           text: "An Emirati figure and honorary member of the Gulf Africa Investment Chamber (GAIC), he brings first-rank institutional presence to AGREX and an influential perspective on Gulf-Africa bridges."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-05-uae-executive.jpg",
+          image: "assets/images/highlight-vip-05-uae-executive.webp",
           tag: "Finance & investment - UAE",
           title: "Sheikh Ali Al Khawlani",
           text: "Chairman of TFG UAE and an Emirati figure in finance and investment, he brings to AGREX a strategic perspective on capital flows, financial structuring and Gulf-Africa business bridges."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-06-international-advisor.jpg",
+          image: "assets/images/highlight-vip-06-international-advisor.webp",
           tag: "International advisory",
           title: "Strategic reference",
           text: "High-level expert bringing a structuring perspective on alliances, project governance and cross-border growth trajectories."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-07-hapsatou-sy.jpg",
+          image: "assets/images/highlight-vip-07-hapsatou-sy.webp",
           tag: "Entrepreneurship & influence",
           title: "Hapsatou Sy",
           text: "Entrepreneur, host and speaker, CEO of MITH International, with ties to the Conservatoire National des Arts et Metiers, she brings to AGREX a strong voice of leadership, innovation and entrepreneurial influence."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-08-zunaira-ulfat.jpg",
+          image: "assets/images/highlight-vip-08-zunaira-ulfat.webp",
           tag: "MENA women leadership",
           title: "Ms. Zunaira Ulfat",
           text: "CEO of Women of MENA and recognized among the UAE Top 10 Leaders 2026, she brings to AGREX a rising voice in regional women leadership, business influence and high-impact networking."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-09-gcc-executive.jpg",
-          tag: "GCC leadership",
-          title: "Strategic representation from the Gulf",
-          text: "High-level executive figure reinforcing regional credibility and the quality of Africa-Gulf business bridges."
+          image: "assets/images/highlight-vip-09-gcc-executive.webp",
+          tag: "Saudi industrial leadership",
+          title: "Abdulhamid Dagestany",
+          text: "Chairman of Dagestani International Group in the Kingdom of Saudi Arabia, he brings to AGREX a high-level perspective on industry, business development and strategic bridges between the Kingdom and Africa."
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-10-global-speaker.jpg",
+          image: "assets/images/highlight-vip-10-global-speaker.webp",
           tag: "International influence",
           title: "Reference speaker",
           text: "Selected personality bringing an influence-driven perspective on investment, decision-making networks and future cooperation."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-01.jpg",
+          image: "assets/images/featured-guest-01.webp",
           tag: "Institutional Africa",
           title: "African institutional representation",
           text: "Qualified presence deepening the forum's diplomatic, territorial and economic dialogue."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-02.jpg",
+          image: "assets/images/featured-guest-02.webp",
           tag: "Gulf",
           title: "Senior female presence",
           text: "Selected participant reflecting the quality of exchanges and the role of women's networks in the Africa-Gulf corridor."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-03.jpg",
+          image: "assets/images/featured-guest-03.webp",
           tag: "Next generation",
           title: "Emerging leadership",
           text: "New executive voice focused on innovation, relationship capital and next-market opportunities."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-04.jpg",
+          image: "assets/images/featured-guest-04.webp",
           tag: "International expertise",
           title: "Sector reference",
           text: "Additional participant expected to reinforce the business depth and quality of exchange across the event."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-05.jpg",
+          image: "assets/images/featured-guest-05.webp",
           tag: "Investment",
           title: "Market & capital perspective",
           text: "Investment-oriented perspective extending the flow of opportunities between project sponsors and decision-makers."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-lucia-brito.jpg",
+          image: "assets/images/featured-guest-lucia-brito.webp",
           tag: "Cabo Verde",
           title: "Ms. Lúcia Brito",
           text: "President of the Human Leaders International Congress - Cabo Verde."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-maria-oliver.jpg",
+          image: "assets/images/featured-guest-maria-oliver.webp",
           tag: "International leadership",
           title: "Dr. Maria Oliver",
           text: "President of Change The Narrative Limited."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-08.jpg",
+          image: "assets/images/featured-guest-08.webp",
           tag: "African leadership",
           title: "African leadership voice",
           text: "Selected presence enriching the dialogue on influence, investment and regional cooperation."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-09.jpg",
+          image: "assets/images/featured-guest-09.webp",
           tag: "International advisory",
           title: "Strategic support",
           text: "Complementary perspective on partnerships, structuring and cross-border development trajectories."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-10.jpg",
+          image: "assets/images/featured-guest-10.webp",
           tag: "Business & investment",
           title: "Executive representation",
           text: "Additional presence engaged on introductions, business agreements and the acceleration of opportunities."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-11.jpg",
+          image: "assets/images/featured-guest-11.webp",
           tag: "Institutional Africa",
           title: "Invited institutional figure",
           text: "Qualified actor strengthening the credibility of dialogue between institutions, investors and operators."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-12.jpg",
+          image: "assets/images/featured-guest-12.webp",
           tag: "Project development",
           title: "Market executive",
           text: "Participant engaged on investor support, market access and project structuring."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-13.jpg",
+          image: "assets/images/featured-guest-13.webp",
           tag: "Entrepreneurial Gulf",
           title: "Female business leadership",
           text: "Gulf-based female presence opening entrepreneurial, institutional and relationship-driven perspectives."
         },
         {
           tier: "marquee",
-          image: "assets/images/featured-guest-14.jpg",
+          image: "assets/images/featured-guest-14.webp",
           tag: "International leadership",
           title: "Senior personality",
           text: "Complementary high-level figure strengthening the reach and standing of the AGREX delegation."
@@ -1671,10 +1671,16 @@ function renderFeaturedVoices(section) {
   const marqueeItems = (section.cards || []).filter((item) => item.tier !== "vip");
   const repeatedItems = [...marqueeItems, ...marqueeItems.map((item) => ({ ...item, duplicate: true }))];
 
-  const renderVipCard = (item) => `
+  const renderVipCard = (item, index) => `
     <article class="featured-vip-card ${item.featured ? "is-featured" : ""}" data-reveal>
       <div class="featured-vip-media">
-        <img src="${item.image}" alt="${item.title}" />
+        <img
+          src="${item.image}"
+          alt="${item.title}"
+          loading="${index < 4 ? "eager" : "lazy"}"
+          decoding="async"
+          fetchpriority="${index < 2 ? "high" : "low"}"
+        />
       </div>
       <div class="featured-vip-copy">
         <span class="featured-vip-chip">${item.tag}</span>
@@ -1687,7 +1693,7 @@ function renderFeaturedVoices(section) {
   const renderMarqueeCard = (item) => `
     <article class="featured-voice-card" ${item.duplicate ? 'aria-hidden="true"' : ""}>
       <div class="featured-voice-media">
-        <img src="${item.image}" alt="${item.title}" />
+        <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async" fetchpriority="low" />
       </div>
       <div class="featured-voice-copy">
         <span class="featured-voice-tag">${item.tag}</span>
@@ -1706,7 +1712,7 @@ function renderFeaturedVoices(section) {
           <p>${section.featuredLead || ""}</p>
         </div>
         <div class="featured-vip-grid">
-          ${vipItems.map((item) => renderVipCard(item)).join("")}
+          ${vipItems.map((item, index) => renderVipCard(item, index)).join("")}
         </div>
       </div>
 

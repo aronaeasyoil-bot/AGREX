@@ -879,6 +879,9 @@ select:focus-visible {
   position: relative;
   overflow: hidden;
   min-height: 23rem;
+  content-visibility: auto;
+  contain: layout paint style;
+  contain-intrinsic-size: 23rem;
   border-radius: 1.1rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: linear-gradient(180deg, rgba(18, 17, 59, 0.56), rgba(8, 9, 32, 0.88));
@@ -1057,6 +1060,9 @@ select:focus-visible {
   position: relative;
   overflow: hidden;
   min-height: 24rem;
+  content-visibility: auto;
+  contain: layout paint style;
+  contain-intrinsic-size: 24rem;
   border-radius: 0.95rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: linear-gradient(180deg, rgba(19, 17, 66, 0.84), rgba(10, 9, 36, 0.96));
