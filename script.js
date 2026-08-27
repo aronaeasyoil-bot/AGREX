@@ -62,9 +62,9 @@ const siteContent = {
         {
           tier: "vip",
           image: "assets/images/highlight-vip-02-business.jpg",
-          tag: "Leadership business",
-          title: "Figure executive internationale",
-          text: "Profil de premier plan attendu sur les connexions d'affaires, l'investissement et la structuration de partenariats a haute valeur."
+          tag: "SIDDCO Group UAE",
+          title: "Zakee Siddiqi",
+          text: "CEO de SIDDCO Group UAE et ancien directeur du port de Dubai, Hamriyah Port."
         },
         {
           tier: "vip",
@@ -799,9 +799,9 @@ const siteContent = {
         {
           tier: "vip",
           image: "assets/images/highlight-vip-02-business.jpg",
-          tag: "Business leadership",
-          title: "International executive figure",
-          text: "High-level profile expected on business connections, investment and partnership structuring."
+          tag: "SIDDCO Group UAE",
+          title: "Zakee Siddiqi",
+          text: "CEO of SIDDCO Group UAE and former Director of Dubai's Hamriyah Port."
         },
         {
           tier: "vip",
