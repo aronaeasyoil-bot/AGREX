@@ -62,16 +62,16 @@ const siteContent = {
         {
           tier: "vip",
           image: "assets/images/highlight-vip-02-business.jpg",
-          tag: "SIDDCO Group UAE",
+          tag: "Infrastructures & logistique UAE",
           title: "Zakee Siddiqi",
-          text: "CEO de SIDDCO Group UAE et ancien directeur du port de Dubai, Hamriyah Port."
+          text: "CEO de SIDDCO Group UAE, ancien directeur du Hamriyah Port a Dubai et figure reconnue des infrastructures, de la logistique et du developpement d'affaires dans le Golfe."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-03-saudi-royal.jpg",
-          tag: "Delegation royale",
-          title: "Representation du Royaume",
-          text: "Presence institutionnelle de haut niveau mobilisee pour ancrer AGREX dans un dialogue Gulf-Africa a forte visibilite."
+          tag: "Construction - Arabie saoudite",
+          title: "Cheikh Ebrahim Zara Mohamed",
+          text: "CEO d'AL-REFAEI International Co. Ltd., reference de premier plan du secteur de la construction en Arabie saoudite et interlocuteur strategique sur les grands projets du Royaume."
         },
         {
           tier: "vip",
@@ -799,16 +799,16 @@ const siteContent = {
         {
           tier: "vip",
           image: "assets/images/highlight-vip-02-business.jpg",
-          tag: "SIDDCO Group UAE",
+          tag: "UAE infrastructure & logistics",
           title: "Zakee Siddiqi",
-          text: "CEO of SIDDCO Group UAE and former Director of Dubai's Hamriyah Port."
+          text: "CEO of SIDDCO Group UAE, former Director of Hamriyah Port in Dubai, and a recognised voice in Gulf infrastructure, logistics and business development."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-03-saudi-royal.jpg",
-          tag: "Royal delegation",
-          title: "Kingdom representation",
-          text: "High-level institutional presence anchoring AGREX in a visible Gulf-Africa dialogue."
+          tag: "Construction - Saudi Arabia",
+          title: "Sheikh Ebrahim Zara Mohamed",
+          text: "CEO of AL-REFAEI International Co. Ltd., a leading figure in Saudi Arabia's construction sector and a strategic voice on major projects across the Kingdom."
         },
         {
           tier: "vip",
