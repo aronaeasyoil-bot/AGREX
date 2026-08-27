@@ -1672,14 +1672,14 @@ function renderFeaturedVoices(section) {
   const repeatedItems = [...marqueeItems, ...marqueeItems.map((item) => ({ ...item, duplicate: true }))];
 
   const renderVipCard = (item, index) => `
-    <article class="featured-vip-card ${item.featured ? "is-featured" : ""}" data-reveal>
+    <article class="featured-vip-card ${item.featured ? "is-featured" : ""}">
       <div class="featured-vip-media">
         <img
           src="${item.image}"
           alt="${item.title}"
-          loading="${index < 4 ? "eager" : "lazy"}"
+          loading="eager"
           decoding="async"
-          fetchpriority="${index < 2 ? "high" : "low"}"
+          fetchpriority="${index < 4 ? "high" : "auto"}"
         />
       </div>
       <div class="featured-vip-copy">
@@ -1705,7 +1705,7 @@ function renderFeaturedVoices(section) {
 
   container.innerHTML = `
     <div class="featured-voices-showcase">
-      <div class="featured-vip-panel" data-reveal>
+      <div class="featured-vip-panel">
         <div class="featured-vip-heading">
           <p class="featured-vip-kicker">${section.featuredLabel || ""}</p>
           <h3>${section.featuredTitle || ""}</h3>
@@ -1716,18 +1716,31 @@ function renderFeaturedVoices(section) {
         </div>
       </div>
 
-      <div class="featured-voices-marquee-group" data-reveal>
-        <div class="featured-voices-marquee-meta">
-          <p class="featured-voices-marquee-label">${section.marqueeLabel || ""}</p>
-        </div>
-        <div class="featured-voices-marquee-window">
-          <div class="featured-voices-marquee-track">
-            ${repeatedItems.map((item) => renderMarqueeCard(item)).join("")}
-          </div>
-        </div>
-      </div>
+      <div class="featured-voices-marquee-group" data-featured-marquee-shell></div>
     </div>
   `;
+
+  const marqueeShell = container.querySelector("[data-featured-marquee-shell]");
+  if (!marqueeShell) return;
+
+  const injectMarquee = () => {
+    marqueeShell.innerHTML = `
+      <div class="featured-voices-marquee-meta">
+        <p class="featured-voices-marquee-label">${section.marqueeLabel || ""}</p>
+      </div>
+      <div class="featured-voices-marquee-window">
+        <div class="featured-voices-marquee-track">
+          ${repeatedItems.map((item) => renderMarqueeCard(item)).join("")}
+        </div>
+      </div>
+    `;
+  };
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(injectMarquee, { timeout: 700 });
+  } else {
+    window.setTimeout(injectMarquee, 180);
+  }
 }
 
 function renderOfficialPartners(items) {
@@ -2098,7 +2111,7 @@ function setupRevealObserver() {
         }
       });
     },
-    { threshold: 0.18 }
+    { threshold: 0.02, rootMargin: "0px 0px 120px 0px" }
   );
 
   document.querySelectorAll("[data-reveal]").forEach((element) => observer.observe(element));

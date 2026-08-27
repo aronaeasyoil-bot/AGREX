@@ -879,9 +879,6 @@ select:focus-visible {
   position: relative;
   overflow: hidden;
   min-height: 23rem;
-  content-visibility: auto;
-  contain: layout paint style;
-  contain-intrinsic-size: 23rem;
   border-radius: 1.1rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: linear-gradient(180deg, rgba(18, 17, 59, 0.56), rgba(8, 9, 32, 0.88));
@@ -1060,9 +1057,6 @@ select:focus-visible {
   position: relative;
   overflow: hidden;
   min-height: 24rem;
-  content-visibility: auto;
-  contain: layout paint style;
-  contain-intrinsic-size: 24rem;
   border-radius: 0.95rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: linear-gradient(180deg, rgba(19, 17, 66, 0.84), rgba(10, 9, 36, 0.96));
@@ -2215,6 +2209,20 @@ button:disabled {
 }
 
 @media (max-width: 760px) {
+  .featured-vip-panel {
+    padding: 1rem;
+  }
+
+  .featured-vip-heading {
+    gap: 0.65rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .featured-vip-heading p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
   .featured-vip-grid {
     grid-template-columns: 1fr;
   }
@@ -2222,7 +2230,7 @@ button:disabled {
   .featured-vip-card,
   .featured-vip-card.is-featured {
     grid-column: auto;
-    min-height: 26rem;
+    min-height: 24rem;
   }
 
   .featured-vip-card.is-featured .featured-vip-copy {
