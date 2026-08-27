@@ -96,10 +96,10 @@ const siteContent = {
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-07-women-leadership.jpg",
-          tag: "Leadership feminin international",
-          title: "Ambassadrice de l'influence economique",
-          text: "Personnalite de premier plan illustrant la place des femmes leaders dans les ecosystemes d'investissement, d'innovation et de transformation."
+          image: "assets/images/highlight-vip-07-hapsatou-sy.jpg",
+          tag: "Entrepreneuriat & influence",
+          title: "Hapsatou Sy",
+          text: "Entrepreneure, host et speaker, CEO de MITH International, avec un ancrage au Conservatoire National des Arts et Metiers, elle apporte a AGREX une voix de leadership, d'innovation et de rayonnement entrepreneurial."
         },
         {
           tier: "vip",
@@ -833,10 +833,10 @@ const siteContent = {
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-07-women-leadership.jpg",
-          tag: "International women leadership",
-          title: "Ambassador of economic influence",
-          text: "Front-rank personality illustrating the place of women leaders across investment, innovation and transformation ecosystems."
+          image: "assets/images/highlight-vip-07-hapsatou-sy.jpg",
+          tag: "Entrepreneurship & influence",
+          title: "Hapsatou Sy",
+          text: "Entrepreneur, host and speaker, CEO of MITH International, with ties to the Conservatoire National des Arts et Metiers, she brings to AGREX a strong voice of leadership, innovation and entrepreneurial influence."
         },
         {
           tier: "vip",
