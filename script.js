@@ -292,7 +292,7 @@ const siteContent = {
       cta: "Voir le parcours visiteur",
       cards: [
         {
-          image: "assets/images/institutional-portrait.jpeg",
+          image: "assets/images/papa-saer-gueye-portrait-2026.jpg",
           role: "Vice-President",
           name: "HE Papa Saer Gueye",
           paragraphs: [
@@ -993,7 +993,7 @@ const siteContent = {
       cta: "View the visitor journey",
       cards: [
         {
-          image: "assets/images/institutional-portrait.jpeg",
+          image: "assets/images/papa-saer-gueye-portrait-2026.jpg",
           role: "Vice-President",
           name: "HE Papa Saer Gueye",
           paragraphs: [
