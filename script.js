@@ -83,142 +83,142 @@ const siteContent = {
         {
           tier: "vip",
           image: "assets/images/highlight-vip-05-uae-executive.jpg",
-          tag: "Leadership UAE",
-          title: "Delegation executive des Emirats",
-          text: "Presence business de haut niveau pour soutenir les rencontres d'affaires, l'influence sectorielle et les passerelles d'investissement."
+          tag: "Leadership emirien",
+          title: "Representation executive des Emirats",
+          text: "Presence dirigeante engagee sur les dynamiques d'investissement, d'infrastructures urbaines et de cooperation economique entre Dubai et les marches africains."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-06-international-advisor.jpg",
-          tag: "Conseil strategique",
-          title: "Expertise internationale",
-          text: "Regard de senior advisor sur les trajectoires de croissance, la gouvernance et les alliances transfrontalieres."
+          tag: "Conseil international",
+          title: "Reference strategique",
+          text: "Expert de haut niveau apportant une lecture structurante des alliances, de la gouvernance de projet et des trajectoires de croissance transfrontalieres."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-07-women-leadership.jpg",
-          tag: "Leadership feminin",
-          title: "Voix internationale invitee",
-          text: "Profil de premier rang illustrant l'ouverture d'AGREX aux leaders d'influence, d'innovation et de transformation."
+          tag: "Leadership feminin international",
+          title: "Ambassadrice de l'influence economique",
+          text: "Personnalite de premier plan illustrant la place des femmes leaders dans les ecosystemes d'investissement, d'innovation et de transformation."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-08-gulf-representation.jpg",
-          tag: "Representation institutionnelle",
-          title: "Figure feminine du Golfe",
-          text: "Presence executive mettant en valeur la dimension diplomatique, entrepreneuriale et relationnelle du salon."
+          tag: "Diplomatie economique du Golfe",
+          title: "Representation feminine des Emirats",
+          text: "Presence institutionnelle qui renforce la dimension protocolaire, relationnelle et entrepreneuriale de la plateforme AGREX."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-09-gcc-executive.jpg",
-          tag: "Profil GCC",
-          title: "Representation executive du Golfe",
-          text: "Figure supplementaire de premier rang venant consolider la stature protocolaire et business de l'evenement."
+          tag: "Leadership GCC",
+          title: "Representation strategique du Golfe",
+          text: "Figure executive de haut niveau venant consolider la credibilite regionale et la qualite des passerelles d'affaires Afrique-Golfe."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-10-global-speaker.jpg",
-          tag: "Intervenant international",
-          title: "Voix d'influence invitee",
-          text: "Profil de rayonnement ajoute a la selection officielle pour enrichir la conversation Afrique-Golfe."
+          tag: "Rayonnement international",
+          title: "Intervenant de reference",
+          text: "Personnalite selectionnee pour apporter une lecture d'influence sur les investissements, les reseaux de decision et les perspectives de cooperation."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-01.jpg",
-          tag: "Afrique",
-          title: "Delegue institutionnel",
-          text: "Profil invite pour enrichir le dialogue diplomatique et l'ouverture territoriale du forum."
+          tag: "Afrique institutionnelle",
+          title: "Representation institutionnelle africaine",
+          text: "Presence qualifiee venant approfondir le dialogue diplomatique, territorial et economique du forum."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-02.jpg",
           tag: "Golfe",
-          title: "Intervenante invitee",
-          text: "Presence feminine de haut niveau pour illustrer la diversite des echanges entre l'Afrique et le Golfe."
+          title: "Presence feminine de haut niveau",
+          text: "Intervenante selectionnee pour refleter la qualite des echanges et la place des reseaux feminins dans le corridor Afrique-Golfe."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-03.jpg",
-          tag: "Innovation",
-          title: "Jeune voix executive",
-          text: "Profil emergent appele a porter une lecture moderne de l'investissement, des reseaux et de l'influence."
+          tag: "Nouvelle generation",
+          title: "Leadership emergent",
+          text: "Nouvelle voix executive mobilisee autour de l'innovation, du capital relationnel et des nouveaux marches."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-04.jpg",
-          tag: "Leadership",
-          title: "Intervenant international",
-          text: "Voix experte supplementaire pour renforcer le niveau business et la stature premium de la delegation."
+          tag: "Expertise internationale",
+          title: "Reference sectorielle",
+          text: "Intervenant additionnel appele a renforcer la profondeur business et la densite des echanges du salon."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-05.jpg",
-          tag: "Business",
-          title: "Profil investisseur",
-          text: "Representation orientee marche et capital pour prolonger la dynamique d'affaires du corridor Afrique-Golfe."
+          tag: "Investissement",
+          title: "Lecture marche & capital",
+          text: "Perspective orientee investissement pour prolonger la dynamique d'opportunites entre porteurs de projets et decideurs."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-lucia-brito.jpg",
           tag: "Cabo Verde",
           title: "Ms. Lúcia Brito",
-          text: "President of the Human Leaders International Congress – Cabo Verde."
+          text: "Presidente du Human Leaders International Congress - Cabo Verde."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-maria-oliver.jpg",
-          tag: "Leadership",
+          tag: "Leadership international",
           title: "Dr. Maria Oliver",
-          text: "President - Change The Narrative Limited."
+          text: "Presidente de Change The Narrative Limited."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-08.jpg",
           tag: "Leadership africain",
-          title: "Intervenante invitee",
-          text: "Profil de leadership mobilise pour nourrir les echanges sur l'influence, l'investissement et la cooperation."
+          title: "Voix de leadership africaine",
+          text: "Presence mobilisee pour enrichir les echanges sur l'influence, l'investissement et la cooperation regionale."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-09.jpg",
-          tag: "Expertise internationale",
-          title: "Conseil strategique",
-          text: "Perspective complementaire sur la structuration, les partenariats et les trajectoires de croissance transfrontaliere."
+          tag: "Conseil international",
+          title: "Appui strategique",
+          text: "Lecture complementaire des partenariats, de la structuration et des trajectoires de developpement transfrontalier."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-10.jpg",
-          tag: "Business",
-          title: "Delegue executif",
-          text: "Representation business additionnelle pour soutenir les echanges d'affaires, la mise en relation et les opportunites de corridor."
+          tag: "Affaires & investissement",
+          title: "Representation executive",
+          text: "Presence additionnelle engagee sur la mise en relation, les accords d'affaires et l'acceleration des opportunites."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-11.jpg",
-          tag: "Afrique",
-          title: "Invite institutionnel",
-          text: "Profil invite pour renforcer la credibilite institutionnelle et la profondeur des discussions entre acteurs publics et prives."
+          tag: "Afrique institutionnelle",
+          title: "Personnalite institutionnelle invitee",
+          text: "Acteur qualifie venant consolider la credibilite du dialogue entre institutions, investisseurs et operateurs."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-12.jpg",
-          tag: "Investissement",
-          title: "Participant executive",
-          text: "Voix additionnelle attendue sur les sujets de marche, d'accompagnement des investisseurs et de developpement de projets."
+          tag: "Developpement de projets",
+          title: "Executif marche",
+          text: "Intervenant mobilise sur l'accompagnement des investisseurs, l'acces au marche et la structuration de projets."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-13.jpg",
-          tag: "Golfe",
-          title: "Invitee business",
-          text: "Presence invitee pour prolonger l'ouverture du salon vers les reseaux feminins, institutionnels et entrepreneuriaux du Golfe."
+          tag: "Golfe entrepreneurial",
+          title: "Leadership feminin business",
+          text: "Presence feminine issue du Golfe pour ouvrir des perspectives entrepreneuriales, institutionnelles et relationnelles."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-14.jpg",
-          tag: "Leadership",
-          title: "Delegue senior",
-          text: "Profil de haut niveau ajoute a la delegation pour consolider la stature premium et la portee internationale du forum."
+          tag: "Leadership international",
+          title: "Personnalite senior",
+          text: "Figure complementaire de haut niveau qui renforce le rayonnement et la qualite de la delegation AGREX."
         }
       ]
     },
@@ -820,142 +820,142 @@ const siteContent = {
         {
           tier: "vip",
           image: "assets/images/highlight-vip-05-uae-executive.jpg",
-          tag: "UAE leadership",
-          title: "Executive delegation from the Emirates",
-          text: "High-level business presence supporting meetings, sector influence and investment bridges."
+          tag: "Emirati leadership",
+          title: "Executive representation from the Emirates",
+          text: "Senior leadership presence engaged on investment dynamics, urban infrastructure and economic cooperation between Dubai and African markets."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-06-international-advisor.jpg",
-          tag: "Strategic advisory",
-          title: "International expertise",
-          text: "Senior advisor perspective on growth trajectories, governance and cross-border alliances."
+          tag: "International advisory",
+          title: "Strategic reference",
+          text: "High-level expert bringing a structuring perspective on alliances, project governance and cross-border growth trajectories."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-07-women-leadership.jpg",
-          tag: "Women in leadership",
-          title: "International invited voice",
-          text: "Front-rank profile illustrating AGREX openness to leaders of influence, innovation and transformation."
+          tag: "International women leadership",
+          title: "Ambassador of economic influence",
+          text: "Front-rank personality illustrating the place of women leaders across investment, innovation and transformation ecosystems."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-08-gulf-representation.jpg",
-          tag: "Institutional representation",
-          title: "Female figure from the Gulf",
-          text: "Executive presence highlighting the diplomatic, entrepreneurial and relationship-building side of the event."
+          tag: "Gulf economic diplomacy",
+          title: "Female representation from the Emirates",
+          text: "Institutional presence reinforcing the protocol, relationship-building and entrepreneurial dimension of the AGREX platform."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-09-gcc-executive.jpg",
-          tag: "GCC profile",
-          title: "Executive representation from the Gulf",
-          text: "Additional top-tier figure reinforcing the protocol stature and business standing of the event."
+          tag: "GCC leadership",
+          title: "Strategic representation from the Gulf",
+          text: "High-level executive figure reinforcing regional credibility and the quality of Africa-Gulf business bridges."
         },
         {
           tier: "vip",
           image: "assets/images/highlight-vip-10-global-speaker.jpg",
-          tag: "International speaker",
-          title: "Invited voice of influence",
-          text: "High-visibility profile added to the official selection to enrich the Africa-Gulf conversation."
+          tag: "International influence",
+          title: "Reference speaker",
+          text: "Selected personality bringing an influence-driven perspective on investment, decision-making networks and future cooperation."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-01.jpg",
-          tag: "Africa",
-          title: "Institutional delegate",
-          text: "Invited profile expanding the diplomatic dialogue and territorial depth of the forum."
+          tag: "Institutional Africa",
+          title: "African institutional representation",
+          text: "Qualified presence deepening the forum's diplomatic, territorial and economic dialogue."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-02.jpg",
           tag: "Gulf",
-          title: "Invited speaker",
-          text: "Senior female presence illustrating the diversity of Africa-Gulf exchanges and representation."
+          title: "Senior female presence",
+          text: "Selected participant reflecting the quality of exchanges and the role of women's networks in the Africa-Gulf corridor."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-03.jpg",
-          tag: "Innovation",
-          title: "Emerging executive voice",
-          text: "Next-generation profile bringing a modern perspective on investment, networks and influence."
+          tag: "Next generation",
+          title: "Emerging leadership",
+          text: "New executive voice focused on innovation, relationship capital and next-market opportunities."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-04.jpg",
-          tag: "Leadership",
-          title: "International speaker",
-          text: "Additional expert voice reinforcing the business level and premium stature of the delegation."
+          tag: "International expertise",
+          title: "Sector reference",
+          text: "Additional participant expected to reinforce the business depth and quality of exchange across the event."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-05.jpg",
-          tag: "Business",
-          title: "Investor profile",
-          text: "Market-oriented representation extending the business momentum of the Africa-Gulf corridor."
+          tag: "Investment",
+          title: "Market & capital perspective",
+          text: "Investment-oriented perspective extending the flow of opportunities between project sponsors and decision-makers."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-lucia-brito.jpg",
           tag: "Cabo Verde",
           title: "Ms. Lúcia Brito",
-          text: "President of the Human Leaders International Congress – Cabo Verde."
+          text: "President of the Human Leaders International Congress - Cabo Verde."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-maria-oliver.jpg",
-          tag: "Leadership",
+          tag: "International leadership",
           title: "Dr. Maria Oliver",
-          text: "President - Change The Narrative Limited."
+          text: "President of Change The Narrative Limited."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-08.jpg",
           tag: "African leadership",
-          title: "Invited speaker",
-          text: "Leadership profile invited to deepen conversations on influence, investment and cross-regional cooperation."
+          title: "African leadership voice",
+          text: "Selected presence enriching the dialogue on influence, investment and regional cooperation."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-09.jpg",
-          tag: "International expertise",
-          title: "Strategic advisory voice",
-          text: "Complementary perspective on structuring, partnerships and cross-border growth trajectories."
+          tag: "International advisory",
+          title: "Strategic support",
+          text: "Complementary perspective on partnerships, structuring and cross-border development trajectories."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-10.jpg",
-          tag: "Business",
-          title: "Executive delegate",
-          text: "Additional business representation supporting deal flow, introductions and corridor opportunities."
+          tag: "Business & investment",
+          title: "Executive representation",
+          text: "Additional presence engaged on introductions, business agreements and the acceleration of opportunities."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-11.jpg",
-          tag: "Africa",
-          title: "Institutional guest",
-          text: "Invited profile strengthening institutional credibility and the depth of discussions between public and private actors."
+          tag: "Institutional Africa",
+          title: "Invited institutional figure",
+          text: "Qualified actor strengthening the credibility of dialogue between institutions, investors and operators."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-12.jpg",
-          tag: "Investment",
-          title: "Executive participant",
-          text: "Additional voice expected on market access, investor support and project development topics."
+          tag: "Project development",
+          title: "Market executive",
+          text: "Participant engaged on investor support, market access and project structuring."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-13.jpg",
-          tag: "Gulf",
-          title: "Business guest",
-          text: "Invited presence extending the forum's reach toward female, institutional and entrepreneurial Gulf networks."
+          tag: "Entrepreneurial Gulf",
+          title: "Female business leadership",
+          text: "Gulf-based female presence opening entrepreneurial, institutional and relationship-driven perspectives."
         },
         {
           tier: "marquee",
           image: "assets/images/featured-guest-14.jpg",
-          tag: "Leadership",
-          title: "Senior delegate",
-          text: "High-level profile added to strengthen the premium stature and international reach of the forum."
+          tag: "International leadership",
+          title: "Senior personality",
+          text: "Complementary high-level figure strengthening the reach and standing of the AGREX delegation."
         }
       ]
     },
