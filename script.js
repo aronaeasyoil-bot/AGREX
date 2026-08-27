@@ -76,9 +76,9 @@ const siteContent = {
         {
           tier: "vip",
           image: "assets/images/highlight-vip-04-uae-senior.jpg",
-          tag: "Voix emirienne",
-          title: "Representation institutionnelle des Emirats",
-          text: "Figure de reference venant renforcer la credibilite regionale, la stature protocolaire et l'ouverture vers Dubai."
+          tag: "Emirats arabes unis",
+          title: "Sheikh Rashid Al-Shaibani",
+          text: "Personnalite emirienne et membre d'honneur de la Gulf Africa Investment Chamber (GAIC), il apporte a AGREX une presence institutionnelle de premier rang et une lecture influente des passerelles entre le Golfe et l'Afrique."
         },
         {
           tier: "vip",
@@ -813,9 +813,9 @@ const siteContent = {
         {
           tier: "vip",
           image: "assets/images/highlight-vip-04-uae-senior.jpg",
-          tag: "Emirati voice",
-          title: "Institutional representation from the UAE",
-          text: "Reference figure strengthening regional credibility, protocol stature and the Dubai gateway."
+          tag: "United Arab Emirates",
+          title: "Sheikh Rashid Al-Shaibani",
+          text: "An Emirati figure and honorary member of the Gulf Africa Investment Chamber (GAIC), he brings first-rank institutional presence to AGREX and an influential perspective on Gulf-Africa bridges."
         },
         {
           tier: "vip",
