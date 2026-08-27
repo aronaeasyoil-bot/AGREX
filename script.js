@@ -41,144 +41,180 @@ const siteContent = {
       ]
     },
     highlights: {
-      title: "Delegation d'honneur & intervenants invites",
-      badge: "Intervenants AGREX 2026",
+      title: "Delegation de premier rang & intervenants invites",
+      badge: "Selection officielle AGREX 2026",
       lead:
-        "Une selection de profils invites pour incarner le niveau institutionnel, business et international du dialogue AGREX entre l'Afrique, le Golfe et Dubai.",
+        "Les personnalites et profils de reference qui donnent a AGREX sa stature institutionnelle, diplomatique et business entre l'Afrique, le Golfe et Dubai.",
+      featuredLabel: "Figures de premier rang",
+      featuredTitle: "Les personnalites mises en avant par AGREX 2026",
+      featuredLead:
+        "Une mise en avant reservee aux profils les plus visibles de l'edition 2026. Le Ministre Moussa Bala FOFANA y figure comme invite d'honneur unique.",
+      marqueeLabel: "Autres profils invites",
       cards: [
         {
-          image: "assets/images/featured-voice-minister.jpg",
-          tag: "Senegal",
+          tier: "vip",
+          featured: true,
+          image: "assets/images/highlight-vip-01-minister.jpg",
+          tag: "Invite d'honneur",
           title: "Monsieur Moussa Bala FOFANA",
           text: "Ministre de l'Urbanisme, des Collectivites Territoriales et de l'Amenagement des Territoires."
         },
         {
-          image: "assets/images/featured-voice-saudi.jpg",
-          tag: "Arabie saoudite",
-          title: "Delegation du Royaume",
-          text: "Profil institutionnel et diplomatique mobilise pour renforcer l'ancrage regional et la portee internationale d'AGREX."
+          tier: "vip",
+          image: "assets/images/highlight-vip-02-business.jpg",
+          tag: "Leadership business",
+          title: "Figure executive internationale",
+          text: "Profil de premier plan attendu sur les connexions d'affaires, l'investissement et la structuration de partenariats a haute valeur."
         },
         {
-          image: "assets/images/featured-voice-lady.jpg",
-          tag: "Guest speaker",
-          title: "Intervenante invitee",
-          text: "Voix feminine de haut niveau pour representer l'ouverture internationale, l'influence et les dynamiques d'affaires."
+          tier: "vip",
+          image: "assets/images/highlight-vip-03-saudi-royal.jpg",
+          tag: "Delegation royale",
+          title: "Representation du Royaume",
+          text: "Presence institutionnelle de haut niveau mobilisee pour ancrer AGREX dans un dialogue Gulf-Africa a forte visibilite."
         },
         {
-          image: "assets/images/featured-voice-business.jpg",
-          tag: "Capital & partenariats",
-          title: "Leadership business",
-          text: "Profil executif attendu sur les sujets d'investissement, de structuration commerciale et de connexions a haute valeur."
+          tier: "vip",
+          image: "assets/images/highlight-vip-04-uae-senior.jpg",
+          tag: "Voix emirienne",
+          title: "Representation institutionnelle des Emirats",
+          text: "Figure de reference venant renforcer la credibilite regionale, la stature protocolaire et l'ouverture vers Dubai."
         },
         {
-          image: "assets/images/featured-speaker-01.jpg",
-          tag: "Emirats arabes unis",
-          title: "Delegation des Emirats",
-          text: "Intervenant du Golfe mis en avant pour porter la relation entre l'offre immobiliere de Dubai et les investisseurs africains."
+          tier: "vip",
+          image: "assets/images/highlight-vip-05-uae-executive.jpg",
+          tag: "Leadership UAE",
+          title: "Delegation executive des Emirats",
+          text: "Presence business de haut niveau pour soutenir les rencontres d'affaires, l'influence sectorielle et les passerelles d'investissement."
         },
         {
-          image: "assets/images/featured-speaker-02.jpg",
-          tag: "Emirats arabes unis",
-          title: "Voix des Emirats",
-          text: "Representation executive des ecosystemes UAE pour renforcer le dialogue, la visibilite et les partenariats du salon."
+          tier: "vip",
+          image: "assets/images/highlight-vip-06-international-advisor.jpg",
+          tag: "Conseil strategique",
+          title: "Expertise internationale",
+          text: "Regard de senior advisor sur les trajectoires de croissance, la gouvernance et les alliances transfrontalieres."
         },
         {
-          image: "assets/images/featured-voice-advisor.jpg",
-          tag: "Expertise internationale",
-          title: "Conseil & vision",
-          text: "Perspective complementaire sur les marches, la gouvernance de projet et les opportunites transfrontalieres autour d'AGREX."
+          tier: "vip",
+          image: "assets/images/highlight-vip-07-women-leadership.jpg",
+          tag: "Leadership feminin",
+          title: "Voix internationale invitee",
+          text: "Profil de premier rang illustrant l'ouverture d'AGREX aux leaders d'influence, d'innovation et de transformation."
         },
         {
+          tier: "vip",
+          image: "assets/images/highlight-vip-08-gulf-representation.jpg",
+          tag: "Representation institutionnelle",
+          title: "Figure feminine du Golfe",
+          text: "Presence executive mettant en valeur la dimension diplomatique, entrepreneuriale et relationnelle du salon."
+        },
+        {
+          tier: "vip",
+          image: "assets/images/highlight-vip-09-gcc-executive.jpg",
+          tag: "Profil GCC",
+          title: "Representation executive du Golfe",
+          text: "Figure supplementaire de premier rang venant consolider la stature protocolaire et business de l'evenement."
+        },
+        {
+          tier: "vip",
+          image: "assets/images/highlight-vip-10-global-speaker.jpg",
+          tag: "Intervenant international",
+          title: "Voix d'influence invitee",
+          text: "Profil de rayonnement ajoute a la selection officielle pour enrichir la conversation Afrique-Golfe."
+        },
+        {
+          tier: "marquee",
           image: "assets/images/featured-guest-01.jpg",
           tag: "Afrique",
           title: "Delegue institutionnel",
           text: "Profil invite pour enrichir le dialogue diplomatique et l'ouverture territoriale du forum."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-02.jpg",
           tag: "Golfe",
           title: "Intervenante invitee",
           text: "Presence feminine de haut niveau pour illustrer la diversite des echanges entre l'Afrique et le Golfe."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-03.jpg",
           tag: "Innovation",
           title: "Jeune voix executive",
           text: "Profil emergent appele a porter une lecture moderne de l'investissement, des reseaux et de l'influence."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-04.jpg",
           tag: "Leadership",
           title: "Intervenant international",
           text: "Voix experte supplementaire pour renforcer le niveau business et la stature premium de la delegation."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-05.jpg",
           tag: "Business",
           title: "Profil investisseur",
           text: "Representation orientee marche et capital pour prolonger la dynamique d'affaires du corridor Afrique-Golfe."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-lucia-brito.jpg",
           tag: "Cabo Verde",
           title: "Ms. Lúcia Brito",
           text: "President of the Human Leaders International Congress – Cabo Verde."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-maria-oliver.jpg",
           tag: "Leadership",
           title: "Dr. Maria Oliver",
           text: "President - Change The Narrative Limited."
         },
         {
-          image: "assets/images/featured-guest-06.jpg",
-          tag: "Golfe",
-          title: "Profil invite",
-          text: "Presence executive supplementaire pour renforcer la visibilite regionale et la qualite des connexions institutionnelles."
-        },
-        {
-          image: "assets/images/featured-guest-07.jpg",
-          tag: "Representation feminine",
-          title: "Invitee institutionnelle",
-          text: "Voix feminine invitee pour illustrer l'ouverture, la qualite du reseau et la dimension internationale d'AGREX."
-        },
-        {
+          tier: "marquee",
           image: "assets/images/featured-guest-08.jpg",
-          tag: "Afrique",
-          title: "Intervenante d'honneur",
+          tag: "Leadership africain",
+          title: "Intervenante invitee",
           text: "Profil de leadership mobilise pour nourrir les echanges sur l'influence, l'investissement et la cooperation."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-09.jpg",
           tag: "Expertise internationale",
           title: "Conseil strategique",
           text: "Perspective complementaire sur la structuration, les partenariats et les trajectoires de croissance transfrontaliere."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-10.jpg",
           tag: "Business",
           title: "Delegue executif",
           text: "Representation business additionnelle pour soutenir les echanges d'affaires, la mise en relation et les opportunites de corridor."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-11.jpg",
           tag: "Afrique",
-          title: "Invite d'honneur",
+          title: "Invite institutionnel",
           text: "Profil invite pour renforcer la credibilite institutionnelle et la profondeur des discussions entre acteurs publics et prives."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-12.jpg",
           tag: "Investissement",
           title: "Participant executive",
           text: "Voix additionnelle attendue sur les sujets de marche, d'accompagnement des investisseurs et de developpement de projets."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-13.jpg",
           tag: "Golfe",
           title: "Invitee business",
           text: "Presence invitee pour prolonger l'ouverture du salon vers les reseaux feminins, institutionnels et entrepreneuriaux du Golfe."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-14.jpg",
           tag: "Leadership",
           title: "Delegue senior",
@@ -742,144 +778,180 @@ const siteContent = {
       ]
     },
     highlights: {
-      title: "Honor delegation & guest speakers",
-      badge: "AGREX speakers 2026",
+      title: "Featured delegation & invited speakers",
+      badge: "Official AGREX 2026 selection",
       lead:
-        "A curated selection of invited profiles reflecting the institutional, business and international level of the AGREX dialogue between Africa, the Gulf and Dubai.",
+        "The personalities and reference profiles that give AGREX its institutional, diplomatic and business stature between Africa, the Gulf and Dubai.",
+      featuredLabel: "Featured principals",
+      featuredTitle: "The personalities highlighted by AGREX 2026",
+      featuredLead:
+        "A dedicated showcase for the most visible profiles of the 2026 edition. Minister Moussa Bala FOFANA is presented here as the sole guest of honour.",
+      marqueeLabel: "Additional invited profiles",
       cards: [
         {
-          image: "assets/images/featured-voice-minister.jpg",
-          tag: "Senegal",
+          tier: "vip",
+          featured: true,
+          image: "assets/images/highlight-vip-01-minister.jpg",
+          tag: "Guest of Honour",
           title: "Monsieur Moussa Bala FOFANA",
           text: "Minister of Urbanism, Territorial Communities and Land Planning."
         },
         {
-          image: "assets/images/featured-voice-saudi.jpg",
-          tag: "Saudi Arabia",
-          title: "Kingdom delegation",
-          text: "Institutional and diplomatic profile reinforcing AGREX regional depth and international positioning."
+          tier: "vip",
+          image: "assets/images/highlight-vip-02-business.jpg",
+          tag: "Business leadership",
+          title: "International executive figure",
+          text: "High-level profile expected on business connections, investment and partnership structuring."
         },
         {
-          image: "assets/images/featured-voice-lady.jpg",
-          tag: "Guest speaker",
-          title: "Invited speaker",
-          text: "High-level female voice representing international openness, influence and business dynamics."
+          tier: "vip",
+          image: "assets/images/highlight-vip-03-saudi-royal.jpg",
+          tag: "Royal delegation",
+          title: "Kingdom representation",
+          text: "High-level institutional presence anchoring AGREX in a visible Gulf-Africa dialogue."
         },
         {
-          image: "assets/images/featured-voice-business.jpg",
-          tag: "Capital & partnerships",
-          title: "Business leadership",
-          text: "Executive profile expected on investment, commercial structuring and high-value market connections."
+          tier: "vip",
+          image: "assets/images/highlight-vip-04-uae-senior.jpg",
+          tag: "Emirati voice",
+          title: "Institutional representation from the UAE",
+          text: "Reference figure strengthening regional credibility, protocol stature and the Dubai gateway."
         },
         {
-          image: "assets/images/featured-speaker-01.jpg",
-          tag: "United Arab Emirates",
-          title: "UAE delegation",
-          text: "Gulf representative highlighted to connect Dubai real estate product with African investors."
+          tier: "vip",
+          image: "assets/images/highlight-vip-05-uae-executive.jpg",
+          tag: "UAE leadership",
+          title: "Executive delegation from the Emirates",
+          text: "High-level business presence supporting meetings, sector influence and investment bridges."
         },
         {
-          image: "assets/images/featured-speaker-02.jpg",
-          tag: "United Arab Emirates",
-          title: "UAE market voice",
-          text: "Executive presence from the UAE ecosystem to reinforce dialogue, visibility and partnerships."
+          tier: "vip",
+          image: "assets/images/highlight-vip-06-international-advisor.jpg",
+          tag: "Strategic advisory",
+          title: "International expertise",
+          text: "Senior advisor perspective on growth trajectories, governance and cross-border alliances."
         },
         {
-          image: "assets/images/featured-voice-advisor.jpg",
-          tag: "International expertise",
-          title: "Advisory & vision",
-          text: "Additional perspective on markets, project governance and cross-border opportunity around AGREX."
+          tier: "vip",
+          image: "assets/images/highlight-vip-07-women-leadership.jpg",
+          tag: "Women in leadership",
+          title: "International invited voice",
+          text: "Front-rank profile illustrating AGREX openness to leaders of influence, innovation and transformation."
         },
         {
+          tier: "vip",
+          image: "assets/images/highlight-vip-08-gulf-representation.jpg",
+          tag: "Institutional representation",
+          title: "Female figure from the Gulf",
+          text: "Executive presence highlighting the diplomatic, entrepreneurial and relationship-building side of the event."
+        },
+        {
+          tier: "vip",
+          image: "assets/images/highlight-vip-09-gcc-executive.jpg",
+          tag: "GCC profile",
+          title: "Executive representation from the Gulf",
+          text: "Additional top-tier figure reinforcing the protocol stature and business standing of the event."
+        },
+        {
+          tier: "vip",
+          image: "assets/images/highlight-vip-10-global-speaker.jpg",
+          tag: "International speaker",
+          title: "Invited voice of influence",
+          text: "High-visibility profile added to the official selection to enrich the Africa-Gulf conversation."
+        },
+        {
+          tier: "marquee",
           image: "assets/images/featured-guest-01.jpg",
           tag: "Africa",
           title: "Institutional delegate",
           text: "Invited profile expanding the diplomatic dialogue and territorial depth of the forum."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-02.jpg",
           tag: "Gulf",
           title: "Invited speaker",
           text: "Senior female presence illustrating the diversity of Africa-Gulf exchanges and representation."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-03.jpg",
           tag: "Innovation",
           title: "Emerging executive voice",
           text: "Next-generation profile bringing a modern perspective on investment, networks and influence."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-04.jpg",
           tag: "Leadership",
           title: "International speaker",
           text: "Additional expert voice reinforcing the business level and premium stature of the delegation."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-05.jpg",
           tag: "Business",
           title: "Investor profile",
           text: "Market-oriented representation extending the business momentum of the Africa-Gulf corridor."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-lucia-brito.jpg",
           tag: "Cabo Verde",
           title: "Ms. Lúcia Brito",
           text: "President of the Human Leaders International Congress – Cabo Verde."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-maria-oliver.jpg",
           tag: "Leadership",
           title: "Dr. Maria Oliver",
           text: "President - Change The Narrative Limited."
         },
         {
-          image: "assets/images/featured-guest-06.jpg",
-          tag: "Gulf",
-          title: "Invited profile",
-          text: "Additional executive presence reinforcing regional visibility and the quality of institutional connections."
-        },
-        {
-          image: "assets/images/featured-guest-07.jpg",
-          tag: "Women in leadership",
-          title: "Institutional guest",
-          text: "Invited female voice illustrating openness, network quality and the international dimension of AGREX."
-        },
-        {
+          tier: "marquee",
           image: "assets/images/featured-guest-08.jpg",
-          tag: "Africa",
-          title: "Honor speaker",
+          tag: "African leadership",
+          title: "Invited speaker",
           text: "Leadership profile invited to deepen conversations on influence, investment and cross-regional cooperation."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-09.jpg",
           tag: "International expertise",
           title: "Strategic advisory voice",
           text: "Complementary perspective on structuring, partnerships and cross-border growth trajectories."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-10.jpg",
           tag: "Business",
           title: "Executive delegate",
           text: "Additional business representation supporting deal flow, introductions and corridor opportunities."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-11.jpg",
           tag: "Africa",
-          title: "Honor guest",
+          title: "Institutional guest",
           text: "Invited profile strengthening institutional credibility and the depth of discussions between public and private actors."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-12.jpg",
           tag: "Investment",
           title: "Executive participant",
           text: "Additional voice expected on market access, investor support and project development topics."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-13.jpg",
           tag: "Gulf",
           title: "Business guest",
           text: "Invited presence extending the forum's reach toward female, institutional and entrepreneurial Gulf networks."
         },
         {
+          tier: "marquee",
           image: "assets/images/featured-guest-14.jpg",
           tag: "Leadership",
           title: "Senior delegate",
@@ -1591,31 +1663,62 @@ function applyTexts(data) {
   });
 }
 
-function renderFeaturedVoices(items) {
+function renderFeaturedVoices(section) {
   const container = document.getElementById("featured-voice-cards");
-  if (!container) return;
+  if (!container || !section) return;
 
-  const repeatedItems = [...items, ...items];
+  const vipItems = (section.cards || []).filter((item) => item.tier === "vip");
+  const marqueeItems = (section.cards || []).filter((item) => item.tier !== "vip");
+  const repeatedItems = [...marqueeItems, ...marqueeItems.map((item) => ({ ...item, duplicate: true }))];
+
+  const renderVipCard = (item) => `
+    <article class="featured-vip-card ${item.featured ? "is-featured" : ""}" data-reveal>
+      <div class="featured-vip-media">
+        <img src="${item.image}" alt="${item.title}" />
+      </div>
+      <div class="featured-vip-copy">
+        <span class="featured-vip-chip">${item.tag}</span>
+        <h3>${item.title}</h3>
+        <p>${item.text}</p>
+      </div>
+    </article>
+  `;
+
+  const renderMarqueeCard = (item) => `
+    <article class="featured-voice-card" ${item.duplicate ? 'aria-hidden="true"' : ""}>
+      <div class="featured-voice-media">
+        <img src="${item.image}" alt="${item.title}" />
+      </div>
+      <div class="featured-voice-copy">
+        <span class="featured-voice-tag">${item.tag}</span>
+        <h3>${item.title}</h3>
+        <p>${item.text}</p>
+      </div>
+    </article>
+  `;
 
   container.innerHTML = `
-    <div class="featured-voices-marquee-window" data-reveal>
-      <div class="featured-voices-marquee-track">
-        ${repeatedItems
-          .map(
-            (item, index) => `
-              <article class="featured-voice-card" ${index >= items.length ? 'aria-hidden="true"' : ""}>
-                <div class="featured-voice-media">
-                  <img src="${item.image}" alt="${item.title}" />
-                </div>
-                <div class="featured-voice-copy">
-                  <span class="featured-voice-tag">${item.tag}</span>
-                  <h3>${item.title}</h3>
-                  <p>${item.text}</p>
-                </div>
-              </article>
-            `
-          )
-          .join("")}
+    <div class="featured-voices-showcase">
+      <div class="featured-vip-panel" data-reveal>
+        <div class="featured-vip-heading">
+          <p class="featured-vip-kicker">${section.featuredLabel || ""}</p>
+          <h3>${section.featuredTitle || ""}</h3>
+          <p>${section.featuredLead || ""}</p>
+        </div>
+        <div class="featured-vip-grid">
+          ${vipItems.map((item) => renderVipCard(item)).join("")}
+        </div>
+      </div>
+
+      <div class="featured-voices-marquee-group" data-reveal>
+        <div class="featured-voices-marquee-meta">
+          <p class="featured-voices-marquee-label">${section.marqueeLabel || ""}</p>
+        </div>
+        <div class="featured-voices-marquee-window">
+          <div class="featured-voices-marquee-track">
+            ${repeatedItems.map((item) => renderMarqueeCard(item)).join("")}
+          </div>
+        </div>
       </div>
     </div>
   `;
@@ -2003,7 +2106,7 @@ function renderSite(lang) {
   setMeta(data, lang);
   applyTexts(data);
   renderOfficialPartners(data.officialPartners.cards);
-  renderFeaturedVoices(data.highlights.cards);
+  renderFeaturedVoices(data.highlights);
   renderTicker(data.ticker.items);
   renderStories(data.showcase.stories);
   renderSpeakers(data.speakers.cards);
