@@ -83,9 +83,9 @@ const siteContent = {
         {
           tier: "vip",
           image: "assets/images/highlight-vip-05-uae-executive.jpg",
-          tag: "Leadership emirien",
-          title: "Representation executive des Emirats",
-          text: "Presence dirigeante engagee sur les dynamiques d'investissement, d'infrastructures urbaines et de cooperation economique entre Dubai et les marches africains."
+          tag: "Finance & investissement - UAE",
+          title: "Sheikh Ali Al Khawlani",
+          text: "Chairman de TFG UAE, figure emiratienne de la finance et de l'investissement, il apporte a AGREX une lecture strategique des flux de capitaux, des structurations financieres et des passerelles d'affaires entre le Golfe et l'Afrique."
         },
         {
           tier: "vip",
@@ -820,9 +820,9 @@ const siteContent = {
         {
           tier: "vip",
           image: "assets/images/highlight-vip-05-uae-executive.jpg",
-          tag: "Emirati leadership",
-          title: "Executive representation from the Emirates",
-          text: "Senior leadership presence engaged on investment dynamics, urban infrastructure and economic cooperation between Dubai and African markets."
+          tag: "Finance & investment - UAE",
+          title: "Sheikh Ali Al Khawlani",
+          text: "Chairman of TFG UAE and an Emirati figure in finance and investment, he brings to AGREX a strategic perspective on capital flows, financial structuring and Gulf-Africa business bridges."
         },
         {
           tier: "vip",
