@@ -103,10 +103,10 @@ const siteContent = {
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-08-gulf-representation.jpg",
-          tag: "Diplomatie economique du Golfe",
-          title: "Representation feminine des Emirats",
-          text: "Presence institutionnelle qui renforce la dimension protocolaire, relationnelle et entrepreneuriale de la plateforme AGREX."
+          image: "assets/images/highlight-vip-08-zunaira-ulfat.jpg",
+          tag: "Leadership feminin MENA",
+          title: "Ms. Zunaira Ulfat",
+          text: "CEO de Women of MENA et reconnue parmi les UAE Top 10 Leaders 2026, elle incarne une voix montante du leadership feminin regional, au croisement de l'influence, des reseaux d'affaires et de l'impact."
         },
         {
           tier: "vip",
@@ -840,10 +840,10 @@ const siteContent = {
         },
         {
           tier: "vip",
-          image: "assets/images/highlight-vip-08-gulf-representation.jpg",
-          tag: "Gulf economic diplomacy",
-          title: "Female representation from the Emirates",
-          text: "Institutional presence reinforcing the protocol, relationship-building and entrepreneurial dimension of the AGREX platform."
+          image: "assets/images/highlight-vip-08-zunaira-ulfat.jpg",
+          tag: "MENA women leadership",
+          title: "Ms. Zunaira Ulfat",
+          text: "CEO of Women of MENA and recognized among the UAE Top 10 Leaders 2026, she brings to AGREX a rising voice in regional women leadership, business influence and high-impact networking."
         },
         {
           tier: "vip",
