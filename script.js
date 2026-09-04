@@ -45,10 +45,10 @@ const siteContent = {
       badge: "Selection officielle AGREX 2026",
       lead:
         "Les personnalites et profils de reference qui donnent a AGREX sa stature institutionnelle, diplomatique et business entre l'Afrique, le Golfe et Dubai.",
-      featuredLabel: "Figures de premier rang",
-      featuredTitle: "Les personnalites mises en avant par AGREX 2026",
+      featuredLabel: "Delegation d'excellence",
+      featuredTitle: "Delegation institutionnelle et leaders internationaux",
       featuredLead:
-        "Une mise en avant reservee aux profils les plus visibles de l'edition 2026. Le Ministre Moussa Bala FOFANA y figure comme invite d'honneur unique.",
+        "Une delegation reunissant responsables publics, diplomates, decideurs et dirigeants d'entreprise engages pour le dialogue entre l'Afrique et le Golfe. Le Ministre Moussa Bala FOFANA y figure comme invite d'honneur unique.",
       marqueeLabel: "Autres profils invites",
       cards: [
         {
@@ -121,6 +121,13 @@ const siteContent = {
           tag: "Rayonnement international",
           title: "Intervenant de reference",
           text: "Personnalite selectionnee pour apporter une lecture d'influence sur les investissements, les reseaux de decision et les perspectives de cooperation."
+        },
+        {
+          tier: "vip",
+          image: "assets/images/highlight-vip-11-babacar-matar-ndiaye.jpg",
+          tag: "Representation diplomatique du Senegal",
+          title: "Son Excellence M. Babacar Matar Ndiaye",
+          text: "Ambassadeur extraordinaire et plenipotentiaire de la Republique du Senegal aupres des Emirats arabes unis, il porte une voix diplomatique majeure au service du renforcement des relations entre le Senegal, les Emirats et l'ensemble du Golfe."
         },
         {
           tier: "marquee",
@@ -782,10 +789,10 @@ const siteContent = {
       badge: "Official AGREX 2026 selection",
       lead:
         "The personalities and reference profiles that give AGREX its institutional, diplomatic and business stature between Africa, the Gulf and Dubai.",
-      featuredLabel: "Featured principals",
-      featuredTitle: "The personalities highlighted by AGREX 2026",
+      featuredLabel: "Distinguished delegation",
+      featuredTitle: "Institutional delegation & international leaders",
       featuredLead:
-        "A dedicated showcase for the most visible profiles of the 2026 edition. Minister Moussa Bala FOFANA is presented here as the sole guest of honour.",
+        "A delegation bringing together public officials, diplomats, decision-makers and business leaders committed to dialogue between Africa and the Gulf. Minister Moussa Bala FOFANA is presented here as the sole guest of honour.",
       marqueeLabel: "Additional invited profiles",
       cards: [
         {
@@ -858,6 +865,13 @@ const siteContent = {
           tag: "International influence",
           title: "Reference speaker",
           text: "Selected personality bringing an influence-driven perspective on investment, decision-making networks and future cooperation."
+        },
+        {
+          tier: "vip",
+          image: "assets/images/highlight-vip-11-babacar-matar-ndiaye.jpg",
+          tag: "Senegalese diplomatic representation",
+          title: "H.E. Mr. Babacar Matar Ndiaye",
+          text: "Ambassador Extraordinary and Plenipotentiary of the Republic of Senegal to the United Arab Emirates, he brings a major diplomatic voice to strengthening relations between Senegal, the UAE and the wider Gulf region."
         },
         {
           tier: "marquee",
