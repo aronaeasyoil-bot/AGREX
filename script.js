@@ -61,6 +61,14 @@ const siteContent = {
         },
         {
           tier: "vip",
+          protocol: true,
+          image: "assets/images/highlight-vip-11-babacar-matar-ndiaye.jpg",
+          tag: "Representation diplomatique du Senegal",
+          title: "Son Excellence M. Babacar Matar Ndiaye",
+          text: "Ambassadeur extraordinaire et plenipotentiaire de la Republique du Senegal aupres des Emirats arabes unis, il porte une voix diplomatique majeure au service du renforcement des relations entre le Senegal, les Emirats et l'ensemble du Golfe."
+        },
+        {
+          tier: "vip",
           image: "assets/images/highlight-vip-02-business.webp",
           tag: "Infrastructures & logistique UAE",
           title: "Zakee Siddiqi",
@@ -121,13 +129,6 @@ const siteContent = {
           tag: "Rayonnement international",
           title: "Intervenant de reference",
           text: "Personnalite selectionnee pour apporter une lecture d'influence sur les investissements, les reseaux de decision et les perspectives de cooperation."
-        },
-        {
-          tier: "vip",
-          image: "assets/images/highlight-vip-11-babacar-matar-ndiaye.jpg",
-          tag: "Representation diplomatique du Senegal",
-          title: "Son Excellence M. Babacar Matar Ndiaye",
-          text: "Ambassadeur extraordinaire et plenipotentiaire de la Republique du Senegal aupres des Emirats arabes unis, il porte une voix diplomatique majeure au service du renforcement des relations entre le Senegal, les Emirats et l'ensemble du Golfe."
         },
         {
           tier: "marquee",
@@ -805,6 +806,14 @@ const siteContent = {
         },
         {
           tier: "vip",
+          protocol: true,
+          image: "assets/images/highlight-vip-11-babacar-matar-ndiaye.jpg",
+          tag: "Senegalese diplomatic representation",
+          title: "H.E. Mr. Babacar Matar Ndiaye",
+          text: "Ambassador Extraordinary and Plenipotentiary of the Republic of Senegal to the United Arab Emirates, he brings a major diplomatic voice to strengthening relations between Senegal, the UAE and the wider Gulf region."
+        },
+        {
+          tier: "vip",
           image: "assets/images/highlight-vip-02-business.webp",
           tag: "UAE infrastructure & logistics",
           title: "Zakee Siddiqi",
@@ -865,13 +874,6 @@ const siteContent = {
           tag: "International influence",
           title: "Reference speaker",
           text: "Selected personality bringing an influence-driven perspective on investment, decision-making networks and future cooperation."
-        },
-        {
-          tier: "vip",
-          image: "assets/images/highlight-vip-11-babacar-matar-ndiaye.jpg",
-          tag: "Senegalese diplomatic representation",
-          title: "H.E. Mr. Babacar Matar Ndiaye",
-          text: "Ambassador Extraordinary and Plenipotentiary of the Republic of Senegal to the United Arab Emirates, he brings a major diplomatic voice to strengthening relations between Senegal, the UAE and the wider Gulf region."
         },
         {
           tier: "marquee",
@@ -1686,7 +1688,7 @@ function renderFeaturedVoices(section) {
   const repeatedItems = [...marqueeItems, ...marqueeItems.map((item) => ({ ...item, duplicate: true }))];
 
   const renderVipCard = (item, index) => `
-    <article class="featured-vip-card ${item.featured ? "is-featured" : ""}">
+    <article class="featured-vip-card ${item.featured ? "is-featured" : ""} ${item.protocol ? "is-protocol" : ""}">
       <div class="featured-vip-media">
         <img
           src="${item.image}"

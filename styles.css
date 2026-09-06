@@ -828,6 +828,7 @@ select:focus-visible {
 
 .featured-vip-panel {
   padding: 1.5rem;
+  border-radius: 1.4rem;
 }
 
 .featured-vip-heading {
@@ -880,8 +881,9 @@ select:focus-visible {
   overflow: hidden;
   min-height: 23rem;
   border-radius: 1.1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(18, 17, 59, 0.56), rgba(8, 9, 32, 0.88));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(180deg, rgba(18, 17, 59, 0.62), rgba(8, 9, 32, 0.94));
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
   isolation: isolate;
   transition:
     transform 180ms ease,
@@ -925,6 +927,23 @@ select:focus-visible {
     inset 0 0 0 1px rgba(239, 191, 89, 0.12);
 }
 
+.featured-vip-card.is-protocol {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  min-height: 18rem;
+  border-color: rgba(239, 191, 89, 0.48);
+  background: linear-gradient(135deg, rgba(45, 38, 92, 0.9), rgba(9, 12, 39, 0.98));
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(239, 191, 89, 0.1);
+}
+
+.featured-vip-card.is-protocol::before {
+  inset: 10px;
+  border-color: rgba(239, 191, 89, 0.28);
+  border-radius: 0.8rem;
+}
+
 .featured-vip-card.is-featured::before {
   inset: 12px;
   border-color: rgba(239, 191, 89, 0.24);
@@ -942,6 +961,7 @@ select:focus-visible {
   object-fit: cover;
   object-position: center top;
   transform: scale(1.02);
+  filter: saturate(0.96) contrast(1.04);
 }
 
 .featured-vip-copy {
@@ -957,6 +977,10 @@ select:focus-visible {
 
 .featured-vip-card.is-featured .featured-vip-copy {
   padding: 1.6rem;
+}
+
+.featured-vip-card.is-protocol .featured-vip-copy {
+  padding: 1.45rem;
 }
 
 .featured-vip-chip {
@@ -981,6 +1005,12 @@ select:focus-visible {
   color: #f5d58d;
 }
 
+.featured-vip-card.is-protocol .featured-vip-chip {
+  background: rgba(239, 191, 89, 0.16);
+  border-color: rgba(239, 191, 89, 0.46);
+  color: #f8dda1;
+}
+
 .featured-vip-card h3 {
   margin: 0 0 0.7rem;
   color: #ffffff;
@@ -990,6 +1020,10 @@ select:focus-visible {
 
 .featured-vip-card.is-featured h3 {
   font-size: clamp(1.7rem, 3.1vw, 2.45rem);
+}
+
+.featured-vip-card.is-protocol h3 {
+  font-size: clamp(1.45rem, 2.5vw, 1.9rem);
 }
 
 .featured-vip-card p {
@@ -1002,6 +1036,11 @@ select:focus-visible {
 .featured-vip-card.is-featured p {
   max-width: 34rem;
   font-size: 1rem;
+}
+
+.featured-vip-card.is-protocol p {
+  max-width: 38rem;
+  font-size: 0.98rem;
 }
 
 .featured-voices-marquee-group {
@@ -2024,6 +2063,11 @@ button:disabled {
     grid-column: span 2;
   }
 
+  .featured-vip-card.is-protocol {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+  }
+
   .official-partners-primary {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -2074,6 +2118,10 @@ button:disabled {
 
   .featured-vip-card.is-featured {
     min-height: 31rem;
+  }
+
+  .featured-vip-card.is-protocol {
+    min-height: 18rem;
   }
 
   .header-badge-stack {
@@ -2230,6 +2278,12 @@ button:disabled {
   .featured-vip-card,
   .featured-vip-card.is-featured {
     grid-column: auto;
+    min-height: 24rem;
+  }
+
+  .featured-vip-card.is-protocol {
+    grid-column: auto;
+    grid-row: auto;
     min-height: 24rem;
   }
 
