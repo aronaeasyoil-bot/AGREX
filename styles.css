@@ -670,14 +670,17 @@ select:focus-visible {
 
 .official-partners-marquee-shell {
   overflow: hidden;
-  border: 1px solid rgba(23, 221, 200, 0.18);
+  padding: 1rem 0 1.15rem;
+  border: 1px solid rgba(239, 191, 89, 0.3);
+  border-radius: 1.35rem;
   background:
-    linear-gradient(180deg, rgba(24, 21, 80, 0.92), rgba(11, 13, 47, 0.96)),
+    radial-gradient(circle at top right, rgba(239, 191, 89, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(24, 21, 80, 0.96), rgba(11, 13, 47, 0.98)),
     rgba(8, 15, 28, 0.84);
 }
 
 .official-partners-marquee-head {
-  padding: 1rem 1rem 0.8rem;
+  padding: 0 1.25rem 0.9rem;
 }
 
 .official-partners-marquee-label {
@@ -692,7 +695,7 @@ select:focus-visible {
 .official-partners-marquee-window {
   position: relative;
   overflow: hidden;
-  padding-bottom: 1rem;
+  padding-bottom: 0;
 }
 
 .official-partners-marquee-window::before,
@@ -700,7 +703,7 @@ select:focus-visible {
   content: "";
   position: absolute;
   top: 0;
-  bottom: 1rem;
+  bottom: 0;
   width: 4rem;
   z-index: 2;
   pointer-events: none;
@@ -721,8 +724,8 @@ select:focus-visible {
   display: flex;
   gap: var(--marquee-gap);
   width: max-content;
-  padding: 0 1rem;
-  animation: officialPartnersMarquee 34s linear infinite;
+  padding: 0 1.25rem;
+  animation: officialPartnersMarquee 52s linear infinite;
 }
 
 .official-partners-marquee-shell:hover .official-partners-marquee-track {
@@ -730,27 +733,48 @@ select:focus-visible {
 }
 
 .official-partner-mini {
-  flex: 0 0 13rem;
+  flex: 0 0 18rem;
   display: grid;
-  gap: 0.7rem;
-  align-content: start;
-  min-height: 8.4rem;
-  padding: 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  grid-template-rows: minmax(9.5rem, 1fr) auto;
+  overflow: hidden;
+  min-height: 16rem;
+  border: 2px solid rgba(85, 171, 222, 0.72);
+  border-radius: 1rem;
+  background: #fffefb;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+  color: #10133d;
 }
 
 .official-partner-mini .official-partner-logo-stage {
-  min-height: 5.2rem;
-  padding: 0.8rem;
+  min-height: 9.5rem;
+  padding: 1.4rem;
+  background: #fffefb;
 }
 
 .official-partner-mini .official-partner-logo-stage img {
-  max-height: 3.8rem;
+  max-height: 6rem;
+}
+
+.official-partner-mini .official-partner-copy {
+  gap: 0.35rem;
+  padding: 0 1rem 1rem;
+}
+
+.official-partner-mini .official-partner-role {
+  width: fit-content;
+  margin: 0 0 0.25rem -1rem;
+  padding: 0.48rem 0.9rem;
+  background: #218cd0;
+  color: #ffffff;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
 }
 
 .official-partner-mini .official-partner-copy h3 {
-  font-size: 0.94rem;
+  margin: 0;
+  color: #10133d;
+  font-size: 1rem;
+  line-height: 1.25;
 }
 
 @keyframes officialPartnersMarquee {
@@ -2432,14 +2456,17 @@ button:disabled {
   }
 
   .official-partner-mini {
-    flex-basis: 10.75rem;
-    min-height: 7.8rem;
-    padding: 0.8rem;
+    flex-basis: 15.5rem;
+    min-height: 14rem;
   }
 
   .official-partner-mini .official-partner-logo-stage {
-    min-height: 4.6rem;
-    padding: 0.65rem;
+    min-height: 8rem;
+    padding: 1rem;
+  }
+
+  .official-partner-mini .official-partner-logo-stage img {
+    max-height: 5rem;
   }
 
   .hero-shell {
