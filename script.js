@@ -50,6 +50,8 @@ const siteContent = {
       featuredLead:
         "Une delegation reunissant responsables publics, diplomates, decideurs et dirigeants d'entreprise engages pour le dialogue entre l'Afrique et le Golfe. Le Ministre Moussa Bala FOFANA y figure comme invite d'honneur unique.",
       marqueeLabel: "Autres profils invites",
+      moreLabel: "Voir plus",
+      lessLabel: "Voir moins",
       cards: [
         {
           tier: "vip",
@@ -795,6 +797,8 @@ const siteContent = {
       featuredLead:
         "A delegation bringing together public officials, diplomats, decision-makers and business leaders committed to dialogue between Africa and the Gulf. Minister Moussa Bala FOFANA is presented here as the sole guest of honour.",
       marqueeLabel: "Additional invited profiles",
+      moreLabel: "Read more",
+      lessLabel: "Show less",
       cards: [
         {
           tier: "vip",
@@ -1686,6 +1690,11 @@ function renderFeaturedVoices(section) {
   const vipItems = (section.cards || []).filter((item) => item.tier === "vip");
   const marqueeItems = (section.cards || []).filter((item) => item.tier !== "vip");
   const repeatedItems = [...marqueeItems, ...marqueeItems.map((item) => ({ ...item, duplicate: true }))];
+  const createExcerpt = (text, maxLength = 152) => {
+    if (text.length <= maxLength) return text;
+    const lastSpace = text.lastIndexOf(" ", maxLength);
+    return `${text.slice(0, lastSpace > 0 ? lastSpace : maxLength).trim()}...`;
+  };
 
   const renderVipCard = (item, index) => `
     <article class="featured-vip-card ${item.featured ? "is-featured" : ""} ${item.protocol ? "is-protocol" : ""}">
@@ -1701,7 +1710,14 @@ function renderFeaturedVoices(section) {
       <div class="featured-vip-copy">
         <span class="featured-vip-chip">${item.tag}</span>
         <h3>${item.title}</h3>
-        <p>${item.text}</p>
+        <p class="featured-vip-excerpt">${createExcerpt(item.text)}</p>
+        <details class="featured-vip-details">
+          <summary>
+            <span>${section.moreLabel || "Voir plus"}</span>
+            <span>${section.lessLabel || "Voir moins"}</span>
+          </summary>
+          <p>${item.text}</p>
+        </details>
       </div>
     </article>
   `;
