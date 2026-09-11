@@ -379,80 +379,80 @@ const siteContent = {
       ]
     },
     conference: {
-      kicker: "AGREX Conferences",
-      title: "Un programme calibre comme une plateforme de decisions",
-      cta: "Get your pass",
+      kicker: "Capital Afrique-Golfe",
+      title: "Faites rencontrer votre projet aux investisseurs qui decident a Dubai",
+      cta: "Obtenir mon pass",
       lead:
-        "Le programme alterne pleniere, tracks thematiques, matchmaking et sequences de closing pour faire d'AGREX un salon de conversations utiles.",
+        "AGREX reunit a Dubai porteurs de projets, investisseurs, family offices, banques, fonds et operateurs du Golfe autour d'opportunites africaines preparees pour le financement et le partenariat.",
       cards: [
         {
           index: "01",
-          tag: "Leadership",
-          title: "Africa-Gulf Opening Summit",
-          text: "Lecture de marche, priorites strategiques et vision institutionnelle autour du developpement immobilier et urbain."
+          tag: "Projets qualifies",
+          title: "Presentez votre opportunite",
+          text: "Positionnez votre projet avec une vision claire, des besoins identifies et une ambition lisible pour les decideurs internationaux."
         },
         {
           index: "02",
-          tag: "Capital",
-          title: "Investor & Financing Forum",
-          text: "Echanges sur bancabilite, structuration des projets, family offices, banques et partenariats de financement."
+          tag: "Capital prive",
+          title: "Rencontrez les investisseurs",
+          text: "Accedez a un environnement de rendez-vous cible avec investisseurs, family offices et groupes cherchant des opportunites de croissance en Afrique."
         },
         {
           index: "03",
-          tag: "Innovation",
-          title: "Smart Cities & Infrastructure",
-          text: "Panels sur ville durable, mobilite, infrastructures, urbanisme et nouveaux usages du built environment."
+          tag: "Banques & fonds",
+          title: "Structurez votre financement",
+          text: "Echangez sur la bancabilite, les montages financiers, les garanties et les partenariats adaptes a votre trajectoire de projet."
         },
         {
           index: "04",
-          tag: "Showcase",
-          title: "Exclusive DAMAC Sessions",
-          text: "Presentation des projets immobiliers, des residences premium et des formules de paiement souples pour les acheteurs et investisseurs."
+          tag: "Immobilier & ville",
+          title: "Activez les projets urbains",
+          text: "Valorisez des programmes immobiliers, fonciers et urbains aupres de partenaires capables d'accompagner leur realisation."
         },
         {
           index: "05",
-          tag: "Business",
-          title: "B2B Matchmaking & Deal Lounge",
-          text: "Rendez-vous qualifies, networking executive, signatures d'accords et annonces de cooperation."
+          tag: "Energie & infrastructures",
+          title: "Portez les projets essentiels",
+          text: "Mettez en relation les ambitions africaines en energie, mobilite, infrastructures et services avec des capitaux et expertises du Golfe."
         },
         {
           index: "06",
-          tag: "Territories",
-          title: "Africa Destination Spotlights",
-          text: "Interventions consacrées aux territoires, a l'attractivite urbaine, aux villes emergentes et aux projets d'impact."
+          tag: "Deal lounge",
+          title: "Transformez les rencontres en partenariats",
+          text: "Avancez vers des rendez-vous qualifies, des protocoles d'accord et des cooperations durables entre l'Afrique et le Golfe."
         }
       ]
     },
     projects: {
-      kicker: "Key projects at AGREX",
-      title: "Des opportunites immobilieres lisibles, premium et directement activables",
-      cta: "Voir les partenaires",
+      kicker: "Secteurs a fort potentiel",
+      title: "Presentez votre projet. Trouvez le capital pour le faire grandir.",
+      cta: "Preparer ma visite",
       lead:
-        "La proposition AGREX valorise des produits concrets et une promesse d'accompagnement claire pour des profils africains cherchant acces, rendement et securite.",
+        "AGREX ouvre un cadre concret a Dubai pour connecter les projets africains a des partenaires financiers, industriels et institutionnels mobilisables sur les grands secteurs de croissance.",
       cards: [
         {
-          image: "DAMAC-02-740x416.webp",
-          tag: "Residential",
-          title: "Appartements signature",
-          text: "Produits urbains a Dubai pour l'achat patrimonial, la diversification internationale et le rendement locatif."
+          image: "assets/images/agrex-networking.jpeg",
+          tag: "Immobilier & urbanisme",
+          title: "Developpement urbain africain",
+          text: "Programmes residentiels, mixtes, commerciaux et fonciers a presenter a des investisseurs et operateurs internationaux."
         },
         {
           image: "unwZHeajuq.jpg",
-          tag: "Communities",
-          title: "Villas & communities",
-          text: "Villas haut de gamme dans des environnements securises, lifestyle-driven et tres attractifs pour la clientele premium."
+          tag: "Energie & transition",
+          title: "Energie utile et durable",
+          text: "Projets d'energie, de transition et de services essentiels a relier a des partenaires techniques et financiers."
         },
         {
-          image: "damac-riverside-location-bg.webp",
-          tag: "Luxury",
-          title: "Residences premium",
-          text: "Une offre alignee avec l'image du luxe Dubai : standing, architecture iconique et experience residentielle elevee."
+          image: "Riverside Damac.jpg",
+          tag: "Infrastructures & villes",
+          title: "Infrastructures qui connectent",
+          text: "Mobilite, eau, logistique, equipements urbains et smart cities : des projets structures pour changer d'echelle."
         },
         {
-          image: "1733.webp",
-          tag: "Flexible plans",
-          title: "Paiements flexibles",
-          text: "Des modalites d'acquisition plus lisibles pour faciliter la prise de decision et l'entree sur le marche."
+          image: "damac-partner-card.jpg",
+          tag: "Capital & co-investissement",
+          title: "Capital pour accelerer",
+          text: "Un espace pour faire emerger des co-investissements, des alliances industrielles et des partenariats de long terme."
         }
       ]
     },
@@ -1126,80 +1126,80 @@ const siteContent = {
       ]
     },
     conference: {
-      kicker: "AGREX Conferences",
-      title: "A programme designed as a platform for decisions",
-      cta: "Get your pass",
+      kicker: "Africa-Gulf capital",
+      title: "Bring your project to the investors who make decisions in Dubai",
+      cta: "Get my pass",
       lead:
-        "The programme balances plenary moments, focused tracks, matchmaking and closing sequences to make AGREX a real business event.",
+        "AGREX brings together in Dubai project owners, investors, family offices, banks, funds and Gulf operators around African opportunities prepared for financing and partnership.",
       cards: [
         {
           index: "01",
-          tag: "Leadership",
-          title: "Africa-Gulf Opening Summit",
-          text: "Market framing, strategic priorities and institutional vision for real estate and urban development."
+          tag: "Qualified projects",
+          title: "Present your opportunity",
+          text: "Position your project with a clear vision, identified needs and an ambition that international decision-makers can understand."
         },
         {
           index: "02",
-          tag: "Capital",
-          title: "Investor & Financing Forum",
-          text: "Bankability, project structuring, family offices, banks and financing partnerships."
+          tag: "Private capital",
+          title: "Meet investors",
+          text: "Enter a targeted meeting environment with investors, family offices and groups seeking growth opportunities in Africa."
         },
         {
           index: "03",
-          tag: "Innovation",
-          title: "Smart Cities & Infrastructure",
-          text: "Future city panels on mobility, infrastructure, urban planning and new built-environment uses."
+          tag: "Banks & funds",
+          title: "Structure your financing",
+          text: "Discuss bankability, financial structuring, guarantees and partnerships suited to your project trajectory."
         },
         {
           index: "04",
-          tag: "Showcase",
-          title: "Exclusive DAMAC Sessions",
-          text: "Project presentations, premium residences and flexible payment structures for buyers and investors."
+          tag: "Real estate & cities",
+          title: "Activate urban projects",
+          text: "Put forward real estate, land and urban programmes to partners able to support their delivery."
         },
         {
           index: "05",
-          tag: "Business",
-          title: "B2B Matchmaking & Deal Lounge",
-          text: "Qualified meetings, executive networking, MoU signings and cooperation announcements."
+          tag: "Energy & infrastructure",
+          title: "Advance essential projects",
+          text: "Connect African ambitions in energy, mobility, infrastructure and essential services with Gulf capital and expertise."
         },
         {
           index: "06",
-          tag: "Territories",
-          title: "Africa Destination Spotlights",
-          text: "Sessions focused on territories, urban attractiveness, emerging cities and high-impact development projects."
+          tag: "Deal lounge",
+          title: "Turn meetings into partnerships",
+          text: "Move towards qualified meetings, memoranda of understanding and lasting cooperation between Africa and the Gulf."
         }
       ]
     },
     projects: {
-      kicker: "Key projects at AGREX",
-      title: "Premium, legible and directly actionable real estate opportunities",
-      cta: "View partners",
+      kicker: "High-potential sectors",
+      title: "Present your project. Find the capital to grow it.",
+      cta: "Prepare my visit",
       lead:
-        "The AGREX proposition highlights tangible products and a clear support promise for African profiles seeking access, yield and security.",
+        "AGREX creates a practical setting in Dubai to connect African projects with financial, industrial and institutional partners active across major growth sectors.",
       cards: [
         {
-          image: "assets/images/agrex-poster.jpeg",
-          tag: "Residential",
-          title: "Signature apartments",
-          text: "Urban Dubai products for wealth preservation, international diversification and rental yield."
+          image: "assets/images/agrex-networking.jpeg",
+          tag: "Real estate & urban planning",
+          title: "African urban development",
+          text: "Residential, mixed-use, commercial and land programmes to present to international investors and operators."
         },
         {
           image: "unwZHeajuq.jpg",
-          tag: "Communities",
-          title: "Villas & communities",
-          text: "High-end villas in secure, lifestyle-driven communities with strong premium appeal."
+          tag: "Energy & transition",
+          title: "Useful, sustainable energy",
+          text: "Energy, transition and essential-service projects connected to technical and financial partners."
         },
         {
-          image: "damac-riverside-location-bg.webp",
-          tag: "Luxury",
-          title: "Premium residences",
-          text: "A product mix aligned with the Dubai luxury image: quality, iconic architecture and elevated living."
+          image: "Riverside Damac.jpg",
+          tag: "Infrastructure & cities",
+          title: "Infrastructure that connects",
+          text: "Mobility, water, logistics, urban facilities and smart cities: structured projects ready to scale."
         },
         {
-          image: "1733.webp",
-          tag: "Flexible plans",
-          title: "Flexible payment plans",
-          text: "Clear acquisition formats designed to accelerate decision making and market entry."
+          image: "damac-partner-card.jpg",
+          tag: "Capital & co-investment",
+          title: "Capital to accelerate",
+          text: "A space to unlock co-investment, industrial alliances and long-term strategic partnerships."
         }
       ]
     },
@@ -1879,7 +1879,7 @@ function renderConferences(items) {
   container.innerHTML = items
     .map(
       (item) => `
-        <article class="conference-card" data-reveal>
+        <article class="conference-card investor-path-card" data-reveal>
           <span class="conference-card-index">${item.index}</span>
           <span class="conference-card-tag">${item.tag}</span>
           <h3>${item.title}</h3>
@@ -1895,9 +1895,9 @@ function renderProjects(items) {
   container.innerHTML = items
     .map(
       (item) => `
-        <article class="project-card" data-reveal>
+        <article class="project-card investment-sector-card" data-reveal>
           <div class="project-card-image">
-            <img src="${item.image}" alt="${item.title}" />
+            <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async" />
           </div>
           <span class="project-card-tag">${item.tag}</span>
           <h3>${item.title}</h3>
