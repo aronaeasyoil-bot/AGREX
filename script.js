@@ -712,6 +712,16 @@ const siteContent = {
       submit: "S'abonner",
       success: "Merci. Votre demande d'abonnement a bien ete prise en compte."
     },
+    whatsapp: {
+      kicker: "Contact direct",
+      title: "Ecrivez-nous sur WhatsApp",
+      lead: "Laissez vos coordonnees et votre message. WhatsApp s'ouvrira avec votre demande pre-remplie.",
+      lastName: "Nom",
+      firstName: "Prenom",
+      email: "E-mail",
+      message: "Message",
+      submit: "Ouvrir WhatsApp"
+    },
     footer: {
       brandKicker: "Africa Gulf Real Estate Expo",
       description:
@@ -1461,6 +1471,16 @@ const siteContent = {
       submit: "Subscribe",
       success: "Thank you. Your newsletter request has been recorded."
     },
+    whatsapp: {
+      kicker: "Direct contact",
+      title: "Message us on WhatsApp",
+      lead: "Share your details and message. WhatsApp will open with your request pre-filled.",
+      lastName: "Last name",
+      firstName: "First name",
+      email: "Email",
+      message: "Message",
+      submit: "Open WhatsApp"
+    },
     footer: {
       brandKicker: "Africa Gulf Real Estate Expo",
       description:
@@ -1519,6 +1539,10 @@ const registrationNextInput = document.getElementById("registration-next");
 const sponsorSubjectInput = document.getElementById("sponsor-subject");
 const sponsorAutoresponseInput = document.getElementById("sponsor-autoresponse");
 const sponsorNextInput = document.getElementById("sponsor-next");
+const whatsappTrigger = document.getElementById("whatsapp-trigger");
+const whatsappDialog = document.getElementById("whatsapp-dialog");
+const whatsappClose = document.getElementById("whatsapp-close");
+const whatsappContactForm = document.getElementById("whatsapp-contact-form");
 
 function normaliseWebsite(value) {
   return String(value || "").trim();
@@ -2422,6 +2446,40 @@ newsletterForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   newsletterStatus.textContent = siteContent[currentLang].keep.success;
   newsletterForm.reset();
+});
+
+whatsappTrigger?.addEventListener("click", () => {
+  whatsappDialog?.showModal();
+});
+
+whatsappClose?.addEventListener("click", () => {
+  whatsappDialog?.close();
+});
+
+whatsappDialog?.addEventListener("click", (event) => {
+  if (event.target === whatsappDialog) whatsappDialog.close();
+});
+
+whatsappContactForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!whatsappContactForm.reportValidity()) return;
+
+  const formData = new FormData(whatsappContactForm);
+  const greeting = currentLang === "en" ? "Hello AGREX," : "Bonjour AGREX,";
+  const message = [
+    greeting,
+    "",
+    `${siteContent[currentLang].whatsapp.lastName}: ${String(formData.get("lastName") || "").trim()}`,
+    `${siteContent[currentLang].whatsapp.firstName}: ${String(formData.get("firstName") || "").trim()}`,
+    `${siteContent[currentLang].whatsapp.email}: ${String(formData.get("email") || "").trim()}`,
+    "",
+    `${siteContent[currentLang].whatsapp.message}:`,
+    String(formData.get("message") || "").trim()
+  ].join("\n");
+
+  window.open(`https://wa.me/971543338520?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+  whatsappContactForm.reset();
+  whatsappDialog?.close();
 });
 
 renderSite(currentLang);
