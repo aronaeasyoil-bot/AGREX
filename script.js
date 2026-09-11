@@ -736,9 +736,11 @@ const siteContent = {
           label: "Contact & support",
           title: "www.agrex.events",
           list: [
-            "contact@agrex.events",
-            "+221 77 751 91 65",
-            "+971 54 333 8520"
+            "www.gaic.ae",
+            "contact@gaic.ae",
+            "WhatsApp: +971 54 333 8520",
+            "Call: +971 54 175 1669",
+            "+221 77 751 91 65"
           ]
         }
       ],
@@ -1483,9 +1485,11 @@ const siteContent = {
           label: "Contact & support",
           title: "www.agrex.events",
           list: [
-            "contact@agrex.events",
-            "+221 77 751 91 65",
-            "+971 54 333 8520"
+            "www.gaic.ae",
+            "contact@gaic.ae",
+            "WhatsApp: +971 54 333 8520",
+            "Call: +971 54 175 1669",
+            "+221 77 751 91 65"
           ]
         }
       ],
