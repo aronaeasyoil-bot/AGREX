@@ -48,7 +48,7 @@ const siteContent = {
       featuredLabel: "Delegation d'excellence",
       featuredTitle: "Delegation institutionnelle et leaders internationaux",
       featuredLead:
-        "Une delegation reunissant responsables publics, diplomates, decideurs et dirigeants d'entreprise engages pour le dialogue entre l'Afrique et le Golfe. Le Ministre Moussa Bala FOFANA y figure comme invite d'honneur unique.",
+        "Une delegation reunissant responsables publics, diplomates, decideurs et dirigeants d'entreprise engages pour le dialogue entre l'Afrique et le Golfe.",
       marqueeLabel: "Autres profils invites",
       moreLabel: "Voir plus",
       lessLabel: "Voir moins",
@@ -60,6 +60,15 @@ const siteContent = {
           tag: "Invite d'honneur",
           title: "Monsieur Moussa Bala FOFANA",
           text: "Ministre de l'Urbanisme, des Collectivites Territoriales et de l'Amenagement des Territoires."
+        },
+        {
+          tier: "vip",
+          featured: true,
+          honour: true,
+          image: "assets/images/highlight-vip-gabon-vice-president.jpg",
+          tag: "Invité d'honneur",
+          title: "Vice-président de la République gabonaise",
+          text: "Vice-président de la République gabonaise, invité d'honneur d'AGREX 2026."
         },
         {
           tier: "vip",
@@ -807,7 +816,7 @@ const siteContent = {
       featuredLabel: "Distinguished delegation",
       featuredTitle: "Institutional delegation & international leaders",
       featuredLead:
-        "A delegation bringing together public officials, diplomats, decision-makers and business leaders committed to dialogue between Africa and the Gulf. Minister Moussa Bala FOFANA is presented here as the sole guest of honour.",
+        "A delegation bringing together public officials, diplomats, decision-makers and business leaders committed to dialogue between Africa and the Gulf.",
       marqueeLabel: "Additional invited profiles",
       moreLabel: "Read more",
       lessLabel: "Show less",
@@ -819,6 +828,15 @@ const siteContent = {
           tag: "Guest of Honour",
           title: "Monsieur Moussa Bala FOFANA",
           text: "Minister of Urbanism, Territorial Communities and Land Planning."
+        },
+        {
+          tier: "vip",
+          featured: true,
+          honour: true,
+          image: "assets/images/highlight-vip-gabon-vice-president.jpg",
+          tag: "Guest of Honour",
+          title: "Vice-President of the Gabonese Republic",
+          text: "Vice-President of the Gabonese Republic, guest of honour at AGREX 2026."
         },
         {
           tier: "vip",
@@ -1725,7 +1743,7 @@ function renderFeaturedVoices(section) {
   };
 
   const renderVipCard = (item, index) => `
-    <article class="featured-vip-card ${item.featured ? "is-featured" : ""} ${item.protocol ? "is-protocol" : ""}">
+    <article class="featured-vip-card ${item.featured ? "is-featured" : ""} ${item.protocol ? "is-protocol" : ""} ${item.honour ? "is-honour" : ""}">
       <div class="featured-vip-media">
         <img
           src="${item.image}"

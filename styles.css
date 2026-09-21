@@ -1085,7 +1085,7 @@ select:focus-visible {
 
 .featured-vip-card.is-protocol {
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 3;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto;
   min-height: 0;
@@ -1094,6 +1094,15 @@ select:focus-visible {
   box-shadow:
     0 20px 48px rgba(0, 0, 0, 0.28),
     inset 0 0 0 1px rgba(239, 191, 89, 0.1);
+}
+
+.featured-vip-card.is-featured.is-honour {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.featured-vip-card.is-honour .featured-vip-media img {
+  object-position: 65% top;
 }
 
 .featured-vip-card.is-protocol::before {
@@ -1109,6 +1118,7 @@ select:focus-visible {
 }
 
 .featured-vip-media {
+  position: relative;
   aspect-ratio: 1 / 1;
   min-height: 0;
   overflow: hidden;
@@ -1116,6 +1126,8 @@ select:focus-visible {
 }
 
 .featured-vip-media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2333,7 +2345,7 @@ button:disabled {
 
   .featured-vip-card.is-protocol {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 3;
   }
 
   .official-partners-primary {
