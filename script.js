@@ -723,6 +723,8 @@ const siteContent = {
     },
     whatsapp: {
       kicker: "Contact direct",
+      help: "Besoin d’aide ?",
+      agent: "Discuter avec un agent AGREX",
       title: "Ecrivez-nous sur WhatsApp",
       lead: "Laissez vos coordonnees et votre message. WhatsApp s'ouvrira avec votre demande pre-remplie.",
       lastName: "Nom",
@@ -1491,6 +1493,8 @@ const siteContent = {
     },
     whatsapp: {
       kicker: "Direct contact",
+      help: "Need help?",
+      agent: "Chat with an AGREX agent",
       title: "Message us on WhatsApp",
       lead: "Share your details and message. WhatsApp will open with your request pre-filled.",
       lastName: "Last name",
