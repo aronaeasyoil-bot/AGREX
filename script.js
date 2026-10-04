@@ -80,6 +80,13 @@ const siteContent = {
         },
         {
           tier: "vip",
+          image: "assets/images/highlight-vip-karim-meissa-wade.jpg",
+          tag: "Affaires & investissement",
+          title: "M. Karim Meïssa Wade",
+          text: "Homme d’affaires, haut responsable gouvernemental et investisseur."
+        },
+        {
+          tier: "vip",
           image: "assets/images/highlight-vip-02-business.webp",
           tag: "Infrastructures & logistique UAE",
           title: "Zakee Siddiqi",
@@ -847,6 +854,13 @@ const siteContent = {
           tag: "Senegalese diplomatic representation",
           title: "H.E. Mr. Babacar Matar Ndiaye",
           text: "Ambassador Extraordinary and Plenipotentiary of the Republic of Senegal to the United Arab Emirates, he brings a major diplomatic voice to strengthening relations between Senegal, the UAE and the wider Gulf region."
+        },
+        {
+          tier: "vip",
+          image: "assets/images/highlight-vip-karim-meissa-wade.jpg",
+          tag: "Business & investment",
+          title: "Mr. Karim Meïssa Wade",
+          text: "Businessman, senior government official and investor."
         },
         {
           tier: "vip",
