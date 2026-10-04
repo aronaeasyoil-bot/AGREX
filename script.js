@@ -87,6 +87,13 @@ const siteContent = {
         },
         {
           tier: "vip",
+          image: "assets/images/highlight-vip-cheikh-tidiane-gadio.jpg",
+          tag: "Intervenant",
+          title: "S. E. Dr Cheikh Tidiane Gadio",
+          text: "Président de l’Institut panafricain de stratégies et conférencier."
+        },
+        {
+          tier: "vip",
           image: "assets/images/highlight-vip-02-business.webp",
           tag: "Infrastructures & logistique UAE",
           title: "Zakee Siddiqi",
@@ -861,6 +868,13 @@ const siteContent = {
           tag: "Business & investment",
           title: "Mr. Karim Meïssa Wade",
           text: "Businessman, senior government official and investor."
+        },
+        {
+          tier: "vip",
+          image: "assets/images/highlight-vip-cheikh-tidiane-gadio.jpg",
+          tag: "Speaker",
+          title: "H.E. Dr. Cheikh Tidiane Gadio",
+          text: "President of the Pan-African Institute of Strategies and speaker."
         },
         {
           tier: "vip",
